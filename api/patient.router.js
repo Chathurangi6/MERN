@@ -15,5 +15,16 @@ patientRoutes.route('/add').post(function (req, res) {
     res.status(400).send("unable to save to database");
     });
 });
+// Defined get data(index or listing) route
+patientRoutes.route('/').get(function (req, res) {
+  Patient.find(function(err, patients){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(patients);
+  }
+});
+});
 
 module.exports = patientRoutes;
