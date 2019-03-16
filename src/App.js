@@ -10,20 +10,23 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link to={'/'} className="navbar-brand">Nawodya</Link>
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <Link to={'/'} className="navbar-brand">Nawodaya</Link>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                   <Link to={'/'} className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={'/create'} className="nav-link">Create</Link>
+                <Link to={'/create'} className="nav-link">Create</Link>
                 </li>
                 <li className="nav-item">
                   <Link to={'/view'} className="nav-link">View</Link>
                 </li>
-              </ul>
+                <li className="nav-item">
+                  <Link to={'/appoint'} className="nav-link">Appointments</Link>
+                </li>
+                </ul>
             </div>
           </nav> <br/>
           <h2>Welcome to Nawodaya Hospital</h2> <br/>
