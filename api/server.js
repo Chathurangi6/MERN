@@ -5,19 +5,33 @@ const PORT = 4000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB.js');
-const patientRoute = require('./patient.router')
+const passport = require("passport");
+const patientRoute = require('./routes/patient.router');
+const users = require('./routes/users')
+
 
 mongoose.Promise = global.Promise;
+
+// Connect to MongoDB
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
   err => { console.log('Can not connect to the database'+ err)}
 );
 
 app.use(cors());
+// Bodyparser middleware
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+
+// ROUTES
 app.use('/patient',patientRoute);
+app.use("/api/users", users);
+
 
 app.listen(PORT, function(){
   console.log('Server is running on Port:',PORT);

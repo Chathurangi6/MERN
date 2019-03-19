@@ -1,142 +1,101 @@
+// import Dashboard from '../../src/components/Dashboard';
+
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-const passport = require("passport");
-const isAdmin = require("../../guards/isAdmin");
-const isModerator = require("../../guards/isModerator");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("../DB");
 
-// bring in user model
-require("../models/Users");
-const User = mongoose.model("users");
+const mongoose = require('mongoose');
 
-// GET | api/users/profile
-// view current user profile
-router.get(
-  "/profile",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    User.findOne({ _id: req.user.id })
-      .then(user => {
-        if (user) {
-          res.json({ success: true, user });
-        } else {
-          res.json({ success: false, message: "User not found" });
-        }
-      })
-      .catch(ex => {
-        return res.status(500).send("Something went wrong");
-      });
+// Load input validation
+const validateRegisterInput = require("../validation/register");
+const validateLoginInput = require("../validation/login");
+// Load User model
+const User = mongoose.model('users');
+
+router.post("/register", (req, res) => {
+  // Form validation
+const { errors, isValid } = validateRegisterInput(req.body);
+// Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
   }
-);
-
-// GET | api/users
-// view users list
-router.get(
-  "/",
-  [passport.authenticate("jwt", { session: false }), isAdmin],
-  (req, res) => {
-    User.find({ role: "subscriber" })
-      .then(users => {
-        if (users) {
-          res.json({ success: true, users });
-        } else {
-          res.json({ success: false, message: "Users not found" });
-        }
-      })
-      .catch(ex => {
-        return res.status(500).send("Something went wrong");
+User.findOne({ email: req.body.email }).then(user => {
+    if (user) {
+      return res.status(400).json({ email: "Email already exists" });
+    } 
+const newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
       });
-  }
-);
-
-// GET | api/users/view/:id
-// get user
-router.get(
-  "/show/:id",
-  [passport.authenticate("jwt", { session: false }), isAdmin],
-  (req, res) => {
-    User.findOne({ _id: req.params.id })
-      .then(user => {
-        if (user) {
-          res.json({ success: true, user });
-        } else {
-          res.json({ success: false, message: "User not found" });
-        }
-      })
-      .catch(ex => {
-        return res.status(500).send("Something went wrong");
-      });
-  }
-);
-
-// PUT | api/users/update
-// update user
-router.put(
-  "/update/:id",
-  [passport.authenticate("jwt", { session: false }), isAdmin],
-  (req, res) => {
-    if (!req.body.name) {
-      res.json({ success: false, msg: "name is required" });
-    } else {
-      User.findOne({ _id: req.params.id })
-        .then(user => {
-          if (user) {
-            user.name = req.body.name;
-            user
-              .save()
-              .then(userUpdated => {
-                if (userUpdated) {
-                  res.json({ success: true, message: "User updated!" });
-                } else {
-                  res.json({
-                    success: false,
-                    message: "User was not updated. Please try again"
-                  });
-                }
-              })
-              .catch(ex => {
-                return res.status(500).send("Something went wrong");
-              });
-          } else {
-            res.json({ success: false, message: "User not found" });
-          }
-        })
-        .catch(ex => {
-          return res.status(500).send("Something went wrong");
+// Hash password before saving in database
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(user => res.json(user))
+            .catch(err => console.log(err));
         });
-    }
-  }
-);
-
-// DELETE | api/users/delete/:id
-// delete user
-router.delete(
-  "/delete/:id",
-  [passport.authenticate("jwt", { session: false }), isAdmin],
-  (req, res) => {
-    User.findOne({ _id: req.params.id })
-      .then(user => {
-        if (user) {
-          user
-            .remove()
-            .then(userDeleted => {
-              if (userDeleted) {
-                res.json({ success: true, message: "User deleted" });
-              } else {
-                res.json({ success: false, message: "User was not deleted" });
-              }
-            })
-            .catch(ex => {
-              return res.status(500).send("Something went wrong");
-            });
-        } else {
-          res.json({ success: false, message: "User not found" });
-        }
-      })
-      .catch(ex => {
-        return res.status(500).send("Something went wrong");
       });
-  }
-);
+    }
+  );
+});
+
+//login validation
+router.post("/login", (req, res) => {
+    // Form validation
+  const { errors, isValid } = validateLoginInput(req.body);
+  // Check validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+  const email = req.body.email;
+    const password = req.body.password;
+  // Find user by email
+    User.findOne({ email }).then(user => {
+      // Check if user exists
+      if (!user) {
+        return res.status(404).json({ emailnotfound: "Email not found" });
+      }
+  // Check password
+      bcrypt.compare(password, user.password).then(isMatch => {
+        if (isMatch) {
+          // User matched
+          // Create JWT Payload
+          const payload = {
+            id: user.id,
+            name: user.name
+          };
+  // Sign token
+          jwt.sign(
+            payload,
+            keys.secretOrKey,
+            {
+              expiresIn: 31556926 // 1 year in seconds
+            },
+            (err, token) => {
+              res.json({
+                success: true,
+                token: "Bearer " + token
+              });
+            }
+          );
+          // render() {
+          //   return(
+          //     <Dashboard/>
+          //   );
+          // }
+        } else {
+          return res
+            .status(400)
+            .json({ passwordincorrect: "Password incorrect" });
+        }
+      });
+    });
+  });
 
 module.exports = router;

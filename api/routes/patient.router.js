@@ -2,7 +2,7 @@ const express = require('express');
 const patientRoutes = express.Router();
 
 // Require Patient model in our routes module
-let Patient = require('./patient.model');
+let Patient = require('../models/patient.model');
 
 // Defined store route
 patientRoutes.route('/add').post(function (req, res) {
