@@ -4,27 +4,34 @@ import axios from 'axios'
 export default class AddPatient extends Component {
   constructor(props) {
       super(props);
-      this.onChangeName = this.onChangeName.bind(this);
-      this.onChangeAge = this.onChangeAge.bind(this);
+      this.onChangeFName = this.onChangeFName.bind(this);
+      this.onChangeLName = this.onChangeLName.bind(this);
+      this.onChangeDOB = this.onChangeDOB.bind(this);
       this.onChangePhnNumber = this.onChangePhnNumber.bind(this);
       this.onChangeEmail = this.onChangeEmail.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
 
       this.state = {
-          name: '',
-          age: '',
+          fname: '',
+          lname:'',
+          dob: '',
           phn_number:'',
-          email:''
+          email:'',
       }
   }
-  onChangeName(e) {
+  onChangeFName(e) {
     this.setState({
-      name: e.target.value
+      fname: e.target.value
     });
   }
-  onChangeAge(e) {
+  onChangeLName(e) {
     this.setState({
-      age: e.target.value
+      lname: e.target.value
+    });
+  }
+  onChangeDOB(e) {
+    this.setState({
+      dob: e.target.value
     })  
   }
   onChangePhnNumber(e) {
@@ -41,8 +48,9 @@ export default class AddPatient extends Component {
   onSubmit(e) {
     e.preventDefault();
     const obj = {
-      name: this.state.name,
-      age: this.state.age,
+      fname: this.state.fname,
+      lname: this.state.lname,
+      dob: this.state.dob,
       phn_number: this.state.phn_number,
       email: this.state.email
     };
@@ -50,8 +58,9 @@ export default class AddPatient extends Component {
         .then(res => console.log(res.data));
     
     this.setState({
-      name: '',
-      age: '',
+      fname: '',
+      lname:'',
+      dob: '',
       phn_number: '',
       email:''
     })
@@ -63,20 +72,29 @@ export default class AddPatient extends Component {
               <h3>Add New Patient</h3>
               <form onSubmit={this.onSubmit}>
                   <div className="form-group">
-                      <label>Name:  </label>
+                      <label>First Name:  </label>
                       <input 
                         type="text" 
                         className="form-control" 
-                        value={this.state.name}
-                        onChange={this.onChangeName}
+                        value={this.state.fname}
+                        onChange={this.onChangeFName}
                         />
                   </div>
                   <div className="form-group">
-                      <label>Age: </label>
-                      <input type="text" 
+                      <label>Last Name:  </label>
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        value={this.state.lname}
+                        onChange={this.onChangeLName}
+                        />
+                  </div>
+                  <div className="form-group">
+                      <label>Date of Birth: </label>
+                      <input type="date" 
                         className="form-control"
-                        value={this.state.age}
-                        onChange={this.onChangeAge}
+                        value={this.state.dob}
+                        onChange={this.onChangeDOB}
                         />
                   </div>
                   <div className="form-group">

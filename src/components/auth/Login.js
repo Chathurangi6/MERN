@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
+
+
+
 class Login extends Component {
   constructor() {
     super();
@@ -40,7 +43,8 @@ this.props.loginUser(userData);
 render() {
     const { errors } = this.state;
 return (
-      <div className="container">
+  
+      <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"500px"}}>
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
             <Link to="/" className="btn-flat waves-effect">
@@ -108,6 +112,7 @@ return (
           </div>
         </div>
       </div>
+     
     );
   }
 }

@@ -30,8 +30,9 @@ export default class ViewPatient extends Component {
           <table className="table table-striped" style={{ marginTop: 20 }}>
             <thead>
               <tr>
-                <th>Person</th>
-                <th>Age</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DOB</th>
                 <th>Phone Number</th>
                 <th>Email</th>
                 

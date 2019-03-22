@@ -5,10 +5,13 @@ class PatientTable extends Component {
     return (
         <tr>
           <td>
-            {this.props.obj.name}
+            {this.props.obj.fname}
           </td>
           <td>
-            {this.props.obj.age}
+            {this.props.obj.lname}
+          </td>
+          <td>
+            {this.props.obj.dob}
           </td>
           <td>
             {this.props.obj.phn_number}

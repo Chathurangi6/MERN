@@ -4,11 +4,14 @@ const Schema = mongoose.Schema;
 // Define collection and schema for Patient
 let Patient = new Schema({
   
-  name: {
+  fname: {
     type: String
   },
-  age: {
+  lname: {
     type: String
+  },
+  dob: {
+    type: Date
   },
   phn_number: {
     type: String
