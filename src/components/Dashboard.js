@@ -5,8 +5,9 @@ import AddPatient from './AddPatient'
 import ViewPatient from './ViewPatients'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
+import Footer from '../components/layout/Footer'
 import { logoutUser } from "../actions/authActions";
+import Appointment from './Appointment';
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -32,7 +33,7 @@ class Dashboard extends Component {
                   <Link to={'/view'} className="nav-link">View</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={'/appoint'} className="nav-link">Appointments</Link>
+                  <Link to={'/addAppoint'} className="nav-link">Appointments</Link>
                 </li>
                 <li className="nav-item">
                  <Link  onClick={this.onLogoutClick} className="nav-link" >Logout</Link>
@@ -46,11 +47,13 @@ class Dashboard extends Component {
           <h2>Welcome to Nawodaya Hospital</h2> <br/>
           <Switch>
               <Route exact path='/create' component={ AddPatient } />
-              
+              <Route path='/addAppoint' component={ Appointment } />
               <Route path='/view' component={ ViewPatient } />
           </Switch>
+          <Footer/>
         </div>
       </Router>
+      
     );
   }
 }

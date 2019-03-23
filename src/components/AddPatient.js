@@ -68,7 +68,7 @@ export default class AddPatient extends Component {
  
   render() {
       return (
-          <div style={{ marginTop: 10 }}>
+          <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
               <h3>Add New Patient</h3>
               <form onSubmit={this.onSubmit}>
                   <div className="form-group">

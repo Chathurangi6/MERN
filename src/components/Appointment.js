@@ -4,99 +4,118 @@ import axios from 'axios'
 export default class Appointment extends Component {
   constructor(props) {
       super(props);
-      this.onChangeName = this.onChangeName.bind(this);
-      this.onChangeAge = this.onChangeAge.bind(this);
-      this.onChangePhnNumber = this.onChangePhnNumber.bind(this);
-      this.onChangeEmail = this.onChangeEmail.bind(this);
+      this.onChangeFName = this.onChangeFName.bind(this);
+      this.onChangeLName = this.onChangeLName.bind(this);
+      this.onChangeDoctor = this.onChangeDoctor.bind(this);
+      this.onChangeDate = this.onChangeDate.bind(this);
+      this.onChangeTime = this.onChangeTime.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
 
       this.state = {
-          name: '',
-          age: '',
-          phn_number:'',
-          email:''
+          fname: '',
+          lname: '',
+          doctor: '',
+          date:'',
+          time:''
       }
   }
-  onChangeName(e) {
+  onChangeFName(e) {
     this.setState({
-      name: e.target.value
+      fname: e.target.value
     });
   }
-  onChangeAge(e) {
+  onChangeLName(e) {
     this.setState({
-      age: e.target.value
+      lname: e.target.value
+    });
+  }
+  onChangeDoctor(e) {
+    this.setState({
+      doctor: e.target.value
     })  
   }
-  onChangePhnNumber(e) {
+  onChangeDate(e) {
     this.setState({
-      phn_number: e.target.value
+      date: e.target.value
     })
   }
-  onChangeEmail(e){
+  onChangeTime(e){
       this.setState({
-          email:e.target.value
+          time:e.target.value
       })
   }
 
   onSubmit(e) {
     e.preventDefault();
     const obj = {
-      name: this.state.name,
-      age: this.state.age,
-      phn_number: this.state.phn_number,
-      email: this.state.email
+      fname: this.state.fname,
+      lname: this.state.lname,
+      doctor: this.state.doctor,
+      date: this.state.date,
+      timel: this.state.time
     };
     axios.post('http://localhost:4000/patient/add', obj)
         .then(res => console.log(res.data));
     
     this.setState({
-      name: '',
-      age: '',
-      phn_number: '',
-      email:''
+      fname: '',
+      lname: ''
+      
     })
   }
  
   render() {
       return (
-          <div style={{ marginTop: 10 }}>
-              <h3>Add New Patient</h3>
+          <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
+              <h3>Add Appointment</h3>
               <form onSubmit={this.onSubmit}>
                   <div className="form-group">
-                      <label>Name:  </label>
+                      <label>First Name:  </label>
                       <input 
                         type="text" 
                         className="form-control" 
-                        value={this.state.name}
-                        onChange={this.onChangeName}
+                        value={this.state.fname}
+                        onChange={this.onChangeFName}
                         />
                   </div>
                   <div className="form-group">
-                      <label>Age: </label>
+                      <label>Last Name:  </label>
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        value={this.state.lname}
+                        onChange={this.onChangeLName}
+                        />
+                  </div>
+                  <div className="form-group">
+                      <label>Doctor: </label>
+                      <select 
+                        className="form-control"
+                        value={this.state.doctor}
+                        onChange={this.onChangeDoctor}
+                        >
+                        <option value="Dr.S">Dr.S</option>
+                        <option value="Dr.V">Dr.V</option>
+                      </select>
+                  </div>
+                  <div className="form-group">
+                      <label>Date: </label>
+                      <input type="date" 
+                        className="form-control"
+                        value={this.state.date}
+                        onChange={this.onChangeDate}
+                        />
+                  </div>
+                  <div className="form-group">
+                      <label>Time: </label>
                       <input type="text" 
                         className="form-control"
-                        value={this.state.age}
-                        onChange={this.onChangeAge}
+                        value={this.state.time}
+                        onChange={this.onChangeTime}
                         />
                   </div>
                   <div className="form-group">
-                      <label>Phone Number: </label>
-                      <input type="text" 
-                        className="form-control"
-                        value={this.state.phn_number}
-                        onChange={this.onChangePhnNumber}
-                        />
-                  </div>
-                  <div className="form-group">
-                      <label>Email: </label>
-                      <input type="text" 
-                        className="form-control"
-                        value={this.state.email}
-                        onChange={this.onChangeEmail}
-                        />
-                  </div>
-                  <div className="form-group">
-                      <input type="submit" value="Register" className="btn btn-primary"/>
+                      <input type="submit" value="SET" className="btn btn-primary"/>
                   </div>
               </form>
           </div>
