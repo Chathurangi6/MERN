@@ -4,7 +4,7 @@ import Header from './components/Admin/Header';
 import Sidebar from './components/Admin/Sidebar';
 import Content from './components/Admin/Content'
 
-class App extends Component {
+class Admin extends Component {
   render() {
     return (
       
@@ -18,4 +18,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default Admin;

@@ -1,124 +1,125 @@
-import React, { Component } from 'react';
-import axios from 'axios'
+import React, { Component } from "react";
+import Step1 from './Step1';
+import Step2 from './Step2';
+import Step3 from './Step3';
 
-export default class Appointment extends Component {
+class Appointment extends Component {
   constructor(props) {
-      super(props);
-      this.onChangeFName = this.onChangeFName.bind(this);
-      this.onChangeLName = this.onChangeLName.bind(this);
-      this.onChangeDoctor = this.onChangeDoctor.bind(this);
-      this.onChangeDate = this.onChangeDate.bind(this);
-      this.onChangeTime = this.onChangeTime.bind(this);
-      this.onSubmit = this.onSubmit.bind(this);
-
-      this.state = {
-          fname: '',
-          lname: '',
-          doctor: '',
-          date:'',
-          time:''
-      }
-  }
-  onChangeFName(e) {
-    this.setState({
-      fname: e.target.value
-    });
-  }
-  onChangeLName(e) {
-    this.setState({
-      lname: e.target.value
-    });
-  }
-  onChangeDoctor(e) {
-    this.setState({
-      doctor: e.target.value
-    })  
-  }
-  onChangeDate(e) {
-    this.setState({
-      date: e.target.value
-    })
-  }
-  onChangeTime(e){
-      this.setState({
-          time:e.target.value
-      })
+    super(props)
+    // Set the initial input values
+    this.state = {
+      currentStep: 1, // Default is Step 1
+      email: '',
+      username: '',
+      password: '',
+    }
+    // Bind the submission to handleChange() 
+    this.handleChange = this.handleChange.bind(this)
+    // Bind new functions for next and previous
+    this._next = this._next.bind(this)
+    this._prev = this._prev.bind(this)
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-    const obj = {
-      fname: this.state.fname,
-      lname: this.state.lname,
-      doctor: this.state.doctor,
-      date: this.state.date,
-      timel: this.state.time
-    };
-    axios.post('http://localhost:4000/patient/add', obj)
-        .then(res => console.log(res.data));
-    
+  // Test current step with ternary
+  // _next and _previous functions will be called on button click
+  _next() {
+    let currentStep = this.state.currentStep
+    // If the current step is 1 or 2, then add one on "next" button click
+    currentStep = currentStep >= 2 ? 3 : currentStep + 1
     this.setState({
-      fname: '',
-      lname: ''
-      
+      currentStep: currentStep
     })
   }
- 
-  render() {
+
+  _prev() {
+    let currentStep = this.state.currentStep
+    // If the current step is 2 or 3, then subtract one on "previous" button click
+    currentStep = currentStep <= 1 ? 1 : currentStep - 1
+    this.setState({
+      currentStep: currentStep
+    })
+  }
+
+  // The "next" and "previous" button functions
+  get previousButton() {
+    let currentStep = this.state.currentStep;
+    // If the current step is not 1, then render the "previous" button
+    if (currentStep !== 1) {
       return (
-          <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
-              <h3>Add Appointment</h3>
-              <form onSubmit={this.onSubmit}>
-                  <div className="form-group">
-                      <label>First Name:  </label>
-                      <input 
-                        type="text" 
-                        className="form-control" 
-                        value={this.state.fname}
-                        onChange={this.onChangeFName}
-                        />
-                  </div>
-                  <div className="form-group">
-                      <label>Last Name:  </label>
-                      <input 
-                        type="text" 
-                        className="form-control" 
-                        value={this.state.lname}
-                        onChange={this.onChangeLName}
-                        />
-                  </div>
-                  <div className="form-group">
-                      <label>Doctor: </label>
-                      <select 
-                        className="form-control"
-                        value={this.state.doctor}
-                        onChange={this.onChangeDoctor}
-                        >
-                        <option value="Dr.S">Dr.S</option>
-                        <option value="Dr.V">Dr.V</option>
-                      </select>
-                  </div>
-                  <div className="form-group">
-                      <label>Date: </label>
-                      <input type="date" 
-                        className="form-control"
-                        value={this.state.date}
-                        onChange={this.onChangeDate}
-                        />
-                  </div>
-                  <div className="form-group">
-                      <label>Time: </label>
-                      <input type="text" 
-                        className="form-control"
-                        value={this.state.time}
-                        onChange={this.onChangeTime}
-                        />
-                  </div>
-                  <div className="form-group">
-                      <input type="submit" value="SET" className="btn btn-primary"/>
-                  </div>
-              </form>
-          </div>
+        <button
+          className="btn btn-secondary"
+          type="button" onClick={this._prev}>
+          Previous
+      </button>
       )
+    }
+    // ...else return nothing
+    return null;
+  }
+
+  get nextButton() {
+    let currentStep = this.state.currentStep;
+    // If the current step is not 3, then render the "next" button
+    if (currentStep < 3) {
+      return (
+        <button
+          className="btn btn-primary float-right"
+          type="button" onClick={this._next}>
+          Next
+      </button>
+      )
+    }
+    // ...else render nothing
+    return null;
+  }
+  // Render "next" and "previous" buttons
+  // Use the submitted data to set the state
+  handleChange(event) {
+    const { name, value } = event.target
+    this.setState({
+      [name]: value
+    })
+  }
+
+  // Trigger an alert on form submission
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const { email, username, password } = this.state
+    alert(`Your registration detail: \n 
+    Email: ${email} \n 
+    Username: ${username} \n
+    Password: ${password}`)
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <React.Fragment>
+          <form onSubmit={this.handleSubmit}>
+            <Step1
+              currentStep={this.state.currentStep}
+              handleChange={this.handleChange}
+              email={this.state.email}
+            />
+            <Step2
+              currentStep={this.state.currentStep}
+              handleChange={this.handleChange}
+              username={this.state.username}
+            />
+            <Step3
+              currentStep={this.state.currentStep}
+              handleChange={this.handleChange}
+              password={this.state.password}
+            />
+
+
+            {this.previousButton}
+            {this.nextButton}
+
+          </form>
+        </React.Fragment>
+      </div>
+    )
   }
 }
+export default Appointment

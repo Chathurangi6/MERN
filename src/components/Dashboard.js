@@ -18,7 +18,7 @@ class Dashboard extends Component {
    
     return (
       <Router>
-        <div className="container">
+        <div className="container-fluid">
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <Link to={'/'} className="navbar-brand">Nawodaya</Link>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -38,7 +38,7 @@ class Dashboard extends Component {
                 <li className="nav-item">
                  <Link  onClick={this.onLogoutClick} className="nav-link" >Logout</Link>
                 </li>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
         
       </li>
                 </ul>
