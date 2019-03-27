@@ -14,10 +14,15 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  userRoll:{
+    type: String,
+    require:true
+  },
   date: {
     type: Date,
     default: Date.now
   }},
+  
   {
     collection: 'users'
   }

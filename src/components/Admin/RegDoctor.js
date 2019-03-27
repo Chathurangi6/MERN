@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
-class Register extends Component {
+class RegDoctor extends Component {
   constructor() {
     super();
     this.state = {
       name: "",
       email: "",
-      userRoll : "",
+      specialist: "",
       password: "",
       password2: "",
       errors: {}
@@ -33,8 +33,8 @@ onSubmit = e => {
     e.preventDefault();
 const newUser = {
       name: this.state.name,
+      specialist:this.state.specialist,
       email: this.state.email,
-      userRoll : this.state.userRoll,
       password: this.state.password,
       password2: this.state.password2
     };
@@ -47,17 +47,10 @@ return (
       <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"500px"}}>
         <div className="row">
           <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
-            </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Register</b> below
               </h4>
-              <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log in</Link>
-              </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
@@ -92,16 +85,16 @@ return (
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
-                  id="userRoll"
+                  value={this.state.specialist}
+                  error={errors.specialist}
+                  id="specialist"
                   type="text"
                   className={classnames("", {
-                    invalid: errors.email
+                    invalid: errors.specialist
                   })}
                 />
-                <label htmlFor="email">Email</label>
-                <span className="red-text">{errors.email}</span>
+                <label htmlFor="specialist">Specialist</label>
+                <span className="red-text">{errors.specialist}</span>
  
               </div>
 
@@ -154,7 +147,7 @@ return (
     );
   }
 }
-Register.propTypes = {
+RegDoctor.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -166,4 +159,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { registerUser }
-)(withRouter(Register));
+)(withRouter(RegDoctor));

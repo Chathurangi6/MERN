@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import AddPatient from './AddPatient'
-import ViewPatient from './ViewPatients'
+import AddPatient from '../AddPatient'
+import ViewPatient from '../common/ViewPatients'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Footer from '../components/layout/Footer'
-import { logoutUser } from "../actions/authActions";
-import Appointment from './Appointment';
+import Footer from '../layout/Footer'
+import { logoutUser } from "../../actions/authActions";
+import Appointment from '../Appointment';
 
 class Dashboard extends Component {
   onLogoutClick = e => {
