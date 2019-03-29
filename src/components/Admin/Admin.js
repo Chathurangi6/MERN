@@ -1,10 +1,11 @@
 
 import React, { Component } from "react";
 import Content from './Content';
+import footer from '../layout/Footer'
 
 import * as ReactBootstrap from 'react-bootstrap';
 import ViewPatient from '../common/ViewPatients';
-import regDoctor from './RegDoctor';
+import RegDoctor from './RegDoctor';
 
 class Admin extends Component {
   constructor(props, context) {
@@ -23,12 +24,14 @@ class Admin extends Component {
 
   updateView = () => {
     this.setState({
-      patientView: !this.state.patientView
+      patientView: !this.state.patientView,
+      regDoctor:false
     })
   }
   updateRegDoc = () => {
     this.setState({
-      regDoctor : ! this.state.regDoctor
+      regDoctor : ! this.state.regDoctor,
+      patientView:false
     })
   }
 
@@ -119,7 +122,7 @@ class Admin extends Component {
                 <ReactBootstrap.Collapse in={this.state.openPatient}>
                   <div id="example-collapse-text">
                     <li>
-                      <button  className="nav-link" onClick={this.updateView}><i className="fa fa-circle-o" ></i>View</button>
+                      <button  onClick={this.updateView}><i className="fa fa-circle-o" ></i>View</button>
                     </li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Boxed</a></li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Fixed</a></li>
@@ -141,7 +144,7 @@ class Admin extends Component {
                 <ReactBootstrap.Collapse in={this.state.openDoctor}>
                   <div id="example-collapse-text">
                     <li>
-                      <button  className="nav-link" onClick={this.updateRegDoc}><i className="fa fa-circle-o" ></i>View</button>
+                      <button style={{borderRadius:"10px",backgroundColor:"black",color:"white"}} onClick={this.updateRegDoc}><i className="fa fa-circle-o" ></i>View</button>
                     </li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Boxed</a></li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Fixed</a></li>
@@ -200,8 +203,9 @@ class Admin extends Component {
         </aside>
 
         {this.state.patientView && (<ViewPatient />)}
-        
-        {this.state.regDoctor && (<regDoctor />)}
+
+        {this.state.regDoctor && (<RegDoctor />)}
+        <footer/>
 
       </div>
 

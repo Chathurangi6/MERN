@@ -8,7 +8,7 @@ const config = require('./DB.js');
 const passport = require("passport");
 const patientRoute = require('./routes/patient.router');
 const users = require('./routes/users')
-
+const doctor = require('./routes/doctor.router')
 
 mongoose.Promise = global.Promise;
 
@@ -31,6 +31,7 @@ require("./config/passport")(passport);
 // ROUTES
 app.use('/patient',patientRoute);
 app.use("/api/users", users);
+app.use('/api/doctor',doctor);
 
 
 app.listen(PORT, function(){

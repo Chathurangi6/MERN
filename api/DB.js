@@ -3,3 +3,4 @@ module.exports = {
     secretOrKey: "secret"
 }
 require('./models/User')
+require('./models/Doctor')

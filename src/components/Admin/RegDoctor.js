@@ -3,7 +3,7 @@ import { Link ,withRouter } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { registerUser } from "../../actions/authActions";
+import { registerDoctor } from "../../actions/authActions";
 import classnames from "classnames";
 class RegDoctor extends Component {
   constructor() {
@@ -12,6 +12,7 @@ class RegDoctor extends Component {
       name: "",
       email: "",
       specialist: "",
+      phn_number:"",
       password: "",
       password2: "",
       errors: {}
@@ -32,19 +33,21 @@ onChange = e => {
 onSubmit = e => {
     e.preventDefault();
 const newUser = {
-      name: this.state.name,
+      fname: this.state.fname,
+      lname: this.state.lname,
       specialist:this.state.specialist,
       email: this.state.email,
+      phn_number:this.state.phn_number,
       password: this.state.password,
       password2: this.state.password2
     };
-    this.props.registerUser(newUser, this.props.history);  
+    this.props.registerDoctor(newUser, this.props.history);  
   };
   
 render() {
     const { errors } = this.state;
 return (
-      <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"500px"}}>
+      <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
         <div className="row">
           <div className="col s8 offset-s2">
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
@@ -56,16 +59,30 @@ return (
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.name}
-                  error={errors.name}
-                  id="name"
+                  value={this.state.fname}
+                  error={errors.fname}
+                  id="fname"
                   type="text"
                   className={classnames("", {
-                    invalid: errors.name
+                    invalid: errors.fname
                   })}
                 />
-                <label htmlFor="name">Name</label>
-                <span className="red-text">{errors.name}</span>
+                <label htmlFor="name">First Name</label>
+                <span className="red-text">{errors.fname}</span>
+              </div>
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.lname}
+                  error={errors.lname}
+                  id="lname"
+                  type="text"
+                  className={classnames("", {
+                    invalid: errors.lname
+                  })}
+                />
+                <label htmlFor="lname">Last Name</label>
+                <span className="red-text">{errors.lname}</span>
               </div>
               <div className="input-field col s12">
                 <input
@@ -95,6 +112,21 @@ return (
                 />
                 <label htmlFor="specialist">Specialist</label>
                 <span className="red-text">{errors.specialist}</span>
+ 
+              </div>
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.phn_number}
+                  error={errors.phn_number}
+                  id="phn_number"
+                  type="text"
+                  className={classnames("", {
+                    invalid: errors.phn_number
+                  })}
+                />
+                <label htmlFor="specialist">Phone Number</label>
+                <span className="red-text">{errors.phn_number}</span>
  
               </div>
 
@@ -148,7 +180,7 @@ return (
   }
 }
 RegDoctor.propTypes = {
-  registerUser: PropTypes.func.isRequired,
+  registerDoctor: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -158,5 +190,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { registerUser }
+  { registerDoctor }
 )(withRouter(RegDoctor));
