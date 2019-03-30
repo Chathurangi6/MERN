@@ -4,3 +4,4 @@ module.exports = {
 }
 require('./models/User')
 require('./models/Doctor')
+require('./models/Receptionist')

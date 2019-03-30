@@ -23,7 +23,19 @@ export const registerUser = (userData, history) => dispatch => {
 export const registerDoctor = (userData, history) => dispatch => {
   axios
     .post("/api/doctor/register", userData)
-    .then(res => history.push("/login")) // re-direct to login on successful register
+    .then(res => history.push("/admin#")) // re-direct to login on successful register
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+// Register Receptionist
+export const registerReceptionist = (userData, history) => dispatch => {
+  axios
+    .post("/api/receptionist/register", userData)
+    .then(res => history.push("/admin#")) // re-direct to login on successful register
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

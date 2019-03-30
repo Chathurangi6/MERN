@@ -10,6 +10,8 @@ module.exports = function validateRegisterInput(data) {
   data.phn_number = !isEmpty(data.phn_number) ? data.phn_number : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
+  data.dob = !isEmpty(data.dob) ? data.dob : "";
+  
 // Name checks
   if (Validator.isEmpty(data.fname)) {
     errors.fname = "First Name field is required";
@@ -25,6 +27,12 @@ module.exports = function validateRegisterInput(data) {
   } else if (!Validator.isEmail(data.email)) {
     errors.email = "Email is invalid";
   }
+//dob checks
+if (Validator.isEmpty(data.dob)) {
+  errors.dob = "DOB field is required";
+}
+
+
   // specialist checks
   if (Validator.isEmpty(data.specialist)) {
     errors.specialist = "Specialist field is required";

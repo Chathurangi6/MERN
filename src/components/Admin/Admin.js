@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import Content from './Content';
 import Footer from '../layout/Footer';
-
+import RegReceptionist from './RegReceptionist'
 import * as ReactBootstrap from 'react-bootstrap';
 import ViewPatient from '../common/ViewPatients';
 import ViewDoctors from './ViewDoctors';
@@ -19,6 +19,7 @@ class Admin extends Component {
       patientView: false,
       regDoctor:false,
       doctorView: false,
+      regReceptionist:false
      
     };
   }
@@ -34,14 +35,24 @@ class Admin extends Component {
     this.setState({
       regDoctor : true,
       patientView:false,
-      doctorView:false
+      doctorView:false,
+      regReceptionist:false
     })
   }
   updateViewDoc = () => {
     this.setState({
       regDoctor : false,
       patientView:false,
-      doctorView:true
+      doctorView:true,
+      regReceptionist:false
+    })
+  }
+  updateRegRecep=() => {
+    this.setState({
+      regDoctor : false,
+      patientView:false,
+      doctorView:false,
+      regReceptionist:true
     })
   }
 
@@ -49,6 +60,10 @@ class Admin extends Component {
     const { openPatient } = this.state;
     const { openRecep } = this.state;
     const {openDoctor}=this.state;
+
+    const buttonstyle = {
+      borderRadius:"10px",backgroundColor:"black",color:"white"
+    };
 
     return (
       <div className="App">
@@ -132,7 +147,7 @@ class Admin extends Component {
                 <ReactBootstrap.Collapse in={this.state.openPatient}>
                   <div id="example-collapse-text">
                     <li>
-                      <button  onClick={this.updateView}><i className="fa fa-circle-o" ></i>View</button>
+                      <button style={buttonstyle} onClick={this.updateView}><i className="fa fa-circle-o" ></i>View</button>
                     </li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Boxed</a></li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Fixed</a></li>
@@ -154,9 +169,9 @@ class Admin extends Component {
                 <ReactBootstrap.Collapse in={this.state.openDoctor}>
                   <div id="example-collapse-text">
                     <li>
-                      <button style={{borderRadius:"10px",backgroundColor:"black",color:"white"}} onClick={this.updateRegDoc}><i className="fa fa-circle-o" ></i>Register</button>
+                      <button style={buttonstyle} onClick={this.updateRegDoc}><i className="fa fa-circle-o" ></i>Register</button>
                     </li>
-                    <li><button style={{borderRadius:"10px",backgroundColor:"black",color:"white"}} onClick={this.updateViewDoc}><i className="fa fa-circle-o"></i> View</button></li>
+                    <li><button style={buttonstyle} onClick={this.updateViewDoc}><i className="fa fa-circle-o"></i> View</button></li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Fixed</a></li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
                   </div>
@@ -174,7 +189,7 @@ class Admin extends Component {
                 </a>
                 <ReactBootstrap.Collapse in={this.state.openRecep}>
                   <div id="example-collapse-text">
-                    <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> ChartJS</a></li>
+                    <li><button style={buttonstyle} onClick={this.updateRegRecep}><i className="fa fa-circle-o" ></i>Register</button></li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Morris</a></li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Flot</a></li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Inline charts</a></li>
@@ -215,6 +230,7 @@ class Admin extends Component {
         {this.state.patientView && (<ViewPatient />)}
         {this.state.regDoctor && (<RegDoctor />)}
        {this.state.doctorView && (<ViewDoctors/>)}
+       {this.state.regReceptionist && (<RegReceptionist />)}
 
         <Footer/>
 

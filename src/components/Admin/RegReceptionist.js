@@ -3,15 +3,15 @@ import { Link ,withRouter } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { registerDoctor } from "../../actions/authActions";
+import { registerReceptionist } from "../../actions/authActions";
 import classnames from "classnames";
-class RegDoctor extends Component {
+class RegReceptionist extends Component {
   constructor() {
     super();
     this.state = {
       name: "",
       email: "",
-      specialist: "",
+      dob:"",
       phn_number:"",
       password: "",
       password2: "",
@@ -35,13 +35,13 @@ onSubmit = e => {
 const newUser = {
       fname: this.state.fname,
       lname: this.state.lname,
-      specialist:this.state.specialist,
+      dob:this.state.dob,
       email: this.state.email,
       phn_number:this.state.phn_number,
       password: this.state.password,
       password2: this.state.password2
     };
-    this.props.registerDoctor(newUser, this.props.history);  
+    this.props.registerReceptionist(newUser, this.props.history);  
   };
   
 render() {
@@ -102,16 +102,16 @@ return (
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.specialist}
-                  error={errors.specialist}
-                  id="specialist"
-                  type="text"
+                  value={this.state.dob}
+                  error={errors.dob}
+                  id="dob"
+                  type="Date"
                   className={classnames("", {
-                    invalid: errors.specialist
+                    invalid: errors.dob
                   })}
                 />
-                <label htmlFor="specialist">Specialist</label>
-                <span className="red-text">{errors.specialist}</span>
+                <label htmlFor="specialist">Date of Birth</label>
+                <span className="red-text">{errors.dob}</span>
  
               </div>
               <div className="input-field col s12">
@@ -179,8 +179,8 @@ return (
     );
   }
 }
-RegDoctor.propTypes = {
-  registerDoctor: PropTypes.func.isRequired,
+RegReceptionist.propTypes = {
+    registerReceptionist: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -190,5 +190,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { registerDoctor }
-)(withRouter(RegDoctor));
+  { registerReceptionist }
+)(withRouter(RegReceptionist));

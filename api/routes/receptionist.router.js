@@ -12,8 +12,8 @@ const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 // Load doctor model
 
-const Doctor = mongoose.model('doctors');
-const Users =mongoose.model('users');
+const Receptionist = mongoose.model('receptionist');
+
 
 //send email password to user collection
 // Doctor.find().forEach(
@@ -32,24 +32,24 @@ const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
   }
-  Doctor.findOne({ email: req.body.email }).then(user => {
+  Receptionist.findOne({ email: req.body.email }).then(user => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
     } 
-const newDoc = new Doctor({
+const newUser = new Receptionist({
         fname: req.body.fname,
         lname: req.body.lname,
-        specialist: req.body.specialist,
+        dob: req.body.dob,
         phn_number : req.body.phn_number,
         email: req.body.email,
         password: req.body.password
       });
 // Hash password before saving in database
       bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newDoc.password, salt, (err, hash) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
-          newDoc.password = hash;
-          newDoc
+          newUser.password = hash;
+          newUser
             .save()
             .then(user => res.json(user))
             .catch(err => console.log(err));

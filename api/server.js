@@ -9,6 +9,7 @@ const passport = require("passport");
 const patientRoute = require('./routes/patient.router');
 const users = require('./routes/users')
 const doctor = require('./routes/doctor.router')
+const receptionist = require('./routes/receptionist.router')
 
 mongoose.Promise = global.Promise;
 
@@ -32,7 +33,7 @@ require("./config/passport")(passport);
 app.use('/patient',patientRoute);
 app.use("/api/users", users);
 app.use('/api/doctor',doctor);
-
+app.use('/api/receptionist',receptionist);
 
 app.listen(PORT, function(){
   console.log('Server is running on Port:',PORT);
