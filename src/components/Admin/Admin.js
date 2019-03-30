@@ -1,10 +1,11 @@
 
 import React, { Component } from "react";
 import Content from './Content';
-import footer from '../layout/Footer'
+import Footer from '../layout/Footer';
 
 import * as ReactBootstrap from 'react-bootstrap';
 import ViewPatient from '../common/ViewPatients';
+import ViewDoctors from './ViewDoctors';
 import RegDoctor from './RegDoctor';
 
 class Admin extends Component {
@@ -18,20 +19,29 @@ class Admin extends Component {
       patientView: false,
       regDoctor:false,
       doctorView: false,
-      view: false
+     
     };
   }
 
   updateView = () => {
     this.setState({
-      patientView: !this.state.patientView,
-      regDoctor:false
+      patientView: true,
+      regDoctor:false,
+      doctorView:false
     })
   }
   updateRegDoc = () => {
     this.setState({
-      regDoctor : ! this.state.regDoctor,
-      patientView:false
+      regDoctor : true,
+      patientView:false,
+      doctorView:false
+    })
+  }
+  updateViewDoc = () => {
+    this.setState({
+      regDoctor : false,
+      patientView:false,
+      doctorView:true
     })
   }
 
@@ -144,9 +154,9 @@ class Admin extends Component {
                 <ReactBootstrap.Collapse in={this.state.openDoctor}>
                   <div id="example-collapse-text">
                     <li>
-                      <button style={{borderRadius:"10px",backgroundColor:"black",color:"white"}} onClick={this.updateRegDoc}><i className="fa fa-circle-o" ></i>View</button>
+                      <button style={{borderRadius:"10px",backgroundColor:"black",color:"white"}} onClick={this.updateRegDoc}><i className="fa fa-circle-o" ></i>Register</button>
                     </li>
-                    <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Boxed</a></li>
+                    <li><button style={{borderRadius:"10px",backgroundColor:"black",color:"white"}} onClick={this.updateViewDoc}><i className="fa fa-circle-o"></i> View</button></li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Fixed</a></li>
                     <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
                   </div>
@@ -203,9 +213,10 @@ class Admin extends Component {
         </aside>
 
         {this.state.patientView && (<ViewPatient />)}
-
         {this.state.regDoctor && (<RegDoctor />)}
-        <footer/>
+       {this.state.doctorView && (<ViewDoctors/>)}
+
+        <Footer/>
 
       </div>
 
