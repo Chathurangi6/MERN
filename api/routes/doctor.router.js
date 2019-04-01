@@ -13,17 +13,8 @@ const validateLoginInput = require("../validation/login");
 // Load doctor model
 
 const Doctor = mongoose.model('doctors');
+const User = mongoose.model('users');
 
-
-//send email password to user collection
-// Doctor.find().forEach(
-//   function(doc){
-//     Users.update(
-//       {_id: doc._id},
-//       {$set: {fname: doc.fname,lname:doc.lname,email:doc.email,password:doc.password,userRoll:"D"}}
-//     )
-//   }     
-// );
 
 router.post("/register", (req, res) => {
   // Form validation
@@ -32,12 +23,15 @@ const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
   }
+  
+
   Doctor.findOne({ email: req.body.email }).then(user => {
-    console.log(req.body.email,Doctor,user);
+    
     if (user) {
-      return res.status(400).json({ email: "Email already exists" });
+      return res.status(400).json({ email: "Email already exists in Doctor collection" });
     }
     else{
+
       const newDoc = new Doctor({
         fname: req.body.fname,
         lname: req.body.lname,
