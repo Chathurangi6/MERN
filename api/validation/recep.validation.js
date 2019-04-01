@@ -6,7 +6,7 @@ module.exports = function validateRegisterInput(data) {
   data.fname = !isEmpty(data.fname) ? data.fname : "";
   data.lname = !isEmpty(data.lname) ? data.lname : "";
   data.email = !isEmpty(data.email) ? data.email : "";
-  data.specialist = !isEmpty(data.specialist) ? data.specialist : "";
+  data.dob = !isEmpty(data.dob) ? data.dob : "";
   data.phn_number = !isEmpty(data.phn_number) ? data.phn_number : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
@@ -29,8 +29,8 @@ module.exports = function validateRegisterInput(data) {
   }
 
   // specialist checks
-  if (Validator.isEmpty(data.specialist)) {
-    errors.specialist = "Specialist field is required";
+  if (Validator.isEmpty(data.dob)) {
+    errors.dob = "DOB field is required";
   }
   // phone number checks
   if (Validator.isEmpty(data.phn_number)) {

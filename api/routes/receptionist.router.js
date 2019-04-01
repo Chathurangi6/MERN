@@ -8,12 +8,11 @@ const db = require("../DB");
 const mongoose = require('mongoose');
 
 // Load input validation
-const validateRegisterInput = require("../validation/register");
+const validateRegisterInput = require("../validation/recep.validation");
 const validateLoginInput = require("../validation/login");
-// Load doctor model
 
-const Receptionist = mongoose.model('receptionist');
-
+// Load receptionist model
+let Recep = require('../models/Receptionist');
 
 //send email password to user collection
 // Doctor.find().forEach(
@@ -32,32 +31,49 @@ const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
   }
-  Receptionist.findOne({ email: req.body.email }).then(user => {
-    if (user) {
-      return res.status(400).json({ email: "Email already exists" });
-    } 
-const newUser = new Receptionist({
-        fname: req.body.fname,
-        lname: req.body.lname,
-        dob: req.body.dob,
-        phn_number : req.body.phn_number,
-        email: req.body.email,
-        password: req.body.password
-      });
-// Hash password before saving in database
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err));
+  else{
+    Recep.findOne({ email: req.body.email }).then(user => {
+      if (user) {
+        return res.status(400).json({ email: "Email already exists" });
+      } 
+  const newUser = new Recep({
+          fname: req.body.fname,
+          lname: req.body.lname,
+          dob: req.body.dob,
+          phn_number : req.body.phn_number,
+          email: req.body.email,
+          password: req.body.password
         });
-      });
-    }
-  );
+  // Hash password before saving in database
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser
+              .save()
+              .then(user => res.json(user))
+              .catch(err => console.log(err));
+          });
+        });
+      }
+    );
+  }
+  
 });
+
+// Defined get data(index or listing) route
+router.route('/view').get(function (req, res) {
+  Recep.find(function(err, users){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(users);
+  }
+});
+});
+
+
 
 //login validation
 // router.post("/login", (req, res) => {

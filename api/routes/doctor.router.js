@@ -13,7 +13,7 @@ const validateLoginInput = require("../validation/login");
 // Load doctor model
 
 const Doctor = mongoose.model('doctors');
-const Users =mongoose.model('users');
+
 
 //send email password to user collection
 // Doctor.find().forEach(
@@ -33,10 +33,12 @@ const { errors, isValid } = validateRegisterInput(req.body);
     return res.status(400).json(errors);
   }
   Doctor.findOne({ email: req.body.email }).then(user => {
+    console.log(req.body.email,Doctor,user);
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
-    } 
-const newDoc = new Doctor({
+    }
+    else{
+      const newDoc = new Doctor({
         fname: req.body.fname,
         lname: req.body.lname,
         specialist: req.body.specialist,
@@ -53,11 +55,27 @@ const newDoc = new Doctor({
             .save()
             .then(user => res.json(user))
             .catch(err => console.log(err));
+          
         });
       });
     }
+    
+    }
   );
 });
+
+// Defined get data(index or listing) route
+router.route('/view').get(function (req, res) {
+  Doctor.find(function(err, doctors){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(doctors);
+  }
+});
+});
+
 
 //login validation
 // router.post("/login", (req, res) => {
