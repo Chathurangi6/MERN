@@ -11,7 +11,7 @@ import {
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post("/api/users/register", userData)
-    .then(res => history.push("/")) // re-direct to login on successful register
+    .then(res => history.push("/")) // re-direct to same page on successful register
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -23,7 +23,7 @@ export const registerUser = (userData, history) => dispatch => {
 export const registerDoctor = (userData, history) => dispatch => {
   axios
     .post("/api/doctor/register", userData)
-    .then(res => history.push("/admin#")) // re-direct to login on successful register
+    .then(res => history.push("/admin#")) // re-direct to same page on successful register
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

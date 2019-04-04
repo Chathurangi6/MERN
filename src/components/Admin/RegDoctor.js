@@ -9,7 +9,8 @@ class RegDoctor extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
+      fname: "",
+      lname:"",
       email: "",
       specialist: "",
       phn_number:"",
@@ -42,6 +43,15 @@ const newUser = {
       password2: this.state.password2
     };
     this.props.registerDoctor(newUser, this.props.history);  
+    this.setState({
+      fname: "",
+      lname:"",
+      email: "",
+      specialist: "",
+      phn_number:"",
+      password: "",
+      password2: ""
+    })
   };
   
 render() {
@@ -55,7 +65,7 @@ return (
                 <b>Register</b> below
               </h4>
             </div>
-            <form noValidate onSubmit={this.onSubmit}>
+            <form noValidate id="myForm" onSubmit={this.onSubmit}>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -67,7 +77,7 @@ return (
                     invalid: errors.fname
                   })}
                 />
-                <label htmlFor="name">First Name</label>
+                <label htmlFor="fname">First Name</label>
                 <span className="red-text">{errors.fname}</span>
               </div>
               <div className="input-field col s12">
@@ -171,6 +181,7 @@ return (
                 >
                   Register
                 </button>
+
               </div>
             </form>
           </div>

@@ -10,6 +10,8 @@ import { Provider } from "react-redux";
 import store from "./store";
 import ViewPatient from "./components/common/ViewPatients";
 import addDoctor from "./components/Doctor/AddDoctor"
+import AddPatient from "./components/AddPatient";
+import DocDashboard from "./components/Doctor/DocDashboard"
 
 
 
@@ -24,7 +26,12 @@ class App extends Component {
           <Route exact path="/admin" component={Admin} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Switch>
+          <Route exact path="/patient/add" component={AddPatient} />
+          
+            <Switch>
+              <PrivateRoute exact path="/doctor/dashboard" component={DocDashboard} />
+            </Switch>
+            <Switch>
               <PrivateRoute exact path="/recep/dashboard" component={RecepDashboard} />
             </Switch>
         </div>

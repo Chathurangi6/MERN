@@ -36,6 +36,7 @@ module.exports = function validateRegisterInput(data) {
   if (Validator.isEmpty(data.phn_number)) {
     errors.phn_number = "phone number field is required";
   }
+  
 // Password checks
   if (Validator.isEmpty(data.password)) {
     errors.password = "Password field is required";

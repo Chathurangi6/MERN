@@ -10,7 +10,6 @@ class Appointment extends Component {
     this.state = {
       currentStep: 1, // Default is Step 1
       email: '',
-      username: '',
       password: '',
     }
     // Bind the submission to handleChange() 

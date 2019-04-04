@@ -4,49 +4,13 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../DB");
-
 const mongoose = require('mongoose');
 
 // Load input validation
-const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 // Load User model
 const User = mongoose.model('users');
 
-
-router.post("/register", (req, res) => {
-  // Form validation
-const { errors, isValid } = validateRegisterInput(req.body);
-// Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-  User.findOne({ email: req.body.email }).then(user => {
-    if (user) {
-      return res.status(400).json({ email: "Email already exists" });
-    } 
-const newUser = new User({
-        fname: req.body.fname,
-        lname: req.body.lname,
-        specialist: req.body.specialist,
-        phn_number : req.body.phn_number,
-        email: req.body.email,
-        password: req.body.password
-      });
-// Hash password before saving in database
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newDoc.password, salt, (err, hash) => {
-          if (err) throw err;
-          newDoc.password = hash;
-          newDoc
-            .save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err));
-        });
-      });
-    }
-  );
-});
 
 //login validation
 router.post("/login", (req, res) => {
@@ -58,6 +22,7 @@ router.post("/login", (req, res) => {
     }
   const email = req.body.email;
     const password = req.body.password;
+    // const userRoll =req.body.userRoll;
   // Find user by email
     User.findOne({ email }).then(user => {
       // Check if user exists
@@ -71,8 +36,10 @@ router.post("/login", (req, res) => {
           // Create JWT Payload
           const payload = {
             id: user.id,
-            name: user.name
+            userRoll: user.userRoll
           };
+
+
   // Sign token
           jwt.sign(
             payload,
@@ -87,11 +54,7 @@ router.post("/login", (req, res) => {
               });
             }
           );
-          // render() {
-          //   return(
-          //     <Dashboard/>
-          //   );
-          // }
+          
         } else {
           return res
             .status(400)
@@ -100,5 +63,18 @@ router.post("/login", (req, res) => {
       });
     });
   });
+
+  // Defined get data(index or listing) route
+  router.route('/').get(function (req, res) {
+    User.find(function(err, users){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(users);
+  }
+});
+});
+
 
 module.exports = router;

@@ -7,6 +7,7 @@ import * as ReactBootstrap from 'react-bootstrap';
 import ViewPatient from '../common/ViewPatients';
 import ViewDoctors from './ViewDoctors';
 import RegDoctor from './RegDoctor';
+import ViewRecep from "./ViewRecep";
 
 class Admin extends Component {
   constructor(props, context) {
@@ -19,7 +20,8 @@ class Admin extends Component {
       patientView: false,
       regDoctor:false,
       doctorView: false,
-      regReceptionist:false
+      regReceptionist:false,
+      recepView:false
      
     };
   }
@@ -28,7 +30,8 @@ class Admin extends Component {
     this.setState({
       patientView: true,
       regDoctor:false,
-      doctorView:false
+      doctorView:false,
+      recepView:false
     })
   }
   updateRegDoc = () => {
@@ -36,7 +39,8 @@ class Admin extends Component {
       regDoctor : true,
       patientView:false,
       doctorView:false,
-      regReceptionist:false
+      regReceptionist:false,
+      recepView:false
     })
   }
   updateViewDoc = () => {
@@ -44,7 +48,8 @@ class Admin extends Component {
       regDoctor : false,
       patientView:false,
       doctorView:true,
-      regReceptionist:false
+      regReceptionist:false,
+      recepView:false
     })
   }
   updateRegRecep=() => {
@@ -52,9 +57,20 @@ class Admin extends Component {
       regDoctor : false,
       patientView:false,
       doctorView:false,
-      regReceptionist:true
+      regReceptionist:true,
+      recepView:false
     })
   }
+  updateViewRecep=() => {
+    this.setState({
+      regDoctor : false,
+      patientView:false,
+      doctorView:false,
+      regReceptionist:false,
+      recepView : true
+    })
+  }
+
 
   render() {
     const { openPatient } = this.state;
@@ -87,7 +103,7 @@ class Admin extends Component {
                                     <span className="label label-success">4</span>
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li className="header">You have 4 messages</li>
+                                    <li className="header">Log out</li>
                                     <li>
                                         <ul className="menu">
                                             <li>
@@ -149,9 +165,6 @@ class Admin extends Component {
                     <li>
                       <button style={buttonstyle} onClick={this.updateView}><i className="fa fa-circle-o" ></i>View</button>
                     </li>
-                    <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Boxed</a></li>
-                    <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Fixed</a></li>
-                    <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
                   </div>
                 </ReactBootstrap.Collapse>
               </li>
@@ -172,8 +185,7 @@ class Admin extends Component {
                       <button style={buttonstyle} onClick={this.updateRegDoc}><i className="fa fa-circle-o" ></i>Register</button>
                     </li>
                     <li><button style={buttonstyle} onClick={this.updateViewDoc}><i className="fa fa-circle-o"></i> View</button></li>
-                    <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Fixed</a></li>
-                    <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                   
                   </div>
                 </ReactBootstrap.Collapse>
               </li>
@@ -190,9 +202,8 @@ class Admin extends Component {
                 <ReactBootstrap.Collapse in={this.state.openRecep}>
                   <div id="example-collapse-text">
                     <li><button style={buttonstyle} onClick={this.updateRegRecep}><i className="fa fa-circle-o" ></i>Register</button></li>
-                    <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Morris</a></li>
-                    <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Flot</a></li>
-                    <li><a href="" className="nav-link"><i className="fa fa-circle-o"></i> Inline charts</a></li>
+                    <li><button style={buttonstyle} onClick={this.updateViewRecep}><i className="fa fa-circle-o"></i> View</button></li>
+                   
                   </div>
                 </ReactBootstrap.Collapse>
               </li>
@@ -231,6 +242,7 @@ class Admin extends Component {
         {this.state.regDoctor && (<RegDoctor />)}
        {this.state.doctorView && (<ViewDoctors/>)}
        {this.state.regReceptionist && (<RegReceptionist />)}
+       {this.state.recepView && (<ViewRecep/>)}
 
         <Footer/>
 

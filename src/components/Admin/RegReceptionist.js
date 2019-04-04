@@ -9,7 +9,8 @@ class RegReceptionist extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
+      fname: "",
+      lname:"",
       email: "",
       dob:"",
       phn_number:"",
@@ -41,7 +42,16 @@ const newUser = {
       password: this.state.password,
       password2: this.state.password2
     };
-    this.props.registerReceptionist(newUser, this.props.history);  
+    this.props.registerReceptionist(newUser, this.props.history); 
+   this.setState({
+    fname: "",
+    lname:"",
+    email: "",
+    dob:"",
+    phn_number:"",
+    password: "",
+    password2: ""
+   })
   };
   
 render() {
@@ -55,7 +65,7 @@ return (
                 <b>Register</b> below
               </h4>
             </div>
-            <form noValidate onSubmit={this.onSubmit}>
+            <form noValidate id="myForm" onSubmit={this.onSubmit}>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
