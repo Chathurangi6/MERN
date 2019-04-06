@@ -12,7 +12,7 @@ import ViewPatient from "./components/common/ViewPatients";
 import addDoctor from "./components/Doctor/AddDoctor"
 import AddPatient from "./components/AddPatient";
 import DocDashboard from "./components/Doctor/DocDashboard"
-
+import AdminDashboard from "./components/Admin/Admin"
 
 
 class App extends Component {
@@ -33,6 +33,9 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/recep/dashboard" component={RecepDashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/admin/dashboard" component={AdminDashboard} />
             </Switch>
         </div>
       </Router>

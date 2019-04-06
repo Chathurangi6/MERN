@@ -25,7 +25,10 @@ class Login extends Component {
       else if(nextProps.auth.user.userRoll === "D"){
         this.props.history.push("/doctor/dashboard");
       }
-       
+      else if(nextProps.auth.user.userRoll === "A"){
+        this.props.history.push("/admin/dashboard");
+      }
+      
     }
     if (nextProps.errors) {
       this.setState({

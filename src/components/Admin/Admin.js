@@ -127,8 +127,8 @@ class Admin extends Component {
                 </nav>
             </header>
 
-        <aside className="main-sidebar">
-          <section className="sidebar">
+        <aside className="main-sidebar" style={{position: "absolute"}}>
+          <section className="sidebar" style={{position: "absolute"}}>
             <div className="user-panel">
               <div className="pull-left image">
                 <img src="images/admin.jpg" className="img-circle" alt="User Image" />
