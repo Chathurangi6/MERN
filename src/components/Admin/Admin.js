@@ -8,6 +8,8 @@ import ViewPatient from '../common/ViewPatients';
 import ViewDoctors from './ViewDoctors';
 import RegDoctor from './RegDoctor';
 import ViewRecep from "./ViewRecep";
+import { logoutUser } from "../../actions/authActions"
+import { BrowserRouter as  Link } from 'react-router-dom';
 
 class Admin extends Component {
   constructor(props, context) {
@@ -91,6 +93,9 @@ class Admin extends Component {
                     <span className="logo-lg"><b>Admin</b>Nawodaya</span>
                 </a>
                 <nav className="navbar navbar-static-top">
+                <li className="nav-item">
+                 <Link  onClick={this.onLogoutClick} className="nav-link" >Logout</Link>
+                </li>
                     <a href="" className="sidebar-toggle" data-toggle="push-menu" role="button">
                         <span className="sr-only">Toggle navigation</span>
                     </a>

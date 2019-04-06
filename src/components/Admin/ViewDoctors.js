@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import DoctorTable from "./DoctorTable"
 
 
 export default class ViewDoctors extends Component {
@@ -23,13 +24,14 @@ export default class ViewDoctors extends Component {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        axios.get('http://localhost:4000/api/doctor/delete/' + this.props.item._id)
+        axios.get('http://localhost:4000/api/doctor/delete/' + this.props.obj._id)
 
         Swal.fire(
           'Deleted!',
           'Your file has been deleted.',
           'success'
         )
+        
 
       }
     })
@@ -48,11 +50,11 @@ export default class ViewDoctors extends Component {
   }
 
   
-  // tabRow(){
-  //   return this.state.doctor.map(function(object, i){
-  //       return( obj={object} ,key={i});
-  //   });
-  // }
+  tabRow(){
+    return this.state.doctor.map(function(object, i){
+        return(<DoctorTable obj={object} key={i}/>);
+    });
+  }
 
   render() {
     return (
@@ -68,30 +70,12 @@ export default class ViewDoctors extends Component {
               <th>Email</th>
               <th>Specialist</th>
               <th>Phone Number</th>
+              <th>Action</th>
             </tr>
 
           </thead>
           <tbody>
-            {this.state.doctor.map(function (item, key) {
-              
-              return (
-                <tr key={key}>
-                  <td>{item.fname}</td>
-                  <td>{item.lname}</td>
-                  <td>{item.email}</td>
-                  <td>{item.specialist}</td>
-                  <td>{item.phn_number}</td>
-
-                  <td>
-                    <Link to={"/edit/" + item._id} className="btn btn-primary">Edit</Link>
-                  </td>
-                  <td>
-                    <button onClick={()=>this.delete} className="btn btn-danger">Delete</button>
-                  </td>
-                </tr>
-              )
-            })}
-
+          { this.tabRow() }
 
           </tbody>
         </table>
