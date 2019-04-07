@@ -7,7 +7,8 @@ export default class ViewRecep extends Component {
       super(props);
       this.state = {receptionist: []};
     }
-    componentDidMount(){
+
+    fetchData(){
       axios.get('http://localhost:4000/api/receptionist/view')
         .then(response => {
           this.setState({receptionist : response.data });
@@ -16,9 +17,13 @@ export default class ViewRecep extends Component {
           console.log(error);
         })
     }
+    componentDidMount(){
+      this.fetchData();
+    }
+
     tabRow(){
       return this.state.receptionist.map(function(object, i){
-          return <RecepTable obj={object} key={i} />;
+          return <RecepTable obj={object} key={i}  />;
       });
     }
 
