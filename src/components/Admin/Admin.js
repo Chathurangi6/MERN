@@ -92,41 +92,20 @@ class Admin extends Component {
                 <a href="" className="logo">
                     <span className="logo-lg"><b>Admin</b>Nawodaya</span>
                 </a>
+                
                 <nav className="navbar navbar-static-top">
-                <li className="nav-item">
-                 <Link  onClick={this.onLogoutClick} className="nav-link" >Logout</Link>
-                </li>
+               
+                  
                     <a href="" className="sidebar-toggle" data-toggle="push-menu" role="button">
                         <span className="sr-only">Toggle navigation</span>
                     </a>
                     <div className="navbar-custom-menu">
                         <ul className="nav navbar-nav">
-                            <li className="dropdown messages-menu">
-                            eslint-disable-next-line
-                                <a href="" className="dropdown-toggle" data-toggle="dropdown">
-                                    <i className="fa fa-envelope-o"></i>
-                                    <span className="label label-success">4</span>
-                                </a>
-                                <ul className="dropdown-menu">
-                                    <li className="header">Log out</li>
-                                    <li>
-                                        <ul className="menu">
-                                            <li>
-                                                <a href="">
-                                                    <div className="pull-left">
-                                                        <img src="img/user2-160x160.jpg" className="img-circle" alt="User Image" />
-                                                    </div>
-                                                    <h4>
-                                                        Support Team
-                                                        <small><i className="fa fa-clock-o"></i> 5 mins</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
+                            
+                                
+                                <li className="nav-item">
+                 <ReactBootstrap.Button onClick={this.onLogoutClick} className="navbar-brand" style={{color:"white"}}>Logout</ReactBootstrap.Button>
+                </li>
                         </ul>
                     </div>
                 </nav>
@@ -227,16 +206,9 @@ class Admin extends Component {
                   </span>
                 </a>
               </li>
-              <li>
-                <a href="">
-                  <i className="fa fa-envelope"></i> <span>T</span>
-                  <span className="pull-right-container">
-                    <small className="label pull-right bg-yellow">12</small>
-                    <small className="label pull-right bg-green">16</small>
-                    <small className="label pull-right bg-red">5</small>
-                  </span>
-                </a>
-              </li>
+              
+              
+                
             </ul>
           </section>
 

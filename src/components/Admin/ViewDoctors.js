@@ -11,7 +11,19 @@ export default class ViewDoctors extends Component {
     super(props);
     this.state = { doctor: [] };
     this.delete = this.delete.bind(this);
+    this.fetchData=this.fetchData.bind(this);
   }
+
+  fetchData(){
+    axios.get('http://localhost:4000/api/doctor/view')
+    .then(response => {
+      this.setState({ doctor: response.data });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  };
+  
 
   delete() {
     Swal.fire({
@@ -25,28 +37,21 @@ export default class ViewDoctors extends Component {
     }).then((result) => {
       if (result.value) {
         axios.get('http://localhost:4000/api/doctor/delete/' + this.props.obj._id)
-
-        Swal.fire(
+        this.fetchData();
+        Swal.fire( 
           'Deleted!',
           'Your file has been deleted.',
           'success'
-        )
-        
-
+        )   
       }
+      
     })
       .catch(err => console.log(err))
   }
 
   
   componentDidMount() {
-    axios.get('http://localhost:4000/api/doctor/view')
-      .then(response => {
-        this.setState({ doctor: response.data });
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+   this.fetchData();
   }
 
   
@@ -68,7 +73,7 @@ export default class ViewDoctors extends Component {
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>
-              <th>Specialist</th>
+              <th>Speciality</th>
               <th>Phone Number</th>
               <th>Action</th>
             </tr>

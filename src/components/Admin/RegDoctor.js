@@ -54,6 +54,12 @@ class RegDoctor extends Component {
     })
   };
 
+  handleSelectChange = (event) => {
+    this.setState({
+      specialist: event.target.value
+    })
+  }
+
   render() {
     const { errors } = this.state;
     return (
@@ -110,15 +116,14 @@ class RegDoctor extends Component {
 
               </div>
               <div className="input-field col s12">
-                <select
+                <select onClick={this.handleSelectChange}
                   className="form-control"
-                  value={this.state.specialis}
-                  onChange={this.onChange}
+                  // value={this.state.specialist}
                   error={errors.specialist}
-                  
+                  // id="specialist"
                 >
 
-                  <option>Choose a Speciality</option>
+               <option>Choose a Speciality</option>
                   <option value="ALLERGY AND IMMUNOLOGY">ALLERGY AND IMMUNOLOGY</option>
                   <option value="CARDIAC ELECTROPHYSIOLOGIST">CARDIAC ELECTROPHYSIOLOGIST</option>
                   <option value="CARDIAOTHORACIC SURGEON">CARDIAOTHORACIC SURGEON</option>
@@ -227,7 +232,7 @@ class RegDoctor extends Component {
                   <option value="VASCULAR AND TRANSPLANT SURGEON">VASCULAR AND TRANSPLANT SURGEON</option>
                   <option value="VASCULAR SURGEON">VASCULAR SURGEON</option>
                 </select>
-               
+              
 
               <label htmlFor="specialist"></label>
               <span className="red-text">{errors.specialist}</span>
