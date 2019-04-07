@@ -2,14 +2,11 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const db = require("../DB");
-
 const mongoose = require('mongoose');
 
 // Load input validation
 const validateRegisterInput = require("../validation/register");
-const validateLoginInput = require("../validation/login");
+
 // Load doctor model
 
 const Doctor = mongoose.model('doctors');
@@ -88,6 +85,19 @@ const { errors, isValid } = validateRegisterInput(req.body);
 // Defined get data(index or listing) route
 router.route('/view').get(function (req, res) {
   Doctor.find(function(err, doctors){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(doctors);
+  }
+});
+});
+
+//get only doctor name
+router.route('/name').get(function (req, res) {
+ 
+  Doctor.find({},{_id:0,fname:1},function(err, doctors){
   if(err){
     console.log(err);
   }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import AddPatient from '../AddPatient'
+import AddPatient from '../Receptionist/AddPatient'
 import ViewPatient from '../common/ViewPatients'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Footer from '../layout/Footer'
 import { logoutUser } from "../../actions/authActions";
-import Appointment from '../Appointment';
+import ViewAppoint from './ViewAppoint';
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -47,7 +47,7 @@ class Dashboard extends Component {
           <h2>Welcome to Nawodaya Hospital</h2> <br/>
           <Switch>
               <Route exact path='/create' component={ AddPatient } />
-              <Route path='/addAppoint' component={ Appointment } />
+              <Route path='/addAppoint' component={ ViewAppoint } />
               <Route path='/view' component={ ViewPatient } />
           </Switch>
           <Footer/>
