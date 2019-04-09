@@ -36,4 +36,5 @@ const Doctor = new Schema({
     collection: 'doctors'
   }
 );
+
 module.exports = mongoose.model('doctors', Doctor);

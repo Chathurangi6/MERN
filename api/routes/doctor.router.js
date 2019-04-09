@@ -13,6 +13,7 @@ const Doctor = mongoose.model('doctors');
 const User = mongoose.model('users');
 
 
+
 router.post("/register", (req, res) => {
   // Form validation
 const { errors, isValid } = validateRegisterInput(req.body);
@@ -97,7 +98,11 @@ router.route('/view').get(function (req, res) {
 //get only doctor name
 router.route('/name').get(function (req, res) {
  
-  Doctor.find({},{_id:0,fname:1},function(err, doctors){
+  // Doctor.aggregate(
+  //   {$project:{name:{$concat:["$fname", " ","$lname"]}}}
+  // );
+  
+  Doctor.find({},{_id:0,fname:1,lname:1},function(err, doctors){
   if(err){
     console.log(err);
   }

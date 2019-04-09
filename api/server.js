@@ -10,7 +10,7 @@ const patientRoute = require('./routes/patient.router');
 const users = require('./routes/users')
 const doctor = require('./routes/doctor.router')
 const receptionist = require('./routes/receptionist.router')
-
+const appoint =require('./routes/appoint.router')
 mongoose.Promise = global.Promise;
 
 // Connect to MongoDB
@@ -34,6 +34,7 @@ app.use('/patient',patientRoute);
 app.use("/api/users", users);
 app.use('/api/doctor',doctor);
 app.use('/api/receptionist',receptionist);
+app.use('/api/appointment',appoint)
 
 app.listen(PORT, function(){
   console.log('Server is running on Port:',PORT);
