@@ -3,12 +3,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Footer from '../layout/Footer';
-import RegReceptionist from './RegReceptionist'
+import AddPatient from '../Receptionist/AddPatient'
 import * as ReactBootstrap from 'react-bootstrap';
 import ViewPatient from '../common/ViewPatients';
-import ViewDoctors from './ViewDoctors';
-import RegDoctor from './RegDoctor';
-import ViewRecep from "./ViewRecep";
+import Appointment from '../Receptionist/ViewAppoint'
 import { logoutUser } from "../../actions/authActions"
 
 
@@ -17,14 +15,11 @@ class Admin extends Component {
     super(props, context);
 
     this.state = {
-      openPatient: false,
-      openDoctor: false,
-      openRecep: false,
+      
       patientView: false,
-      regDoctor: false,
-      doctorView: false,
-      regReceptionist: false,
-      recepView: false
+      patientadd: false,
+      appointment: false,
+      
 
     };
   }
@@ -81,9 +76,6 @@ class Admin extends Component {
 
 
   render() {
-    const { openPatient } = this.state;
-    const { openRecep } = this.state;
-    const { openDoctor } = this.state;
 
     const buttonstyle = {
       borderRadius: "10px", backgroundColor: "black", color: "white"
@@ -139,61 +131,39 @@ class Admin extends Component {
               <li className="header">MAIN NAVIGATION</li>
 
               <li className="treeview">
-                <a href="#" onClick={() => this.setState({ openPatient: !openPatient })}
-                  aria-controls="example-collapse-text"
-                  aria-expanded={openPatient}>
+                <a href="#" 
+                  aria-controls="example-collapse-text">
                   <i className="fa fa-files-o"></i>
                   <span>Patients</span>
                   <span className="pull-right-container">
                     <span className="label label-primary pull-right">4</span>
                   </span>
                 </a>
-                <ReactBootstrap.Collapse in={this.state.openPatient}>
-                  <div id="example-collapse-text">
-                    <li>
-                      <button style={buttonstyle} onClick={this.updateView}><i className="fa fa-circle-o" ></i>View</button>
-                    </li>
-                  </div>
-                </ReactBootstrap.Collapse>
+                
               </li>
 
               <li className="treeview">
-                <a href="#" onClick={() => this.setState({ openDoctor: !openDoctor })}
-                  aria-controls="example-collapse-text"
-                  aria-expanded={openDoctor}>
+                <a href="#" 
+                  aria-controls="example-collapse-text">
                   <i className="fa fa-files-o"></i>
                   <span>Doctors</span>
                   <span className="pull-right-container">
-                    <span className="label label-primary pull-right">4</span>
+                    
                   </span>
                 </a>
-                <ReactBootstrap.Collapse in={this.state.openDoctor}>
-                  <div id="example-collapse-text">
-                    <li>
-                      <button style={buttonstyle} onClick={this.updateRegDoc}><i className="fa fa-circle-o" ></i>Register</button>
-                    </li>
-                    <li><button style={buttonstyle} onClick={this.updateViewDoc}><i className="fa fa-circle-o"></i> View</button></li>
-
-                  </div>
-                </ReactBootstrap.Collapse>
+                
               </li>
 
               <li className="treeview">
-                <a href="#" onClick={() => this.setState({ openRecep: !openRecep })} aria-controls="example-collapse-text"
-                  aria-expanded={openRecep}>
+                <a href="#"  aria-controls="example-collapse-text"
+                >
                   <i className="fa fa-pie-chart"></i>
                   <span>Receptionists</span>
                   <span className="pull-right-container">
                     <i className="fa fa-angle-left pull-right"></i>
                   </span>
                 </a>
-                <ReactBootstrap.Collapse in={this.state.openRecep}>
-                  <div id="example-collapse-text">
-                    <li><button style={buttonstyle} onClick={this.updateRegRecep}><i className="fa fa-circle-o" ></i>Register</button></li>
-                    <li><button style={buttonstyle} onClick={this.updateViewRecep}><i className="fa fa-circle-o"></i> View</button></li>
-
-                  </div>
-                </ReactBootstrap.Collapse>
+                
               </li>
               <li>
                 <ul className="treeview-menu">

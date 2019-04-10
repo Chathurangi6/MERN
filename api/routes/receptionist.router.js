@@ -104,6 +104,36 @@ router.route('/view').get(function (req, res) {
 });
 });
 
+// Defined edit route
+router.route('/edit/:id').get(function (req, res) {
+  let id = req.params.id;
+  Recep.findById(id, function (err, recep){
+      res.json(recep);
+  });
+});
+
+//  Defined update route
+router.route('/update/:id').post(function (req, res) {
+  Recep.findById(req.params.id, function(err, recep) {
+    if (!recep)
+      res.status(404).send("data is not found");
+    else {
+      recep.fname = req.body.fname;
+      recep.lname = req.body.lname;
+      recep.email = req.body.email;
+      recep.dob= req.body.dob;
+      recep.phn_number=req.body.phn_number;
+      recep.password=req.body.password;
+
+      recep.save().then(data => {
+          res.json('Update complete');
+      })
+      .catch(err => {
+            res.status(400).send("unable to update the database");
+      });
+    }
+  });
+});
 
 // Defined delete | remove | destroy route
 router.route('/delete/:id').get(function (req, res) {

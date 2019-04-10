@@ -4,12 +4,12 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 
 class ViewDoctors extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = { doctor: [],filtered: [],query:"" };
-    this.delete = this.delete.bind(this);
-    this.fetchData=this.fetchData.bind(this);
-    this. handleInputChange=this. handleInputChange.bind(this);
+     this.delete = this.delete.bind(this);
+    // this.fetchData=this.fetchData.bind(this);
+    // this. handleInputChange=this. handleInputChange.bind(this);
   }
 
   fetchData(){
@@ -89,11 +89,12 @@ class ViewDoctors extends Component {
     return (
       <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px" }}>
         <h3 align="center">Doctor List</h3>
-
+      
         <input type="text" className="input" onChange={this.handleInputChange}  value={this.state.query} placeholder="Search..." />
         <div>{this.state.filtered.map(i => <p>{i.email}</p>)}</div>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
+          
             <tr>
               <th>First Name</th>
               <th>Last Name</th>
@@ -105,7 +106,9 @@ class ViewDoctors extends Component {
 
           </thead>
           <tbody>
-          {this.state.doctor.map(function (item, key) {       
+          <button onClick={this.delete}>kk</button> 
+          {this.state.doctor.map(function (item, key) {
+                   
               return (
                 <tr key={key}>
                   <td>{item.fname}</td>
@@ -113,7 +116,7 @@ class ViewDoctors extends Component {
                   <td>{item.email}</td>
                   <td>{item.specialist}</td>
                   <td>{item.phn_number}</td>
-
+                  
                   <td>
                     <Link to={"/edit/" + item._id} className="btn btn-primary">Edit</Link>
                   </td>
