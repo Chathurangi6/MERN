@@ -123,7 +123,7 @@ router.route('/update/:id').post(function (req, res) {
       recep.email = req.body.email;
       recep.dob= req.body.dob;
       recep.phn_number=req.body.phn_number;
-      recep.password=req.body.password;
+     // recep.password=req.body.password;
 
       recep.save().then(data => {
           res.json('Update complete');
