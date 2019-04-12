@@ -135,6 +135,16 @@ export default class ViewAppoint extends Component {
                         <button onClick={this.closeModal}>close</button>
                         <div>I am a modal</div>
                         <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                    <label>Doctor Name:  </label>
+                    <input 
+                      type="text" 
+                      id='fname'
+                      className="form-control" 
+                      value={this.state.fname}
+                      onChange={this.onChange}
+                      />
+                </div>
                             <div className="input-field col s12">
                                 <input
                                     onChange={this.onChange}

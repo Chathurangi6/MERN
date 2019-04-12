@@ -11,7 +11,8 @@ const customStyles = {
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-50%, -50%)',
+      margin:"10px"
   }
 };
 
@@ -41,7 +42,6 @@ onChange(e) {
 this.setState({ [e.target.id]: e.target.value });
 }
 onSubmit(e) {
-  console.log("wada");
   e.preventDefault();
   const obj = {
       fname: this.state.fname,
@@ -141,7 +141,6 @@ closeModal() {
                         contentLabel="Example Modal"
                     >
                     <h2 ref={subtitle => this.subtitle = subtitle}>Update Receptionist</h2>
-                        <button onClick={this.closeModal}>close</button>
                         <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>First Name:  </label>
@@ -202,6 +201,7 @@ closeModal() {
                     <input type="submit" 
                       value="Update" 
                       className="btn btn-primary"/>
+                      <button onClick={this.closeModal} className="btn btn-primary" style={{margin:"10px"}}>close</button>
                 </div>
             </form>
             </Modal>

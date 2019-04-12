@@ -10,7 +10,7 @@ import ViewDoctors from './ViewDoctors';
 import RegDoctor from './RegDoctor';
 import ViewRecep from "./ViewRecep";
 import { logoutUser } from "../../actions/authActions"
-
+import Content from "../Admin/Content"
 
 class Admin extends Component {
   constructor(props, context) {
@@ -218,8 +218,8 @@ class Admin extends Component {
 
 
         </aside>
-
-        {this.state.patientView && (<ViewPatient />)}
+       <Content/>
+        {this.state.patientView && (<ViewPatient /> )}
         {this.state.regDoctor && (<RegDoctor />)}
         {this.state.doctorView && (<ViewDoctors />)}
         {this.state.regReceptionist && (<RegReceptionist />)}
