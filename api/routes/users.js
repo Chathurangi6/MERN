@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const keys = require("../DB");
 const mongoose = require('mongoose');
 const nodemailer =require('nodemailer')
+const crypto = require("crypto-js")
 // Load input validation
 const validateLoginInput = require("../validation/login");
 // Load User model
@@ -76,21 +77,28 @@ router.post("/login", (req, res) => {
 });
 });
 
+const randomString=length=>{
+  let text="";
+  const possible="abcdefghijklmnopqrstuvwxyz0123456789_-.";
+  for(let i=0;i<length;i++){
+    text+=possible.charAt(Math.floor(Math.random()*possible.length));
+  }
+  return text;
+}
+
 router.post('/forgotPassword', (req, res) => {
   if (req.body.email === '') {
     res.status(400).send('email required');
   }
-  console.error(req.body.email);
-  User.findOne({
-    where: {
-      email: req.body.email,
-    },
-  }).then((user) => {
-    if (user === null) {
-      console.error('email not in database');
-      res.status(403).send('email not in db');
-    } else {
-      const token = crypto.randomBytes(20).toString('hex');
+ // console.error(req.body.email);
+ const email = req.body.email;
+ User.findOne({ email }).then(user => {
+  // Check if user exists
+  if (!user) {
+    return res.status(404).json({ emailnotfound: "Email not found" });
+  }
+     else {
+      const token = randomString(40);
       user.update({
         resetPasswordToken: token,
         resetPasswordExpires: Date.now() + 360000,
