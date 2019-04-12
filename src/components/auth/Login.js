@@ -109,6 +109,7 @@ class Login extends Component {
                   Login
                 </button>
               </div>
+              <a href='/forgotpassword'>forgot your password?</a> 
             </form>
           </div>
         </div>

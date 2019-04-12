@@ -13,6 +13,7 @@ import addDoctor from "./components/Doctor/AddDoctor"
 import AddPatient from "./components/Receptionist/AddPatient";
 import DocDashboard from "./components/Doctor/DocDashboard"
 import AdminDashboard from "./components/Admin/Admin"
+import ForgotPassword from "./components/auth/ForgotPassword";
 
 
 class App extends Component {
@@ -27,7 +28,8 @@ class App extends Component {
           <Route exact path="/appoint" component={AddAppoint} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/patient/add" component={AddPatient} />
-          
+          <Route exact path="/forgotpassword" component={ForgotPassword} />
+
             <Switch>
               <PrivateRoute exact path="/doctor/dashboard" component={DocDashboard} />
             </Switch>

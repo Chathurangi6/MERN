@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import { linkStyle } from './ButtonStyles';
+import { linkStyle } from './ButtonStyle';
 
 const LinkButtons = ({ buttonText, buttonStyle, link }) => (
   <Fragment>

@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import {
-  LinkButtons,
-  SubmitButtons,
-  registerButton,
-  homeButton,
-  forgotButton,
-  inputStyle,
-  HeaderBar,
-} from '../layout';
+import HeaderBar from '../layout/HeaderBar';
+import LinkButtons from '../layout/LinkButtons'
+import SubmitButtons from '../layout/SubmitButtons'
 
 const title = {
   pageTitle: 'Forgot Password Screen',
@@ -80,7 +74,7 @@ class ForgotPassword extends Component {
         <HeaderBar title={title} />
         <form className="profile-form" onSubmit={this.sendEmail}>
           <TextField
-            style={inputStyle}
+            
             id="email"
             label="email"
             value={email}
@@ -88,7 +82,7 @@ class ForgotPassword extends Component {
             placeholder="Email Address"
           />
           <SubmitButtons
-            buttonStyle={forgotButton}
+            
             buttonText="Send Password Reset Email"
           />
         </form>
@@ -100,14 +94,9 @@ class ForgotPassword extends Component {
         {showError && (
           <div>
             <p>
-              That email address isn&apos;t recognized. Please try again or
-              register for a new account.
+              That email address isn't recognized. Please try again or contact admin 
+              for a new account.
             </p>
-            <LinkButtons
-              buttonText="Register"
-              buttonStyle={registerButton}
-              link="/register"
-            />
           </div>
         )}
         {messageFromServer === 'recovery email sent' && (
@@ -115,7 +104,7 @@ class ForgotPassword extends Component {
             <h3>Password Reset Email Successfully Sent!</h3>
           </div>
         )}
-        <LinkButtons buttonText="Go Home" buttonStyle={homeButton} link="/" />
+        <LinkButtons buttonText="Go Home"  link="/" />
       </div>
     );
   }
