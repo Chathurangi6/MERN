@@ -9,6 +9,7 @@ const SubmitButtons = ({ buttonText, buttonStyle }) => (
       type="submit"
       variant="contained"
       color="primary"
+     
     >
       {buttonText}
     </Button>

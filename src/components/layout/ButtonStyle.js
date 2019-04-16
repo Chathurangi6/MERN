@@ -24,6 +24,8 @@ export const deleteButton = {
   export const linkStyle = {
     textDecoration: 'none',
     color: 'white',
+    padding: '1em',
+    paddingTop:'5px'
   };
   
   export const registerButton = {

@@ -14,6 +14,7 @@ import AddPatient from "./components/Receptionist/AddPatient";
 import DocDashboard from "./components/Doctor/DocDashboard"
 import AdminDashboard from "./components/Admin/Admin"
 import ForgotPassword from "./components/auth/ForgotPassword";
+import ResetPassword from "./components/auth/ResetPassword";
 
 
 class App extends Component {
@@ -29,6 +30,9 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/patient/add" component={AddPatient} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
+
+          
+         <Route path="/reset/:token" component={ResetPassword} />
 
             <Switch>
               <PrivateRoute exact path="/doctor/dashboard" component={DocDashboard} />

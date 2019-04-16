@@ -3,16 +3,10 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 
-import {
-  LinkButtons,
-  updateButton,
-  homeButton,
-  loginButton,
-  HeaderBar,
-  forgotButton,
-  inputStyle,
-  SubmitButtons,
-} from '../components';
+import HeaderBar from '../layout/HeaderBar';
+import LinkButtons from '../layout/LinkButtons'
+import SubmitButtons from '../layout/SubmitButtons'
+
 
 const loading = {
   margin: '1em',
@@ -38,7 +32,7 @@ export default class ResetPassword extends Component {
 
   async componentDidMount() {
     await axios
-      .get('http://localhost:3003/reset', {
+      .get('http://localhost:4000/api/users/reset', {
         params: {
           resetPasswordToken: this.props.match.params.token,
         },
@@ -47,7 +41,7 @@ export default class ResetPassword extends Component {
         console.log(response);
         if (response.data.message === 'password reset link a-ok') {
           this.setState({
-            username: response.data.username,
+            email: response.data.email,
             updated: false,
             isLoading: false,
             error: false,
@@ -73,8 +67,8 @@ export default class ResetPassword extends Component {
   updatePassword = (e) => {
     e.preventDefault();
     axios
-      .put('http://localhost:3003/updatePasswordViaEmail', {
-        username: this.state.username,
+      .put('http://localhost:4000/api/users/updatePasswordViaEmail', {
+        email: this.state.email,
         password: this.state.password,
         resetPasswordToken: this.props.match.params.token,
       })
@@ -104,17 +98,21 @@ export default class ResetPassword extends Component {
 
     if (error) {
       return (
-        <div>
+        <div style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', margin: '30px', width: "600px" }}>
           <HeaderBar title={title} />
           <div style={loading}>
             <h4>Problem resetting password. Please send another reset link.</h4>
             <LinkButtons
               buttonText="Go Home"
-              buttonStyle={homeButton}
+              style={{background: 'mediumpurple',
+              padding: '1em',
+              margin: '1em'}}
               link="/"
             />
             <LinkButtons
-              buttonStyle={forgotButton}
+             style={{background: 'purple',
+             padding: '1em',
+             margin: '1em'}}
               buttonText="Forgot Password?"
               link="/forgotPassword"
             />
@@ -135,7 +133,7 @@ export default class ResetPassword extends Component {
         <HeaderBar title={title} />
         <form className="password-form" onSubmit={this.updatePassword}>
           <TextField
-            style={inputStyle}
+           // style={inputStyle}
             id="password"
             label="password"
             onChange={this.handleChange('password')}
@@ -143,7 +141,7 @@ export default class ResetPassword extends Component {
             type="password"
           />
           <SubmitButtons
-            buttonStyle={updateButton}
+         //   buttonStyle={updateButton}
             buttonText="Update Password"
           />
         </form>
@@ -155,13 +153,13 @@ export default class ResetPassword extends Component {
               again.
             </p>
             <LinkButtons
-              buttonStyle={loginButton}
+          //    buttonStyle={loginButton}
               buttonText="Login"
               link="/login"
             />
           </div>
         )}
-        <LinkButtons buttonText="Go Home" buttonStyle={homeButton} link="/" />
+        <LinkButtons buttonText="Go Home" link="/" />
       </div>
     );
   }

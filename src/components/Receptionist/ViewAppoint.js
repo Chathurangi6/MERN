@@ -122,6 +122,32 @@ export default class ViewAppoint extends Component {
                     </div>
                 </form>
                 <div>
+                <table className="table table-striped" style={{ marginTop: 20 }}>
+          <thead>
+          
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone Number</th>
+            </tr>
+          </thead>
+          <tbody>
+          {this.state.doctor.map(function (item, key) {
+                   
+              return (
+                <tr key={key}>
+                  <td>{item.fname}</td>
+                  <td>{item.lname}</td>
+                  <td>{item.phn_number}</td>
+                  
+                </tr>
+              )
+            })}
+
+          </tbody>
+        </table>
+                </div>
+                <div>
                     <button onClick={this.openModal}>New Appointment</button>
                     <Modal
                         isOpen={this.state.modalIsOpen}
