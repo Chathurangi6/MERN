@@ -15,7 +15,7 @@ import DocDashboard from "./components/Doctor/DocDashboard"
 import AdminDashboard from "./components/Admin/Admin"
 import ForgotPassword from "./components/auth/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword";
-
+import Home from '../src/components/layout/Home'
 
 class App extends Component {
   render() {
@@ -30,8 +30,8 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/patient/add" component={AddPatient} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
-
-          
+          <Route exact path="/h" component={Home} />
+          <Route exact path="/recep" component={RecepDashboard} />
          <Route path="/reset/:token" component={ResetPassword} />
 
             <Switch>

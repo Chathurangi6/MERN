@@ -8,13 +8,21 @@ import * as ReactBootstrap from 'react-bootstrap';
 import ViewPatient from '../common/ViewPatients';
 import Appointment from './ViewAppoint'
 import { logoutUser } from "../../actions/authActions"
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import AppBar from './AppBar'
+
 
 
 class RecepDashboard extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {  
+    this.state = {
       patientView: false,
       patientadd: false,
       appointment: false,
@@ -36,19 +44,19 @@ class RecepDashboard extends Component {
   }
   updatePatientAdd = () => {
     this.setState({
-        patientView: false,
-        patientadd: true,
-        appointment: false,
+      patientView: false,
+      patientadd: true,
+      appointment: false,
     })
   }
   updateAppoint = () => {
     this.setState({
-        patientView: false,
-        patientadd: false,
-        appointment: true,
+      patientView: false,
+      patientadd: false,
+      appointment: true,
     })
   }
-  
+
   render() {
 
     const buttonstyle = {
@@ -57,30 +65,7 @@ class RecepDashboard extends Component {
 
     return (
       <div className="App">
-
-        {/* header */}
-
-        <header className="main-header">
-          <a href="" className="logo">
-            <span className="logo-lg"><b>Admin</b>Nawodaya</span>
-          </a>
-
-          <nav className="navbar navbar-static-top">
-
-
-            <a href="" className="sidebar-toggle" data-toggle="push-menu" role="button">
-              <span className="sr-only">Toggle navigation</span>
-            </a>
-            <div className="navbar-custom-menu">
-              <ul className="nav navbar-nav">
-                <li className="nav-item">
-                  <ReactBootstrap.Button onClick={this.onLogoutClick} className="navbar-brand" style={{ color: "white" }}>Logout</ReactBootstrap.Button>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
-
+<AppBar/>
         <aside className="main-sidebar" style={{ position: "absolute" }}>
           <section className="sidebar" style={{ position: "absolute" }}>
             <div className="user-panel">
@@ -113,7 +98,7 @@ class RecepDashboard extends Component {
                     <span className="label label-primary pull-right">4</span>
                   </span>
                 </button>
-                
+
               </li>
 
               <li className="treeview">
@@ -122,10 +107,10 @@ class RecepDashboard extends Component {
                   <i className="fa fa-files-o"></i>
                   <span>View Patient</span>
                   <span className="pull-right-container">
-                    
+
                   </span>
                 </button>
-                
+
               </li>
 
               <li className="treeview">
@@ -137,23 +122,18 @@ class RecepDashboard extends Component {
                     <i className="fa fa-angle-left pull-right"></i>
                   </span>
                 </button>
-                
+
               </li>
-              <li>
-                <ul className="treeview-menu">
-                  <li><a href=""><i className="fa fa-circle-o"></i> Simple tables</a></li>
-                  <li><a href=""><i className="fa fa-circle-o"></i> Data tables</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="pages/calendar.html">
-                  <i className="fa fa-calendar"></i> Laboratorian<span></span>
-                  <span className="pull-right-container">
-                    <small className="label pull-right bg-red">3</small>
-                    <small className="label pull-right bg-blue">17</small>
-                  </span>
-                </a>
-              </li>
+
+              <List component="nav">
+                <ListItem button onClick={this.updateView}>
+                  <ListItemText primary="Inbox" />
+                </ListItem>
+                <ListItem button>
+
+                  <ListItemText primary="Drafts" />
+                </ListItem>
+              </List>
 
             </ul>
           </section>
@@ -164,8 +144,7 @@ class RecepDashboard extends Component {
         {this.state.patientView && (<ViewPatient />)}
         {this.state.patientadd && (<AddPatient />)}
         {this.state.appointment && (<Appointment />)}
-        
-        <Footer />
+
 
       </div>
 

@@ -36,5 +36,13 @@ const Doctor = new Schema({
     collection: 'doctors'
   }
 );
+// doctors.aggregate(
+//   [
+//      { $project: {fullname : { $concat: [ "$fname", "  ", "$lname" ] } } }
+//   ]
+// )
 
+// Doctor.virtual('fullname').get(function () {
+//   return [this.fname, this.lname].filter(Boolean).join(' ');
+// });
 module.exports = mongoose.model('doctors', Doctor);

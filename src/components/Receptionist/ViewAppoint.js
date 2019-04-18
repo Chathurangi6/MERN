@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -32,7 +31,7 @@ export default class ViewAppoint extends Component {
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.onSubmit=this.onSubmit.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -52,7 +51,7 @@ export default class ViewAppoint extends Component {
     onSubmit(e) {
         e.preventDefault();
         const obj = {
-           // doctor: this.state.doctor,
+            // doctor: this.state.doctor,
             p_fname: this.state.p_fname,
             p_lname: this.state.p_lname,
             phn_number: this.state.phn_number
@@ -62,7 +61,7 @@ export default class ViewAppoint extends Component {
             .then(res => console.log(res.data));
 
         this.setState({
-           // doctor: "",
+            // doctor: "",
             p_fname: "",
             p_lname: "",
             phn_number: "",
@@ -74,7 +73,7 @@ export default class ViewAppoint extends Component {
         axios.get('http://localhost:4000/api/doctor/name')
             .then(response => {
                 this.setState({ doctor: response.data });
-                console.log(this.state)
+                console.log('wada')
             })
             .catch(function (error) {
                 console.log(error);
@@ -99,12 +98,13 @@ export default class ViewAppoint extends Component {
                 <h3>Appointment Table</h3>
                 <form >
                     <div className="input-field col s12">
-                        {['fname'].map(key => (
-                            <select key={key} onClick={this.onChange} className="form-control">
-                                <option>Select a Doctor</option>
-                                {this.state.doctor.map(({ [key]: value }) => <option key={value}>{value}</option>)}
+                        <select  id="docName" onClick={this.onChange} className="form-control">
+                        <option>search your doctor</option>
+                            {this.state.doctor.map((obj) =>
+      <option key={obj.fullname}>{obj.fullname}</option>
+                            )}
                             </select>
-                        ))}
+                       
                     </div>
                     <div className="input-field col s12">
                         <input
@@ -122,30 +122,30 @@ export default class ViewAppoint extends Component {
                     </div>
                 </form>
                 <div>
-                <table className="table table-striped" style={{ marginTop: 20 }}>
-          <thead>
-          
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Phone Number</th>
-            </tr>
-          </thead>
-          <tbody>
-          {this.state.doctor.map(function (item, key) {
-                   
-              return (
-                <tr key={key}>
-                  <td>{item.fname}</td>
-                  <td>{item.lname}</td>
-                  <td>{item.phn_number}</td>
-                  
-                </tr>
-              )
-            })}
+                    <table className="table table-striped" style={{ marginTop: 20 }}>
+                        <thead>
 
-          </tbody>
-        </table>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.doctor.map(function (item, key) {
+
+                                return (
+                                    <tr key={key}>
+                                        <td>{item.fname}</td>
+                                        <td>{item.lname}</td>
+                                        <td>{item.phn_number}</td>
+
+                                    </tr>
+                                )
+                            })}
+
+                        </tbody>
+                    </table>
                 </div>
                 <div>
                     <button onClick={this.openModal}>New Appointment</button>
@@ -161,16 +161,16 @@ export default class ViewAppoint extends Component {
                         <button onClick={this.closeModal}>close</button>
                         <div>I am a modal</div>
                         <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
-                    <label>Doctor Name:  </label>
-                    <input 
-                      type="text" 
-                      id='fname'
-                      className="form-control" 
-                      value={this.state.fname}
-                      onChange={this.onChange}
-                      />
-                </div>
+                            <div className="form-group">
+                                <label>Doctor Name:  </label>
+                                <input
+                                    type="text"
+                                    id='fname'
+                                    className="form-control"
+                                    value={this.state.fname}
+                                    onChange={this.onChange}
+                                />
+                            </div>
                             <div className="input-field col s12">
                                 <input
                                     onChange={this.onChange}

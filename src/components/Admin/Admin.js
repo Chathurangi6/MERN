@@ -100,18 +100,9 @@ class Admin extends Component {
           </a>
 
           <nav className="navbar navbar-static-top">
-
-
-            <a href="" className="sidebar-toggle" data-toggle="push-menu" role="button">
-              <span className="sr-only">Toggle navigation</span>
-            </a>
-            <div className="navbar-custom-menu">
-              <ul className="nav navbar-nav">
-                <li className="nav-item">
-                  <ReactBootstrap.Button onClick={this.onLogoutClick} className="navbar-brand" style={{ color: "white" }}>Logout</ReactBootstrap.Button>
-                </li>
-              </ul>
-            </div>
+          <div class=" pull-right">
+                  <button onClick={this.onLogoutClick} className="btn btn-primary btn-lg pull-right" style={{ color: "white" }}><b>Logout</b></button>
+                  </div>
           </nav>
         </header>
 

@@ -96,21 +96,37 @@ router.route('/view').get(function (req, res) {
 });
 
 //get only doctor name
+// router.route('/name').post(function (req, res) {
+//   var userName = req.body.search; //userName = 'Juan David Nicholls';
+//   var searchString = new RegExp(userName, 'ig');
+//   Doctor.aggregate()
+//     .project({fullname: { $concat: ['$fname', ' ', '$lname'] }
+// })
+// .match({ fullname: searchString })
+// .exec(function (err, users) {
+//     if (err) throw err;
+    
+//     res.json({
+//         users: users
+//     });
+// });
+
+// });
+
 router.route('/name').get(function (req, res) {
- 
-  // Doctor.aggregate(
-  //   {$project:{name:{$concat:["$fname", " ","$lname"]}}}
-  // );
-  
-  Doctor.find({},{_id:0,fname:1,lname:1},function(err, doctors){
+  Doctor.aggregate()
+    .project({fullname: { $concat: ['$fname', ' ', '$lname'] }
+}).exec(function(err,name){
   if(err){
     console.log(err);
   }
   else {
-    res.json(doctors);
+    
+    res.json(name);
+    console.log(name);
   }
-});
-});
+})
+}) 
 
 // Defined edit route
 router.route('/edit/:id').get(function (req, res) {
