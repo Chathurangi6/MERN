@@ -20,6 +20,20 @@ router.route('/search').get(function (req, res) {
 }
 )
 
+
+router.route('/search').post(function (req, res) {
+    var docName = req.body.docName; //userName = 'Juan David Nicholls';
+    var searchString = new RegExp(docName, 'ig');
+    appoint
+  .match({ doctor: searchString })
+  .exec(function (err, users) {
+      if (err) throw err;
+      res.json({
+          users: users
+      });
+  });
+  
+  });
 //add appointments
 router.route('/add').post(function (req, res) {
   let appoint = new Appoint(req.body);

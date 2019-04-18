@@ -19,7 +19,7 @@ export default class ViewAppoint extends Component {
         super(props);
         this.state = {
             doctor: [],
-           docName: "",
+            docName: "",
             p_fname: "",
             p_lname: "",
             phn_number: "",
@@ -40,18 +40,16 @@ export default class ViewAppoint extends Component {
     search(e) {
         e.preventDefault();
         const obj = {
-            doctor: this.state.doctor,
-            appointDate: this.state.appointDate,
-
+            doctor: this.state.docName
         };
-        axios.get('http://localhost:4000/api/appointment/search', obj)
+        axios.post('http://localhost:4000/api/appointment/search', obj)
             .then(res => console.log(res.data));
     }
 
     onSubmit(e) {
         e.preventDefault();
         const obj = {
-             doctor: this.state.docName,
+            doctor: this.state.docName,
             p_fname: this.state.p_fname,
             p_lname: this.state.p_lname,
             phn_number: this.state.phn_number
@@ -73,7 +71,7 @@ export default class ViewAppoint extends Component {
         axios.get('http://localhost:4000/api/doctor/name')
             .then(response => {
                 this.setState({ doctor: response.data });
-                
+
             })
             .catch(function (error) {
                 console.log(error);
@@ -98,12 +96,12 @@ export default class ViewAppoint extends Component {
                 <h3>Appointment Table</h3>
                 <form >
                     <div className="input-field col s12">
-                        <select  id="docName" onClick={this.onChange} className="form-control">
-                        <option>search your doctor</option>
+                        <select id="docName" onClick={this.onChange} className="form-control">
+                            <option>search your doctor</option>
                             {this.state.doctor.map((obj) =>
-      <option key={obj.fullname}>{obj.fullname}</option>
+                                <option key={obj.fullname}>{obj.fullname}</option>
                             )}
-                            </select>
+                        </select>
                     </div>
 
                     <div className="form-group">
@@ -147,11 +145,10 @@ export default class ViewAppoint extends Component {
                     >
 
                         <h2 ref={subtitle => this.subtitle = subtitle}>Add New Appointment</h2>
-                        <button onClick={this.closeModal}>close</button>
-                        <div>I am a modal</div>
+                        
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
-                                <label>Doctor Name: {this.state.docName}  </label>  
+                                <label>Doctor Name: {this.state.docName}  </label>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -180,8 +177,9 @@ export default class ViewAppoint extends Component {
                                 />
                                 <label>Phone number</label>
                             </div>
-
-                            <button type="submit">Add</button>
+                            <button onClick={this.closeModal} className="btn btn-primary right" style={{margin:"5px"}}>close</button>
+                            <button type="submit" className="btn btn-primary right" style={{margin:"5px"}}>Add</button>
+                            
                         </form>
                     </Modal>
                 </div>

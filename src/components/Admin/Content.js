@@ -1,14 +1,32 @@
 import React, {Component} from 'react';
-import * as ReactBootstrap from 'react-bootstrap';
+import axios from 'axios';
 
 export default class Content extends Component {
     constructor(props, context) {
         super(props, context);
     
         this.state = {
-          open: false,
+          doctor:"",
+          recep:""
         };
       }
+      componentDidMount() {
+        axios.get('http://localhost:4000/api/doctor/count')
+            .then(response => {
+                this.setState({ doctor: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            axios.get('http://localhost:4000/api/receptionist/count')
+            .then(response => {
+                this.setState({ recep: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
     render(){
         const { open } = this.state;
         return (
@@ -29,27 +47,12 @@ export default class Content extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <ReactBootstrap.Button
-          onClick={() => this.setState({ open: !open })}
-          aria-controls="example-collapse-text"
-          aria-expanded={open}
-        >
-          click
-        </ReactBootstrap.Button>
-        <ReactBootstrap.Collapse in={this.state.open}>
-          <div id="example-collapse-text">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson cred nesciunt sapiente ea proident.
-          </div>
-        </ReactBootstrap.Collapse>
                                 <div className="box-footer">
                                     <div className="row">                                    
                                         <div className="col-sm-3 col-xs-6">
                                             <div className="description-block border-right">
-                                                <span className="description-percentage text-green"><i className="fa fa-caret-up"></i> 17%</span>
-                                                <h5 className="description-header">$35,210.43</h5>
-                                                <span className="description-text">TOTAL REVENUE</span>
+                                                <span className="description-percentage text-green"><i className="fa fa-caret-up"></i> {this.state.doctor}</span>
+                                                <span className="description-percentage text-green"><i className="fa fa-caret-up"></i> {this.state.recep}</span>
                                             </div>
                                         </div>    
                                     </div>

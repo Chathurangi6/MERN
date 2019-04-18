@@ -143,4 +143,12 @@ router.route('/delete/:id').get(function (req, res) {
   });
 });
 
+//count number of doctors
+router.route('/count').get(function(req,res){
+  Recep.countDocuments({},function(err,users){
+    if(err) res.json(err);
+    else res.json(users);
+  })
+})
+
 module.exports = router;
