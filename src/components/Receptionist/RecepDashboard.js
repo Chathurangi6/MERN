@@ -59,10 +59,7 @@ class RecepDashboard extends Component {
 
   render() {
 
-    const buttonstyle = {
-      borderRadius: "10px", backgroundColor: "black", color: "white"
-    };
-
+   
     return (
       <div className="App">
 <AppBar/>
@@ -88,50 +85,19 @@ class RecepDashboard extends Component {
             </form>
             <ul className="sidebar-menu">
               <li className="header">MAIN NAVIGATION</li>
-
-              <li className="treeview">
-                <button onClick={this.updatePatientAdd}
-                  aria-controls="example-collapse-text">
-                  <i className="fa fa-files-o"></i>
-                  <span>New Patient</span>
-                  <span className="pull-right-container">
-                    <span className="label label-primary pull-right">4</span>
-                  </span>
-                </button>
-
-              </li>
-
-              <li className="treeview">
-                <button onClick={this.updateView}
-                  aria-controls="example-collapse-text">
-                  <i className="fa fa-files-o"></i>
-                  <span>View Patient</span>
-                  <span className="pull-right-container">
-
-                  </span>
-                </button>
-
-              </li>
-
-              <li className="treeview">
-                <button onClick={this.updateAppoint} aria-controls="example-collapse-text"
-                >
-                  <i className="fa fa-pie-chart"></i>
-                  <span>Appointments</span>
-                  <span className="pull-right-container">
-                    <i className="fa fa-angle-left pull-right"></i>
-                  </span>
-                </button>
-
-              </li>
-
-              <List component="nav">
-                <ListItem button onClick={this.updateView}>
-                  <ListItemText primary="Inbox" />
+              <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
+              <ListItem button onClick={this.updatePatientAdd}>
+                  <ListItemText primary="New Patient" />
                 </ListItem>
-                <ListItem button>
-
-                  <ListItemText primary="Drafts" />
+                </List>
+                <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
+                <ListItem button onClick={this.updateView}>
+                  <ListItemText primary="View Patient" />
+                </ListItem>
+                </List>
+                <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
+                <ListItem button onClick={this.updateAppoint}>
+                  <ListItemText primary="Appointments" />
                 </ListItem>
               </List>
 

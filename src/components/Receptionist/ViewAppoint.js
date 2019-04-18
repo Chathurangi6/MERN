@@ -19,7 +19,7 @@ export default class ViewAppoint extends Component {
         super(props);
         this.state = {
             doctor: [],
-            appointDate: "",
+           docName: "",
             p_fname: "",
             p_lname: "",
             phn_number: "",
@@ -51,7 +51,7 @@ export default class ViewAppoint extends Component {
     onSubmit(e) {
         e.preventDefault();
         const obj = {
-            // doctor: this.state.doctor,
+             doctor: this.state.docName,
             p_fname: this.state.p_fname,
             p_lname: this.state.p_lname,
             phn_number: this.state.phn_number
@@ -73,7 +73,7 @@ export default class ViewAppoint extends Component {
         axios.get('http://localhost:4000/api/doctor/name')
             .then(response => {
                 this.setState({ doctor: response.data });
-                console.log('wada')
+                
             })
             .catch(function (error) {
                 console.log(error);
@@ -104,17 +104,6 @@ export default class ViewAppoint extends Component {
       <option key={obj.fullname}>{obj.fullname}</option>
                             )}
                             </select>
-                       
-                    </div>
-                    <div className="input-field col s12">
-                        <input
-                            onChange={this.onChange}
-                            value={this.state.appointDate}
-                            type="Date"
-                            id="appointDate"
-
-                        />
-                        <label>Date</label>
                     </div>
 
                     <div className="form-group">
@@ -162,14 +151,7 @@ export default class ViewAppoint extends Component {
                         <div>I am a modal</div>
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
-                                <label>Doctor Name:  </label>
-                                <input
-                                    type="text"
-                                    id='fname'
-                                    className="form-control"
-                                    value={this.state.fname}
-                                    onChange={this.onChange}
-                                />
+                                <label>Doctor Name: {this.state.docName}  </label>  
                             </div>
                             <div className="input-field col s12">
                                 <input
