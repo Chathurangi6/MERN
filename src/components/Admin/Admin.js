@@ -23,7 +23,8 @@ class Admin extends Component {
       regDoctor: false,
       doctorView: false,
       regReceptionist: false,
-      recepView: false
+      recepView: false,
+      main:true
 
     };
   }
@@ -38,7 +39,8 @@ class Admin extends Component {
       patientView: true,
       regDoctor: false,
       doctorView: false,
-      recepView: false
+      recepView: false,
+      main:false
     })
   }
   updateRegDoc = () => {
@@ -47,7 +49,8 @@ class Admin extends Component {
       patientView: false,
       doctorView: false,
       regReceptionist: false,
-      recepView: false
+      recepView: false,
+      main:false
     })
   }
   updateViewDoc = () => {
@@ -56,7 +59,8 @@ class Admin extends Component {
       patientView: false,
       doctorView: true,
       regReceptionist: false,
-      recepView: false
+      recepView: false,
+      main:false
     })
   }
   updateRegRecep = () => {
@@ -65,7 +69,8 @@ class Admin extends Component {
       patientView: false,
       doctorView: false,
       regReceptionist: true,
-      recepView: false
+      recepView: false,
+      main:false
     })
   }
   updateViewRecep = () => {
@@ -74,7 +79,8 @@ class Admin extends Component {
       patientView: false,
       doctorView: false,
       regReceptionist: false,
-      recepView: true
+      recepView: true,
+      main:false
     })
   }
 
@@ -85,7 +91,7 @@ class Admin extends Component {
     const { openDoctor } = this.state;
 
     const buttonstyle = {
-      borderRadius: "10px", backgroundColor: "black", color: "white"
+       backgroundColor: "grey", color: "white",padding:"5px",width:"200px"
     };
 
     return (
@@ -97,10 +103,7 @@ class Admin extends Component {
           <a href="" className="logo">
             <span className="logo-lg"><b>Admin</b>Nawodaya</span>
           </a>
-
           <nav className="navbar navbar-static-top">
-
-
             <a href="" className="sidebar-toggle" data-toggle="push-menu" role="button">
               <span className="sr-only">Toggle navigation</span>
             </a>
@@ -143,14 +146,11 @@ class Admin extends Component {
                   aria-expanded={openPatient}>
                   <i className="fa fa-files-o"></i>
                   <span>Patients</span>
-                  <span className="pull-right-container">
-                    <span className="label label-primary pull-right">4</span>
-                  </span>
                 </a>
                 <ReactBootstrap.Collapse in={this.state.openPatient}>
                   <div id="example-collapse-text">
                     <li>
-                      <button style={buttonstyle} onClick={this.updateView}><i className="fa fa-circle-o" ></i>View</button>
+                      <button style={buttonstyle} onClick={this.updateView}>View</button>
                     </li>
                   </div>
                 </ReactBootstrap.Collapse>
@@ -162,9 +162,6 @@ class Admin extends Component {
                   aria-expanded={openDoctor}>
                   <i className="fa fa-files-o"></i>
                   <span>Doctors</span>
-                  <span className="pull-right-container">
-                    <span className="label label-primary pull-right">4</span>
-                  </span>
                 </a>
                 <ReactBootstrap.Collapse in={this.state.openDoctor}>
                   <div id="example-collapse-text">
@@ -217,14 +214,14 @@ class Admin extends Component {
 
 
         </aside>
-       <Content/>
+        {this.state.main && (<Content/>)}
         {this.state.patientView && (<ViewPatient /> )}
         {this.state.regDoctor && (<RegDoctor />)}
         {this.state.doctorView && (<ViewDoctors />)}
         {this.state.regReceptionist && (<RegReceptionist />)}
         {this.state.recepView && (<ViewRecep />)}
 
-        <Footer />
+       
 
       </div>
 

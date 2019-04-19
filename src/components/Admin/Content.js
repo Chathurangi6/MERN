@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 export default class Content extends Component {
     constructor(props, context) {
@@ -7,7 +9,8 @@ export default class Content extends Component {
     
         this.state = {
           doctor:"",
-          recep:""
+          recep:"",
+          patient:""
         };
       }
       componentDidMount() {
@@ -25,6 +28,13 @@ export default class Content extends Component {
             .catch(function (error) {
                 console.log(error);
             })
+            axios.get('http://localhost:4000/patient/count')
+            .then(response => {
+                this.setState({ patient: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
 
     render(){
@@ -36,27 +46,43 @@ export default class Content extends Component {
                         <div className="col-md-12">
                             <div className="box">
                                 <div className="box-header with-border">
-                                    <h3 className="box-title">Monthly Recap Report</h3>
+                                    <h3 className="box-title">Count of Members</h3>
                                 </div>
                                 <div className="box-body">
-                                    <div className="row">
-                                        <div className="col-md-8">
-                                            <p className="text-center">
-                                                <strong>This is text</strong>
-                                            </p>
-                                        </div>
+                                <div class="row">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <Card>
+                                        <CardContent>
+                                        <h5 class="text-muted">Doctors</h5>
+                                    <div class="metric-value d-inline-block">
+                                        <h1 class="mb-1">{this.state.doctor}</h1>
+                                    </div>
+                                            </CardContent>
+                                        </Card>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <Card>
+                                        <CardContent>
+                                        <h5 class="text-muted">Receptionists</h5>
+                                    <div class="metric-value d-inline-block">
+                                        <h1 class="mb-1">{this.state.recep}</h1>
+                                    </div>
+                                            </CardContent>
+                                        </Card>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <Card>
+                                        <CardContent>
+                                        <h5 class="text-muted">Patients</h5>
+                                    <div class="metric-value d-inline-block">
+                                        <h1 class="mb-1">{this.state.patient}</h1>
+                                    </div>
+                                            </CardContent>
+                                        </Card>
                                     </div>
                                 </div>
-                                <div className="box-footer">
-                                    <div className="row">                                    
-                                        <div className="col-sm-3 col-xs-6">
-                                            <div className="description-block border-right">
-                                                <span className="description-percentage text-green"><i className="fa fa-caret-up"></i> {this.state.doctor}</span>
-                                                <span className="description-percentage text-green"><i className="fa fa-caret-up"></i> {this.state.recep}</span>
-                                            </div>
-                                        </div>    
-                                    </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

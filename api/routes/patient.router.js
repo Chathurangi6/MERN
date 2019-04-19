@@ -27,4 +27,11 @@ patientRoutes.route('/').get(function (req, res) {
 });
 });
 
+//count number of doctors
+patientRoutes.route('/count').get(function(req,res){
+  Patient.countDocuments({},function(err,users){
+    if(err) res.json(err);
+    else res.json(users);
+  })
+})
 module.exports = patientRoutes;
