@@ -20,6 +20,7 @@ export default class ViewAppoint extends Component {
         this.state = {
             doctor: [],
             docName: "",
+            matching:[],
             p_fname: "",
             p_lname: "",
             phn_number: "",
@@ -43,7 +44,9 @@ export default class ViewAppoint extends Component {
             doctor: this.state.docName
         };
         axios.post('http://localhost:4000/api/appointment/search', obj)
-            .then(res => console.log(res.data));
+            .then(res => {
+                this.setState({ matching: res.data })});
+;
     }
 
     onSubmit(e) {
@@ -119,7 +122,7 @@ export default class ViewAppoint extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.doctor.map(function (item, key) {
+                            {this.state.matching.map(function (item, key) {
 
                                 return (
                                     <tr key={key}>

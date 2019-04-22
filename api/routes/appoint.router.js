@@ -6,27 +6,24 @@ const Appoint = mongoose.model('appointments');
 
 // Appoint.find({ date: { $gte:ISODate("2013-11-19T14:00:00Z"), $lt: ISODate("2013-11-19T20:00:00Z") } })
 
-router.route('/search').get(function (req, res) {
-    Appoint.find({ $and: [{ date: req.body.appointDate }, { doctor: req.body.doctor }] },function(err, appoints){
-        if(err){
-          console.log(err);
-        }
-        else {
-          res.json(appoints);
-        }
-    }
-
-    )
-}
-)
+// router.route('/search').get(function (req, res) {
+//     Appoint.find({ $and: [{ date: req.body.appointDate }, { doctor: req.body.doctor }] },function(err, appoints){
+//         if(err){
+//           console.log(err);
+//         }
+//         else {
+//           res.json(appoints);
+//         }
+//     }
+//     )
+// }
+// )
 
 
 router.route('/search').post(function (req, res) {
-    var docName = req.body.docName; //userName = 'Juan David Nicholls';
-    var searchString = new RegExp(docName, 'ig');
-    appoint
-  .match({ doctor: searchString })
-  .exec(function (err, users) {
+    var docName = req.body.doctor; //userName = 'Juan David Nicholls';
+    console.log(docName);
+    appoint.find({ doctor: docName }, function (err, users) {
       if (err) throw err;
       res.json({
           users: users
