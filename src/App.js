@@ -17,7 +17,7 @@ import DocDashboard from "./components/Doctor/DocDashboard"
 import AdminDashboard from "./components/Admin/Admin"
 import ForgotPassword from "./components/auth/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword";
-import Landing from '../src/components/LandingPage/Landing'
+import Slide from '../src/components/layout/Slide'
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -50,7 +50,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
-          <Route exact path="/h" component={Landing} />
+          <Route exact path="/" component={Slide} />
           <Route exact path="/recep" component={RecepDashboard} />
          <Route path="/reset/:token" component={ResetPassword} />
 
