@@ -3,7 +3,7 @@ import './slide.css'
 class Slide extends Component {
     render() {
         return (
-<section class="view intro-2" >
+<section class="view intro-2" className='backgrImg'>
       <div class="mask">
         <div class="container h-100 d-flex justify-content-center align-items-center">
           <div class="row flex-center pt-5 mt-3">
