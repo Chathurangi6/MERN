@@ -4,3 +4,6 @@
 .landing{
     visibility: visible; animation-name: fadeInLeft; animation-delay: 0.3s
 }
+.paragraph{
+    visibility: visible; animation-name: fadeInLeft; animation-delay: 0.3s
+}
