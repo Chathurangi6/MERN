@@ -3,21 +3,19 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions"
-import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import AppBar from '../Receptionist/AppBar'
-
+import Profile from '../Doctor/Profile'
 
 class DocDashboard extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      patientView: false,
-      patientadd: false,
-      appointment: false,
+      profile: true,
+      
     };
   }
 
@@ -26,9 +24,9 @@ class DocDashboard extends Component {
     this.props.logoutUser();
   };
 
-  updateView = () => {
+  updateProfile = () => {
     this.setState({
-      patientView: true,
+      profile: true,
       patientadd: false,
       appointment: false,
 
@@ -50,19 +48,19 @@ class DocDashboard extends Component {
   }
 
   render() {
-
+    const { user } = this.props.auth;
    
     return (
       <div className="App">
 <AppBar/>
-        <aside className="main-sidebar" style={{ position: "absolute" }}>
-          <section className="sidebar" style={{ position: "absolute" }}>
+        <aside className="main-sidebar" >
+          <section className="sidebar" >
             <div className="user-panel">
               <div className="pull-left image">
                 <img src="images/admin.jpg" className="img-circle" alt="User Image" />
               </div>
               <div className="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{user.email}</p>
                 <a href=""><i className="fa fa-circle text-success"></i> Online</a>
               </div>
             </div>
@@ -78,8 +76,8 @@ class DocDashboard extends Component {
             <ul className="sidebar-menu">
               <li className="header">MAIN NAVIGATION</li>
               <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
-              <ListItem button onClick={this.updatePatientAdd}>
-                  <ListItemText primary="New Patient" />
+              <ListItem button onClick={this.updateProfile}>
+                  <ListItemText primary="Profile" />
                 </ListItem>
                 </List>
                 <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
@@ -95,9 +93,8 @@ class DocDashboard extends Component {
 
             </ul>
           </section>
-
-
         </aside>
+        {this.state.profile && (<Profile/>)}
       </div>
 
     );
