@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2'
+import DocTable from './DocTable'
 
 class ViewDoctors extends Component {
   constructor() {
     super();
     this.state = { doctor: [],filtered: [],query:"" };
-     this.delete = this.delete.bind(this);
+     
     // this.fetchData=this.fetchData.bind(this);
     // this. handleInputChange=this. handleInputChange.bind(this);
   }
@@ -61,29 +60,12 @@ class ViewDoctors extends Component {
     this.getData();
   }
 
-
-  delete() {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.value) {
-        axios.get('http://localhost:4000/api/doctor/delete/' + this.props.obj._id)
-        this.fetchData();
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        ) 
-      }
-    })
-      .catch(err => console.log(err))
+  tabRow(){
+    return this.state.doctor.map(function(object, i){
+        return <DocTable obj={object} key={i}  />;
+    });
   }
+ 
 
   render() {
     return (
@@ -106,27 +88,7 @@ class ViewDoctors extends Component {
 
           </thead>
           <tbody>
-          <button onClick={this.delete}>kk</button> 
-          {this.state.doctor.map(function (item, key) {
-                   
-              return (
-                <tr key={key}>
-                  <td>{item.fname}</td>
-                  <td>{item.lname}</td>
-                  <td>{item.email}</td>
-                  <td>{item.specialist}</td>
-                  <td>{item.phn_number}</td>
-                  
-                  <td>
-                    <Link to={"/edit/" + item._id} className="btn btn-primary">Edit</Link>
-                  </td>
-                  <td>
-                    <button onClick={()=>this.delete} className="btn btn-danger">Delete</button>
-                  </td>
-                </tr>
-              )
-            })}
-
+          { this.tabRow() }
           </tbody>
         </table>
       </div>

@@ -1,5 +1,5 @@
 .backgrImg{
-    background-image: url('./images/37.jpg'); background-repeat: no-repeat; background-position: center;background-size: cover;height: 800px
+    background-image: url('./images/37.jpg'); background-repeat: no-repeat; background-position: center;background-size: cover;height: 750px
 }
 .landing{
     visibility: visible; animation-name: fadeInLeft; animation-delay: 0.3s

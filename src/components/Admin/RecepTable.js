@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import Modal from 'react-modal';
-import moment from 'moment'
+
 const customStyles = {
   content: {
       top: '50%',
