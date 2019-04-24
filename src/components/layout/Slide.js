@@ -9,8 +9,8 @@ class Slide extends Component {
           <div class="row flex-center pt-5 mt-3">
             <div class="col-md-12 col-lg-6 text-center text-md-left margins">
               <div class="white-text">
-                <h1 class="h1-responsive font-weight-bold mt-md-5 mt-0 wow fadeInLeft animated" data-wow-delay="0.3s" className="landing">Medical
-                  landing page</h1>
+                <h1 class="h1-responsive font-weight-bold mt-md-5 mt-0 wow fadeInLeft animated" data-wow-delay="0.3s" className="landing">Nawodaya
+                  Hospital</h1>
                 
                 <p class="wow fadeInLeft mb-3 animated" data-wow-delay="0.3s" style={{visibility: 'visible', animationName: 'fadeInLeft', animationDelay: '0.3s'}}>Lorem ipsum dolor sit amet, consectetur
                   adipisicing elit. Rem repellendus quasi fuga nesciunt
