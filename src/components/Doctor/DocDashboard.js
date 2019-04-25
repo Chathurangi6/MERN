@@ -94,7 +94,12 @@ class DocDashboard extends Component {
             </ul>
           </section>
         </aside>
+        <div>
+          {user.email}
         {this.state.profile && (<Profile/>)}
+        </div>
+        
+
       </div>
 
     );

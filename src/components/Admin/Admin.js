@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Footer from '../layout/Footer';
 import RegReceptionist from './RegReceptionist'
 import * as ReactBootstrap from 'react-bootstrap';
 import ViewPatient from '../common/ViewPatients';
@@ -9,7 +8,10 @@ import ViewDoctors from './ViewDoctors';
 import RegDoctor from './RegDoctor';
 import ViewRecep from "./ViewRecep";
 import { logoutUser } from "../../actions/authActions"
-import Content from "../Admin/Content"
+import Dashboard from "../Admin/Dashboard"
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 class Admin extends Component {
   constructor(props, context) {
@@ -34,12 +36,23 @@ class Admin extends Component {
     this.props.logoutUser();
   };
 
+  dashboard = () => {
+    this.setState({
+      patientView: false,
+      regDoctor: false,
+      doctorView: false,
+      recepView: false,
+      regReceptionist: false,
+      main:true
+    })
+  }
   updateView = () => {
     this.setState({
       patientView: true,
       regDoctor: false,
       doctorView: false,
       recepView: false,
+      regReceptionist: false,
       main:false
     })
   }
@@ -89,7 +102,8 @@ class Admin extends Component {
     const { openPatient } = this.state;
     const { openRecep } = this.state;
     const { openDoctor } = this.state;
-
+    const { user } = this.props.auth;
+    console.log(user)
     const buttonstyle = {
        backgroundColor: "grey", color: "white",padding:"5px",width:"200px"
     };
@@ -117,14 +131,14 @@ class Admin extends Component {
           </nav>
         </header>
 
-        <aside className="main-sidebar" style={{ position: "absolute" }}>
-          <section className="sidebar" style={{ position: "absolute" }}>
+        <aside className="main-sidebar" >
+          <section className="sidebar">
             <div className="user-panel">
               <div className="pull-left image">
                 <img src="images/admin.jpg" className="img-circle" alt="User Image" />
               </div>
               <div className="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{user.email}</p>
                 <a href=""><i className="fa fa-circle text-success"></i> Online</a>
               </div>
             </div>
@@ -141,6 +155,14 @@ class Admin extends Component {
               <li className="header">MAIN NAVIGATION</li>
 
               <li className="treeview">
+                <List component="nav"  style={{backgroundColor:"#212f39"}}>
+              <ListItem button onClick={this.dashboard}  >
+                  <i className="fa fa-calendar"></i>
+                  <span>Dashboard</span>
+                </ListItem>
+                </List>
+                </li>
+              <li className="treeview"  style={{backgroundColor:"#212f39"}}>
                 <a href="#" onClick={() => this.setState({ openPatient: !openPatient })}
                   aria-controls="example-collapse-text"
                   aria-expanded={openPatient}>
@@ -156,7 +178,7 @@ class Admin extends Component {
                 </ReactBootstrap.Collapse>
               </li>
 
-              <li className="treeview">
+              <li className="treeview"  style={{backgroundColor:"#212f39"}}>
                 <a href="#" onClick={() => this.setState({ openDoctor: !openDoctor })}
                   aria-controls="example-collapse-text"
                   aria-expanded={openDoctor}>
@@ -174,7 +196,7 @@ class Admin extends Component {
                 </ReactBootstrap.Collapse>
               </li>
 
-              <li className="treeview">
+              <li className="treeview"  style={{backgroundColor:"#212f39"}}>
                 <a href="#" onClick={() => this.setState({ openRecep: !openRecep })} aria-controls="example-collapse-text"
                   aria-expanded={openRecep}>
                   <i className="fa fa-pie-chart"></i>
@@ -191,13 +213,8 @@ class Admin extends Component {
                   </div>
                 </ReactBootstrap.Collapse>
               </li>
-              <li>
-                <ul className="treeview-menu">
-                  <li><a href=""><i className="fa fa-circle-o"></i> Simple tables</a></li>
-                  <li><a href=""><i className="fa fa-circle-o"></i> Data tables</a></li>
-                </ul>
-              </li>
-              <li>
+              
+              <li style={{backgroundColor:"#212f39"}}>
                 <a href="pages/calendar.html">
                   <i className="fa fa-calendar"></i> Laboratorian<span></span>
                   <span className="pull-right-container">
@@ -214,7 +231,7 @@ class Admin extends Component {
 
 
         </aside>
-        {this.state.main && (<Content/>)}
+        {this.state.main && (<Dashboard/>)}
         {this.state.patientView && (<ViewPatient /> )}
         {this.state.regDoctor && (<RegDoctor />)}
         {this.state.doctorView && (<ViewDoctors />)}

@@ -72,7 +72,7 @@ class Profile extends Component {
     
         if (error) {
           return (
-            <div>
+            <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
               <HeaderBar title={title} />
               <div style={loading}>
                 Problem fetching user data. Please login again.
@@ -87,7 +87,7 @@ class Profile extends Component {
         }
         if (isLoading) {
           return (
-            <div>
+            <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
               <HeaderBar title={title} />
               <div style={loading}>Loading User Data...</div>
             </div>

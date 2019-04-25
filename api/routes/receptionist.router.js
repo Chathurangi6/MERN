@@ -41,6 +41,8 @@ const { errors, isValid } = validateRegisterInput(req.body);
     else{
 
       const newUser = new User({
+        fname:req.body.fname,
+        lname:req.body.lname,
         email: req.body.email,
         password: req.body.password,
         userRoll:"R"

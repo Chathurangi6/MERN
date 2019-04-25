@@ -19,6 +19,7 @@ import ForgotPassword from "./components/auth/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword";
 import Home from '../src/components/layout/Home'
 
+
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
