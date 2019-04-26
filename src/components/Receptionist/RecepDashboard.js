@@ -79,7 +79,7 @@ class RecepDashboard extends Component {
           <Typography variant="h6" color="inherit" >
             News
           </Typography>
-          <Button color="inherit" className="pull-right" onClick={this.onLogoutClick}>Logout</Button>
+          <Button color="inherit" className="top-right" onClick={this.onLogoutClick}>Logout</Button>
         </Toolbar>
           </nav>
         </header>

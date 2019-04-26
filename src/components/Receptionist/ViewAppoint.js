@@ -28,7 +28,7 @@ export default class ViewAppoint extends Component {
 
         }
         this.onChange = this.onChange.bind(this)
-        this.search = this.onChange.bind(this)
+        this.search = this.search.bind(this)
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -45,8 +45,7 @@ export default class ViewAppoint extends Component {
         };
         axios.post('http://localhost:4000/api/appointment/search', obj)
             .then(res => {
-                this.setState({ matching: res.data })});
-;
+                this.setState({ matching: res.data })})
     }
 
     onSubmit(e) {
@@ -126,8 +125,8 @@ export default class ViewAppoint extends Component {
 
                                 return (
                                     <tr key={key}>
-                                        <td>{item.fname}</td>
-                                        <td>{item.lname}</td>
+                                        <td>{item.p_fname}</td>
+                                        <td>{item.p_lname}</td>
                                         <td>{item.phn_number}</td>
 
                                     </tr>

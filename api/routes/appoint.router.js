@@ -22,12 +22,9 @@ const Appoint = mongoose.model('appointments');
 
 router.route('/search').post(function (req, res) {
     var docName = req.body.doctor; //userName = 'Juan David Nicholls';
-    console.log(docName);
-    appoint.find({ doctor: docName }, function (err, users) {
+    Appoint.find({ doctor: docName }, function (err, users) {
       if (err) throw err;
-      res.json({
-          users: users
-      });
+      res.json( users);
   });
   
   });
