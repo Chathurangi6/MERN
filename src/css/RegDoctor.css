@@ -1,0 +1,17 @@
+.container1{
+	width: 40%;
+	border:2px;
+	border-radius:5px;
+	padding: 10px;
+	margin-top:'20px';
+	width:750px;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.doctorregist{
+	font-family: Acme;
+}
+
+.adminNawodayaText{
+	font-family: Acme;
+}

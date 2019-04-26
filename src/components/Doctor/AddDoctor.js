@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 export default class AddPatient extends Component {
   constructor(props) {
@@ -68,14 +68,14 @@ export default class AddPatient extends Component {
  
   render() {
       return (
-          <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
-              <h3>Add New Doctor</h3>
+          <div  className="container container1">
+              <h3 className='tc addDoctorHeader'> Add New Doctor </h3>
               <form onSubmit={this.onSubmit}>
                   <div className="form-group">
                       <label>First Name:  </label>
                       <input 
                         type="text" 
-                        className="form-control" 
+                        className="form-control inputfield" 
                         value={this.state.fname}
                         onChange={this.onChangeFName}
                         />

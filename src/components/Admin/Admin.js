@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Button } from 'reactstrap';
 import { connect } from "react-redux";
 import Footer from '../layout/Footer';
 import RegReceptionist from './RegReceptionist'
@@ -9,7 +10,8 @@ import ViewDoctors from './ViewDoctors';
 import RegDoctor from './RegDoctor';
 import ViewRecep from "./ViewRecep";
 import { logoutUser } from "../../actions/authActions"
-import Content from "../Admin/Content"
+import Content from "../Admin/Content";
+import '../../css/admin.css';
 
 class Admin extends Component {
   constructor(props, context) {
@@ -91,7 +93,13 @@ class Admin extends Component {
     const { openDoctor } = this.state;
 
     const buttonstyle = {
-       backgroundColor: "grey", color: "white",padding:"5px",width:"200px"
+      backgroundColor: "rgba(0,0,0,.2)",
+      color: "white",
+      padding:"5px",
+      marginLeft:"15px",
+      width:"200px",
+      borderColor:"rgba(0,0,0,.2)",
+      borderRadius:"5px",
     };
 
     return (
@@ -101,44 +109,46 @@ class Admin extends Component {
 
         <header className="main-header">
           <a href="" className="logo">
-            <span className="logo-lg"><b>Admin</b>Nawodaya</span>
+            <span className="logo-lg adminNawodayaText"> Admin Nawodaya</span>
           </a>
           <nav className="navbar navbar-static-top">
-            <a href="" className="sidebar-toggle" data-toggle="push-menu" role="button">
-              <span className="sr-only">Toggle navigation</span>
-            </a>
-            <div className="navbar-custom-menu">
-              <ul className="nav navbar-nav">
-                <li className="nav-item">
-                  <ReactBootstrap.Button onClick={this.onLogoutClick} className="navbar-brand" style={{ color: "white" }}>Logout</ReactBootstrap.Button>
-                </li>
-              </ul>
+            
+            {/*<div className="navbar-custom-menu">*/}
+              {/*<ul className="nav navbar-nav">
+                              <li className="nav-item">*/}
+                {/*</li>
+                              </ul>*/}
+            {/*</div>*/}
+            
+            <div className='logoutbutton tc'>
+              <Button color='danger' onClick={this.onLogoutClick} >Logout</Button>
             </div>
           </nav>
         </header>
 
-        <aside className="main-sidebar" style={{ position: "absolute" }}>
-          <section className="sidebar" style={{ position: "absolute" }}>
-            <div className="user-panel">
-              <div className="pull-left image">
-                <img src="images/admin.jpg" className="img-circle" alt="User Image" />
+        <aside className="main-sidebar">
+          <section className="sidebar" >
+            <div className="">
+              <div className="image1">
+                <img src="images/admin.jpg" className="circular--square" alt="User Image" />
               </div>
-              <div className="pull-left info">
-                <p>Alexander Pierce</p>
-                <a href=""><i className="fa fa-circle text-success"></i> Online</a>
+              <div className="info tc">
+                <p className="welcomeclass"> Welcome </p>
+                <p className="username">Alexander Pierce</p>
+                {/*<a href=""><i className="fa fa-circle text-success"></i> Online</a>*/}
               </div>
             </div>
-            <form action="#" method="get" className="sidebar-form">
-              <div className="input-group">
-                <input type="text" name="q" className="form-control" placeholder="Search..." />
-                <span className="input-group-btn">
-                  <button type="submit" name="search" id="search-btn" className="btn btn-flat"><i className="fa fa-search"></i>
-                  </button>
-                </span>
-              </div>
-            </form>
+            {/*<form action="#" method="get" className="sidebar-form">
+                          <div className="input-group">
+                            <input type="text" name="q" className="form-control" placeholder="Search..." />
+                            <span className="input-group-btn">
+                              <button type="submit" name="search" id="search-btn" className="btn btn-flat"><i className="fa fa-search"></i>
+                              </button>
+                            </span>
+                          </div>
+                        </form>*/}
             <ul className="sidebar-menu">
-              <li className="header">MAIN NAVIGATION</li>
+              <li className="header tc">MAIN NAVIGATION</li>
 
               <li className="treeview">
                 <a href="#" onClick={() => this.setState({ openPatient: !openPatient })}
@@ -150,7 +160,7 @@ class Admin extends Component {
                 <ReactBootstrap.Collapse in={this.state.openPatient}>
                   <div id="example-collapse-text">
                     <li>
-                      <button style={buttonstyle} onClick={this.updateView}>View</button>
+                      <button style={buttonstyle} onClick={this.updateView}>Patients List</button>
                     </li>
                   </div>
                 </ReactBootstrap.Collapse>
@@ -159,16 +169,17 @@ class Admin extends Component {
               <li className="treeview">
                 <a href="#" onClick={() => this.setState({ openDoctor: !openDoctor })}
                   aria-controls="example-collapse-text"
-                  aria-expanded={openDoctor}>
+                  aria-expanded={openDoctor}
+                >
                   <i className="fa fa-files-o"></i>
                   <span>Doctors</span>
                 </a>
                 <ReactBootstrap.Collapse in={this.state.openDoctor}>
                   <div id="example-collapse-text">
                     <li>
-                      <button style={buttonstyle} onClick={this.updateRegDoc}><i className="fa fa-circle-o" ></i>Register</button>
+                      <button style={buttonstyle} onClick={this.updateRegDoc}><i className="fa" ></i>Doctor Registration</button>
                     </li>
-                    <li><button style={buttonstyle} onClick={this.updateViewDoc}><i className="fa fa-circle-o"></i> View</button></li>
+                    <li><button style={buttonstyle} onClick={this.updateViewDoc}><i className="fa"></i> Doctors List</button></li>
 
                   </div>
                 </ReactBootstrap.Collapse>
@@ -179,31 +190,34 @@ class Admin extends Component {
                   aria-expanded={openRecep}>
                   <i className="fa fa-pie-chart"></i>
                   <span>Receptionists</span>
-                  <span className="pull-right-container">
-                    <i className="fa fa-angle-left pull-right"></i>
-                  </span>
+                  {/*<span className="pull-right-container">
+                                      <i className="fa fa-angle-left pull-right"></i>
+                                    </span>*/}
                 </a>
                 <ReactBootstrap.Collapse in={this.state.openRecep}>
                   <div id="example-collapse-text">
-                    <li><button style={buttonstyle} onClick={this.updateRegRecep}><i className="fa fa-circle-o" ></i>Register</button></li>
-                    <li><button style={buttonstyle} onClick={this.updateViewRecep}><i className="fa fa-circle-o"></i> View</button></li>
-
+                    <li><button style={buttonstyle} onClick={this.updateRegRecep}> Receptionist Registration </button></li>
+                    <li><button style={buttonstyle} onClick={this.updateViewRecep}><i ></i> Receptionists List </button></li>
                   </div>
                 </ReactBootstrap.Collapse>
               </li>
+            
+
+             {/*<li>
+                             <ul className="treeview-menu">
+                               <li><a href=""><i className="fa fa-circle-o"></i> Simple tables</a></li>
+                               <li><a href=""><i className="fa fa-circle-o"></i> Data tables</a></li>
+                             </ul>
+                           </li>*/}
+              
+
               <li>
-                <ul className="treeview-menu">
-                  <li><a href=""><i className="fa fa-circle-o"></i> Simple tables</a></li>
-                  <li><a href=""><i className="fa fa-circle-o"></i> Data tables</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="pages/calendar.html">
+                <a href="">
                   <i className="fa fa-calendar"></i> Laboratorian<span></span>
-                  <span className="pull-right-container">
-                    <small className="label pull-right bg-red">3</small>
-                    <small className="label pull-right bg-blue">17</small>
-                  </span>
+                  {/*<span className="pull-right-container">
+                                      <small className="label pull-right bg-red">3</small>
+                                      <small className="label pull-right bg-blue">17</small>
+                                    </span>*/}
                 </a>
               </li>
 
@@ -228,13 +242,19 @@ class Admin extends Component {
     );
   }
 }
+
+
 Admin.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
+
+
 const mapStateToProps = state => ({
   auth: state.auth
 });
+
+
 export default connect(
   mapStateToProps,
   { logoutUser }

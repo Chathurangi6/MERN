@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-
+import { Button } from 'reactstrap';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerDoctor } from "../../actions/authActions";
 import classnames from "classnames";
+import '../../css/RegDoctor.css';
+
+
 class RegDoctor extends Component {
   constructor() {
     super();
@@ -63,15 +66,14 @@ class RegDoctor extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px" }}>
+      <div className="container container1">
         <div className="row">
           <div className="col s8 offset-s2">
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-              <h4>
-                <b>Register</b> below
-              </h4>
+              <h4 className='doctorregist tc'> Doctor Registration </h4>
             </div>
             <form noValidate id="myForm" onSubmit={this.onSubmit}>
+              
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -86,6 +88,7 @@ class RegDoctor extends Component {
                 <label htmlFor="fname">First Name</label>
                 <span className="red-text">{errors.fname}</span>
               </div>
+              
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -100,6 +103,9 @@ class RegDoctor extends Component {
                 <label htmlFor="lname">Last Name</label>
                 <span className="red-text">{errors.lname}</span>
               </div>
+
+
+
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -291,7 +297,7 @@ class RegDoctor extends Component {
                   marginTop: "1rem"
                 }}
                 type="submit"
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                className="btn btn-large waves-effect waves-light hoverable "
               >
                 Register
                 </button>

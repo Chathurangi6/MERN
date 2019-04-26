@@ -15,6 +15,7 @@ class Login extends Component {
     };
   }
 
+
   // push user to dashboard when they login
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
@@ -27,7 +28,6 @@ class Login extends Component {
       else if(nextProps.auth.user.userRoll === "A"){
         this.props.history.push("/admin/dashboard");
       }
-      
     }
     if (nextProps.errors) {
       this.setState({
@@ -36,9 +36,12 @@ class Login extends Component {
     }
   }
 
+
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
+
+
   onSubmit = e => {
     e.preventDefault();
     const userData = {
@@ -47,10 +50,12 @@ class Login extends Component {
     };
     this.props.loginUser(userData);
   };
+  
+
   render() {
     const { errors } = this.state;
+    
     return (
-
       <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "500px" }}>
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
@@ -104,7 +109,7 @@ class Login extends Component {
                     marginTop: "1rem"
                   }}
                   type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                  className="btn btn-large waves-effect waves-light hoverable accent-3"
                 >
                   Login
                 </button>
@@ -114,19 +119,24 @@ class Login extends Component {
           </div>
         </div>
       </div>
-
     );
   }
 }
+
+
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
+
+
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
+
+
 export default connect(
   mapStateToProps,
   { loginUser }
