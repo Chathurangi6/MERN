@@ -11,7 +11,7 @@ import RegDoctor from './RegDoctor';
 import ViewRecep from "./ViewRecep";
 import { logoutUser } from "../../actions/authActions"
 import Content from "../Admin/Content";
-import '../../css/admin.css';
+import '../../css/admin.css'; 
 
 class Admin extends Component {
   constructor(props, context) {
@@ -36,6 +36,7 @@ class Admin extends Component {
     this.props.logoutUser();
   };
 
+
   updateView = () => {
     this.setState({
       patientView: true,
@@ -45,6 +46,8 @@ class Admin extends Component {
       main:false
     })
   }
+
+
   updateRegDoc = () => {
     this.setState({
       regDoctor: true,
@@ -55,6 +58,8 @@ class Admin extends Component {
       main:false
     })
   }
+
+
   updateViewDoc = () => {
     this.setState({
       regDoctor: false,
@@ -65,6 +70,8 @@ class Admin extends Component {
       main:false
     })
   }
+
+
   updateRegRecep = () => {
     this.setState({
       regDoctor: false,
@@ -75,6 +82,8 @@ class Admin extends Component {
       main:false
     })
   }
+
+  
   updateViewRecep = () => {
     this.setState({
       regDoctor: false,

@@ -7,7 +7,8 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import AppBar from '../Receptionist/AppBar'
+import AppBar from '../Receptionist/AppBar';
+import '../../css/docDashboard.css';
 
 
 class DocDashboard extends Component {
@@ -56,16 +57,17 @@ class DocDashboard extends Component {
       <div className="App">
 <AppBar/>
         <aside className="main-sidebar" style={{ position: "absolute" }}>
-          <section className="sidebar" style={{ position: "absolute" }}>
+          <section className="sidebar">
             <div className="user-panel">
               <div className="pull-left image">
-                <img src="images/admin.jpg" className="img-circle" alt="User Image" />
+                <img src="images/admin.jpg" className="circular--square " alt="User Image" />
               </div>
               <div className="pull-left info">
                 <p>Alexander Pierce</p>
-                <a href=""><i className="fa fa-circle text-success"></i> Online</a>
               </div>
             </div>
+            
+            {/*
             <form action="#" method="get" className="sidebar-form">
               <div className="input-group">
                 <input type="text" name="q" className="form-control" placeholder="Search..." />
@@ -75,22 +77,28 @@ class DocDashboard extends Component {
                 </span>
               </div>
             </form>
+            */}
+            
             <ul className="sidebar-menu">
-              <li className="header">MAIN NAVIGATION</li>
+              <li className="header tc">MAIN NAVIGATION</li>
               <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
-              <ListItem button onClick={this.updatePatientAdd}>
+                <ListItem button onClick={this.updatePatientAdd}>
                   <ListItemText primary="New Patient" />
                 </ListItem>
                 </List>
+                
+                
                 <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
-                <ListItem button onClick={this.updateView}>
-                  <ListItemText primary="View Patient" />
-                </ListItem>
+                  <ListItem button onClick={this.updateView}>
+                    <ListItemText primary="View Patient" />
+                  </ListItem>
                 </List>
+                
+
                 <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
-                <ListItem button onClick={this.updateAppoint}>
-                  <ListItemText primary="Appointments" />
-                </ListItem>
+                  <ListItem button onClick={this.updateAppoint}>
+                    <ListItemText primary="Appointments" />
+                  </ListItem>
               </List>
 
             </ul>
@@ -103,13 +111,19 @@ class DocDashboard extends Component {
     );
   }
 }
+
+
 DocDashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
+
+
 const mapStateToProps = state => ({
   auth: state.auth
 });
+
+
 export default connect(
   mapStateToProps,
   { logoutUser }
