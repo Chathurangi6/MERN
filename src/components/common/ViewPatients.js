@@ -34,10 +34,10 @@ export default class ViewPatient extends Component {
 
     render() {
       return (       
-        <div className="container container1" >
+        <div className="container2" >
           <h3 className="patientList tc" >Patient List</h3>
-          
-          <Table className="striped viewPatientTable">
+          {/* */}
+          <Table className="viewPatientTable">
           
             <thead>
               <tr>

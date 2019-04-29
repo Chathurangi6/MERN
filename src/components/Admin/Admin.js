@@ -11,6 +11,7 @@ import RegDoctor from './RegDoctor';
 import ViewRecep from "./ViewRecep";
 import { logoutUser } from "../../actions/authActions"
 import Content from "../Admin/Content";
+import DateAndTime from '../common/dateAndTime';
 import '../../css/admin.css'; 
 
 class Admin extends Component {
@@ -83,7 +84,7 @@ class Admin extends Component {
     })
   }
 
-  
+
   updateViewRecep = () => {
     this.setState({
       regDoctor: false,
@@ -116,11 +117,14 @@ class Admin extends Component {
 
         {/* header */}
 
-        <header className="main-header">
-          <a href="" className="logo">
-            <span className="logo-lg adminNawodayaText"> Admin Nawodaya</span>
-          </a>
-          <nav className="navbar navbar-static-top">
+        <header className="main-header"> {/*className="main-header*/}
+          <div className="adminNawodayatext1 logo" style={{height:"64px"}}> {/*className="logo"*/}
+            <span className="adminNawodayatext"> Admin Nawodaya</span>
+          </div>
+          <div id="clockDisplay" className="topHeader" >
+            <DateAndTime/>
+          </div>
+          <nav className="navbar navbar-static-top logoutnav" style={{width:"100%"}} > {/*} 
             
             {/*<div className="navbar-custom-menu">*/}
               {/*<ul className="nav navbar-nav">
@@ -129,24 +133,29 @@ class Admin extends Component {
                               </ul>*/}
             {/*</div>*/}
             
-            <div className='logoutbutton tc'>
-              <Button color='danger' onClick={this.onLogoutClick} >Logout</Button>
+            <div className='logoutdiv tc' style={{marginLeft:"auto", marginRight:"250px"}} >
+              <Button className="logoutbutton" color='danger' onClick={this.onLogoutClick} >Logout</Button>
             </div>
           </nav>
         </header>
 
         <aside className="main-sidebar">
           <section className="sidebar" >
-            <div className="">
+            
+            <div>
+
               <div className="image1">
                 <img src="images/admin.jpg" className="circular--square" alt="User Image" />
               </div>
+              
               <div className="info tc">
                 <p className="welcomeclass"> Welcome </p>
                 <p className="username">Alexander Pierce</p>
                 {/*<a href=""><i className="fa fa-circle text-success"></i> Online</a>*/}
               </div>
             </div>
+            
+
             {/*<form action="#" method="get" className="sidebar-form">
                           <div className="input-group">
                             <input type="text" name="q" className="form-control" placeholder="Search..." />
@@ -156,6 +165,8 @@ class Admin extends Component {
                             </span>
                           </div>
                         </form>*/}
+            
+
             <ul className="sidebar-menu">
               <li className="header tc">MAIN NAVIGATION</li>
 
@@ -174,6 +185,7 @@ class Admin extends Component {
                   </div>
                 </ReactBootstrap.Collapse>
               </li>
+
 
               <li className="treeview">
                 <a href="#" onClick={() => this.setState({ openDoctor: !openDoctor })}
@@ -194,14 +206,12 @@ class Admin extends Component {
                 </ReactBootstrap.Collapse>
               </li>
 
+
               <li className="treeview">
                 <a href="#" onClick={() => this.setState({ openRecep: !openRecep })} aria-controls="example-collapse-text"
                   aria-expanded={openRecep}>
                   <i className="fa fa-pie-chart"></i>
                   <span>Receptionists</span>
-                  {/*<span className="pull-right-container">
-                                      <i className="fa fa-angle-left pull-right"></i>
-                                    </span>*/}
                 </a>
                 <ReactBootstrap.Collapse in={this.state.openRecep}>
                   <div id="example-collapse-text">
@@ -210,23 +220,11 @@ class Admin extends Component {
                   </div>
                 </ReactBootstrap.Collapse>
               </li>
-            
-
-             {/*<li>
-                             <ul className="treeview-menu">
-                               <li><a href=""><i className="fa fa-circle-o"></i> Simple tables</a></li>
-                               <li><a href=""><i className="fa fa-circle-o"></i> Data tables</a></li>
-                             </ul>
-                           </li>*/}
               
 
               <li>
                 <a href="">
                   <i className="fa fa-calendar"></i> Laboratorian<span></span>
-                  {/*<span className="pull-right-container">
-                                      <small className="label pull-right bg-red">3</small>
-                                      <small className="label pull-right bg-blue">17</small>
-                                    </span>*/}
                 </a>
               </li>
 
