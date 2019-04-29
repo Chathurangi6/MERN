@@ -5,7 +5,7 @@ import DocTable from './DocTable'
 class ViewDoctors extends Component {
   constructor() {
     super();
-    this.state = { doctor: [],filtered: [],query:"" };
+    this.state = { doctor: [],filtered: [],query:"" };//doctor:all doctors list
      
     // this.fetchData=this.fetchData.bind(this);
     // this. handleInputChange=this. handleInputChange.bind(this);
