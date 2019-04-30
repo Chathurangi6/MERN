@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../css/viewPatients.css';
 
 class PatientTable extends Component {
   render() {

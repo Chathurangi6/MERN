@@ -7,10 +7,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./image/fhd.jpg');
+  /*background-image: url('./image/fhd.jpg');*/
+  background-image: radial-gradient(#FFF, rgba(0,0,0,.2));
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover
+  background-size: cover;
 }
 
 code {

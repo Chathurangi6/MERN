@@ -1,0 +1,28 @@
+.username{
+	font-family: Acme;
+	font-size: 25px;
+	color:white;
+	margin-bottom: 20px;
+}
+
+.docHeader{
+	font-family: Times New Roman;
+	color: grey;
+	font-size: 25px;
+	margin-top: 0;
+	padding:0;
+}
+
+.circular--square {
+	border-radius: 50%;
+}
+
+
+.image1{
+	padding-top: 0;
+	margin-top: 0;
+  	margin-left:0 auto;
+  	float: left;
+  	width: 100%;
+  	margin-bottom:10px; 
+}

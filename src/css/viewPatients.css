@@ -1,0 +1,26 @@
+.container2{
+	margin-left: auto;
+	margin-right: 35px;
+	width: 1000px;
+	/*border:"2px";
+	border-radius:"5px";
+	background-color:"white";
+	padding:'10px';
+	margin-top:'20px'; 
+	width:"900px";
+	margin-left:auto;
+	margin-right:0;*/
+}
+
+.patientList{
+	font-family: Acme;
+}
+
+.viewPatientTable{
+	margin-top: 20;
+	width: 100%;
+}
+
+.tablerow{
+	background-color:;
+}
