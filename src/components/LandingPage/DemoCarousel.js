@@ -6,15 +6,22 @@ import { Carousel } from 'react-responsive-carousel';
 class DemoCarousel extends Component {
     render() {
         return (
-            <Carousel showArrows={false} autoPlay={true} infiniteLoop={true} showStatus={false} stopOnHover={false} showThumbs={false}>
+            <Carousel 
+                showArrows={false} 
+                autoPlay={true} 
+                infiniteLoop={true} 
+                showStatus={false} 
+                stopOnHover={false} 
+                showThumbs={false}
+                width='100%'>
                 <div>
-                    <img src={require('./images/image1.jpg')} />
-                </div>
-                <div>
-                    <img src={require('./images/images.jpg')} />
+                    <img src={require('./images/8.jpg')} />
                 </div>
                 <div>
                     <img src={require('./images/3.jpg')} />
+                </div>
+                <div>
+                    <img src={require('./images/2.jpg')} />
                 </div>
             </Carousel>
         );

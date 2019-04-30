@@ -11,32 +11,39 @@ import store from "./store";
 import ViewPatient from "./components/common/ViewPatients";
 import addDoctor from "./components/Doctor/AddDoctor"
 import AddPatient from "./components/AddPatient";
-import DocDashboard from "./components/Doctor/DocDashboard"
+import DocDashboard from "./components/Doctor/DocDashboard";
+import LandingNavBar from './components/LandingPage/LandingNavBar';
+import DemoCarousel from "./components/LandingPage/DemoCarousel";
+import CustomButton from './components/Buttons/CustomButton';
 
 
 
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>  
-      <Router>
-        <div className="App">
-          <Route exact path="/patient/view" component={ViewPatient} />
-          <Route exact path="/doctor/add" component={addDoctor} />
-          <Route exact path="/admin" component={Admin} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/patient/add" component={AddPatient} />
-          
-            <Switch>
-              <PrivateRoute exact path="/doctor/dashboard" component={DocDashboard} />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/recep/dashboard" component={RecepDashboard} />
-            </Switch>
-        </div>
-      </Router>
-      </Provider> 
+      <div>
+          <LandingNavBar />
+          <DemoCarousel  />      
+      {/* <Provider store={store}>  
+        <Router>
+          <div className="App">
+            <Route exact path="/patient/view" component={ViewPatient} />
+            <Route exact path="/doctor/add" component={addDoctor} />
+            <Route exact path="/admin" component={Admin} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/patient/add" component={AddPatient} />
+            
+              <Switch>
+                <PrivateRoute exact path="/doctor/dashboard" component={DocDashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/recep/dashboard" component={RecepDashboard} />
+              </Switch>
+          </div>
+        </Router>
+        </Provider> */}
+      </div> 
     );
   }
 }
