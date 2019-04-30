@@ -19,18 +19,17 @@ const Appoint = mongoose.model('appointments');
 // }
 // )
 
-
+//search appointments by doctor name
 router.route('/search').post(function (req, res) {
-    var docName = req.body.doctor; //userName = 'Juan David Nicholls';
-    console.log(docName);
-    appoint.find({ doctor: docName }, function (err, users) {
+    var docName = req.body.doctor; //docName = 'Juan David Nicholls';
+    Appoint.find({ doctor: docName }, function (err, users) {
       if (err) throw err;
-      res.json({
-          users: users
-      });
+      res.json( users);
   });
   
   });
+  
+  
 //add appointments
 router.route('/add').post(function (req, res) {
   let appoint = new Appoint(req.body);

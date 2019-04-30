@@ -40,7 +40,8 @@ export default class ViewRecep extends Component {
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>DOB</th>
-                <th>Phone Number</th>    
+                <th>Phone Number</th> 
+                <th>Action</th>   
               </tr>
             </thead>
             <tbody>

@@ -2,20 +2,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Footer from '../layout/Footer';
 import AddPatient from './AddPatient'
-import * as ReactBootstrap from 'react-bootstrap';
 import ViewPatient from '../common/ViewPatients';
 import Appointment from './ViewAppoint'
 import { logoutUser } from "../../actions/authActions"
-import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import AppBar from './AppBar'
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu'
 
+
+// import Welcome from './Welcome'
 
 
 class RecepDashboard extends Component {
@@ -23,6 +23,7 @@ class RecepDashboard extends Component {
     super(props, context);
 
     this.state = {
+      Welcome:true,
       patientView: false,
       patientadd: false,
       appointment: false,
@@ -39,6 +40,7 @@ class RecepDashboard extends Component {
       patientView: true,
       patientadd: false,
       appointment: false,
+      Welcome:false
 
     })
   }
@@ -47,6 +49,7 @@ class RecepDashboard extends Component {
       patientView: false,
       patientadd: true,
       appointment: false,
+      Welcome:false
     })
   }
   updateAppoint = () => {
@@ -54,23 +57,41 @@ class RecepDashboard extends Component {
       patientView: false,
       patientadd: false,
       appointment: true,
+      Welcome:false
     })
   }
 
   render() {
 
-   
+    const { user } = this.props.auth;
+  // console.log(user);
     return (
       <div className="App">
-<AppBar/>
-        <aside className="main-sidebar" style={{ position: "absolute" }}>
-          <section className="sidebar" style={{ position: "absolute" }}>
+      <header className="main-header">
+          <a href="" className="logo">
+            <span className="logo-lg"><b>Receptionist</b>Nawodaya</span>
+          </a>
+          <nav className="navbar navbar-static-top">
+          <Toolbar>
+          <IconButton  color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit" >
+            News
+          </Typography>
+          <Button color="inherit" className="top-right" onClick={this.onLogoutClick}>Logout</Button>
+        </Toolbar>
+          </nav>
+        </header>
+        <aside className="main-sidebar" >
+          <section className="sidebar" >
             <div className="user-panel">
               <div className="pull-left image">
                 <img src="images/admin.jpg" className="img-circle" alt="User Image" />
               </div>
               <div className="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{user.fname}</p>
+                <p>{user.email}</p>
                 <a href=""><i className="fa fa-circle text-success"></i> Online</a>
               </div>
             </div>
@@ -85,28 +106,29 @@ class RecepDashboard extends Component {
             </form>
             <ul className="sidebar-menu">
               <li className="header">MAIN NAVIGATION</li>
-              <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
+              <List component="nav" style={{backgroundColor:"#212f39"}}>
               <ListItem button onClick={this.updatePatientAdd}>
-                  <ListItemText primary="New Patient" />
+              <span>New Patient</span>
                 </ListItem>
                 </List>
-                <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
+                <List component="nav" style={{backgroundColor:"#212f39"}}>
                 <ListItem button onClick={this.updateView}>
-                  <ListItemText primary="View Patient" />
+                  <span>View Patient</span>
                 </ListItem>
                 </List>
-                <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
+                <List component="nav" style={{backgroundColor:"#212f39"}}>
                 <ListItem button onClick={this.updateAppoint}>
-                  <ListItemText primary="Appointments" />
+                  <span>Appointments</span>
                 </ListItem>
               </List>
 
             </ul>
+          
           </section>
 
 
         </aside>
-
+        {/* {this.state.Welcome && (<Welcome/>)} */}
         {this.state.patientView && (<ViewPatient />)}
         {this.state.patientadd && (<AddPatient />)}
         {this.state.appointment && (<Appointment />)}

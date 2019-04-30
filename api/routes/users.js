@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const keys = require("../DB");
 const mongoose = require('mongoose');
 const nodemailer =require('nodemailer')
-const crypto = require("crypto-js")
+const passport = require('passport');
 // Load input validation
 const validateLoginInput = require("../validation/login");
 // Load User model
@@ -37,6 +37,9 @@ router.post("/login", (req, res) => {
           // Create JWT Payload
           const payload = {
             id: user.id,
+            fname:user.fname,
+            lname:user.lname,
+            email:user.email,
             userRoll: user.userRoll
           };
 
@@ -227,6 +230,42 @@ router.put('/updatePassword', (req, res, next) => {
           res.status(404).json('no user exists in db to update');
         }
       });
+    }
+  })(req, res, next);
+});
+
+router.route('/findUser').get(function (req, res,next) {
+  passport.authenticate('jwt', { session: false }, (err, user, info) => {
+    if (err) {
+      console.log(err);
+    }
+    if (info !== undefined) {
+      console.log(info.message);
+      res.status(401).send(info.message);
+    } else if (user.email === req.query.email) {
+      User.findOne({
+        where: {
+          email: req.query.email,
+        },
+      }).then((userInfo) => {
+        if (userInfo != null) {
+          console.log('user found in db from findUsers');
+          res.status(200).send({
+            auth: true,
+            fname: userInfo.fname,
+            lname: userInfo.lname,
+            email: userInfo.email,
+            password: userInfo.password,
+            message: 'user found in db',
+          });
+        } else {
+          console.error('no user exists in db with that username');
+          res.status(401).send('no user exists in db with that username');
+        }
+      });
+    } else {
+      console.error('jwt id and username do not match');
+      res.status(403).send('username and jwt token do not match');
     }
   })(req, res, next);
 });

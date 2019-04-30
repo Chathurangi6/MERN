@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
-class DemoCarousel extends Component {
+class Home extends Component {
     render() {
         return (
             <Carousel showArrows={false} autoPlay={true} infiniteLoop={true} showStatus={false} stopOnHover={false} showThumbs={false}>
-                <div>
+                <div style={{width:"800px",position:"center",margin:"10px"}}>
                     <img src={require('./images/image1.jpg')} />
                 </div>
                 <div>
@@ -21,4 +20,4 @@ class DemoCarousel extends Component {
     }
 }
 
-export default DemoCarousel; 
+export default Home; 
