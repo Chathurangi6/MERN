@@ -50,30 +50,18 @@ class App extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/doctordashboard" component={DocDashboard} />
             <Route exact path="/receptionistdashboard" component={RecepDashboard} />
-            {
-            <Route exact path="/patient/view" component={ViewPatient} />
-            <Route exact path="/doctor/add" component={addDoctor} />
-            <Route exact path="/appoint" component={AddAppoint} />
+            
+            
             <Route exact path="/login" component={Login} />
-            <Route exact path="/patient/add" component={AddPatient} />
+            
             <Route exact path="/forgotpassword" component={ForgotPassword} />
             <Route exact path="/h" component={Home} />
             <Route exact path="/recep" component={RecepDashboard} />
             <Route path="/reset/:token" component={ResetPassword} />
-         }
-
-      <Router>
-        <div >
+           
          
-          <Route exact path="/admin" component={Admin} />
-          <Route exact path="/report" component={ReportUpload} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/forgotpassword" component={ForgotPassword} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/recep" component={RecepDashboard} />
-         <Route path="/reset/:token" component={ResetPassword} />
-
+            
+      
 
             <Switch>
               <PrivateRoute exact path="/doctor/dashboard" component={DocDashboard} />

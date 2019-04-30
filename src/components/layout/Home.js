@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './home.css'
+import { Carousel } from 'react-responsive-carousel';
 class Slide extends Component {
     render() {
 

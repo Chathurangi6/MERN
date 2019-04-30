@@ -68,7 +68,7 @@ class DocDashboard extends Component {
           <section className="sidebar">
             
 
-            <div>
+           
               <div>
                   <p className='docHeader tc'> <b> Doctor DashBoard </b></p>
               </div>
@@ -79,24 +79,7 @@ class DocDashboard extends Component {
               <div className="info tc">
                 <p className="username"> Alexander Pierce </p>
 
-  render() {
-    const { user } = this.props.auth;
-   
-    return (
-      <div className="App">
-<AppBar/>
-        <aside className="main-sidebar" >
-          <section className="sidebar" >
-            <div className="user-panel">
-              <div className="pull-left image">
-                <img src="images/admin.jpg" className="img-circle" alt="User Image" />
-              </div>
-              <div className="pull-left info">
-                <p>{user.email}</p>
-                <a href=""><i className="fa fa-circle text-success"></i> Online</a>
-
-              </div>
-            </div>
+  </div>
             
 
             {/*
@@ -116,9 +99,6 @@ class DocDashboard extends Component {
 
             <li className="header tc">MAIN NAVIGATION</li>
               <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
-
-                <ListItem button onClick={this.updatePatientAdd}>
-                  <ListItemText primary="New Patient" />
 
               <ListItem button onClick={this.updateProfile}>
                   <ListItemText primary="Profile" />
@@ -144,7 +124,7 @@ class DocDashboard extends Component {
           </section>
         </aside>
         <div>
-          {user.email}
+         
         {this.state.profile && (<Profile/>)}
         </div>
         

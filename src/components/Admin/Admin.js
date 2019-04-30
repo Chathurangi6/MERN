@@ -192,8 +192,8 @@ class Admin extends Component {
               <li className="treeview">
                 <List component="nav"  style={{backgroundColor:"#212f39"}}>
               <ListItem button onClick={this.dashboard}  >
-                  <i className="fa fa-calendar"></i>
-                  <span>Dashboard</span>
+              <i className="fa fa-files-o"></i>
+                <span>Dashboard</span>
                 </ListItem>
                 </List>
                 </li>

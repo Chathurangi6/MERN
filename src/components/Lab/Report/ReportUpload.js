@@ -123,8 +123,8 @@ class ReportUpload extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="Card">
+      <div className="Appp">
+        <div className="Cardd">
       <div className="Upload">
         <span className="Title">Upload Files</span>
         <div className="Content">
