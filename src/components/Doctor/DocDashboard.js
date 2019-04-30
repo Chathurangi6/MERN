@@ -6,8 +6,12 @@ import { logoutUser } from "../../actions/authActions"
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import AppBar from '../Receptionist/AppBar'
+
+import AppBar from '../Receptionist/AppBar';
+import '../../css/docDashboard.css';
+
 import Profile from '../Doctor/Profile'
+
 
 class DocDashboard extends Component {
   constructor(props, context) {
@@ -19,12 +23,15 @@ class DocDashboard extends Component {
     };
   }
 
+
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
 
+
   updateProfile = () => {
+
     this.setState({
       profile: true,
       patientadd: false,
@@ -32,6 +39,8 @@ class DocDashboard extends Component {
 
     })
   }
+
+
   updatePatientAdd = () => {
     this.setState({
       patientView: false,
@@ -39,6 +48,8 @@ class DocDashboard extends Component {
       appointment: false,
     })
   }
+
+
   updateAppoint = () => {
     this.setState({
       patientView: false,
@@ -46,6 +57,27 @@ class DocDashboard extends Component {
       appointment: true,
     })
   }
+
+
+
+  render() {   
+    return (
+      <div className="App">
+  <AppBar/>
+        <aside className="main-sidebar" style={{ position: "absolute" }}>
+          <section className="sidebar">
+            
+
+            <div>
+              <div>
+                  <p className='docHeader tc'> <b> Doctor DashBoard </b></p>
+              </div>
+
+              <div className="image1">
+                <img src="images/admin.jpg" className="circular--square" alt="User Image" />
+              </div>
+              <div className="info tc">
+                <p className="username"> Alexander Pierce </p>
 
   render() {
     const { user } = this.props.auth;
@@ -62,8 +94,12 @@ class DocDashboard extends Component {
               <div className="pull-left info">
                 <p>{user.email}</p>
                 <a href=""><i className="fa fa-circle text-success"></i> Online</a>
+
               </div>
             </div>
+            
+
+            {/*
             <form action="#" method="get" className="sidebar-form">
               <div className="input-group">
                 <input type="text" name="q" className="form-control" placeholder="Search..." />
@@ -73,19 +109,32 @@ class DocDashboard extends Component {
                 </span>
               </div>
             </form>
+            */}
+            
+
             <ul className="sidebar-menu">
-              <li className="header">MAIN NAVIGATION</li>
+
+            <li className="header tc">MAIN NAVIGATION</li>
               <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
+
+                <ListItem button onClick={this.updatePatientAdd}>
+                  <ListItemText primary="New Patient" />
+
               <ListItem button onClick={this.updateProfile}>
                   <ListItemText primary="Profile" />
+
                 </ListItem>
-                </List>
-                <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
+              </List>
+              
+              
+              <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
                 <ListItem button onClick={this.updateView}>
                   <ListItemText primary="View Patient" />
                 </ListItem>
-                </List>
-                <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
+              </List>
+              
+
+              <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
                 <ListItem button onClick={this.updateAppoint}>
                   <ListItemText primary="Appointments" />
                 </ListItem>
@@ -105,13 +154,19 @@ class DocDashboard extends Component {
     );
   }
 }
+
+
 DocDashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
+
+
 const mapStateToProps = state => ({
   auth: state.auth
 });
+
+
 export default connect(
   mapStateToProps,
   { logoutUser }

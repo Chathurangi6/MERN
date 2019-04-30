@@ -1,0 +1,54 @@
+.logoutdiv{
+	margin-left: auto;
+	margin-right: 0;
+}
+
+
+.logoutnav{
+	margin-left: 0;
+/*	padding-right: 25px;
+*/
+}
+
+
+.logoutbutton{
+	vertical-align: middle;
+}
+
+
+.welcomeclass{
+	font-family: Acme;
+	font-size: 15px;
+	color: white;
+	margin-bottom: 0;
+	margin-top: 15px;
+}
+
+.username{
+	font-family: Acme;
+	font-size: 25px;
+	color:white;
+	margin-bottom: 20px;
+}
+
+.image1{
+  	margin-left:50px;
+  	float: left;
+  	width: 100%;
+  	margin-bottom:10px; 
+}
+
+.circular--square {
+	border-radius: 50%;
+}
+
+.adminNawodayatext{
+	font-family: Acme;
+	color:white;
+}
+
+.adminNawodayatext1{}
+
+.topHeader{
+	color:black;
+}
