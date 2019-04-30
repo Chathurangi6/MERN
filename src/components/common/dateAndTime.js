@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import '../../css/dateAndTime.css';
 
 
 class DateAndTime extends Component {
@@ -7,13 +8,15 @@ class DateAndTime extends Component {
 		this.state = {
 			currentdate : "",
 			cTime : "",
-			cDay : ""
+			cDay : "",
+			cDate : "",
+			cYear : ""
 		}
 	}
 	
 
 	componentDidMount() {
-		const{currentdate} = this.state
+		const{currentdate, cDay, cTime, cMonth, cDate, cYear} = this.state
 
 		//this will automatically recall the function after every second.
 		this.myInterval = setInterval(() => {
@@ -23,12 +26,16 @@ class DateAndTime extends Component {
 			let cDay = this.renderTime()[1]
 			let cTime = this.renderTime()[2]
 			let cMonth = this.renderTime()[3]
+			let cDate = this.renderTime()[4]
+			let cYear = this.renderTime()[5]
 
 			this.setState( () => ({
 				currentdate: currentdate,
-				cDay : cDay,		//current Day
-				cTime : cTime,		//current Time
-				cMonth : cMonth		//current Month
+				cDay : cDay,		//updating current Day
+				cTime : cTime,		//updating current Time
+				cMonth : cMonth,	//updating current Month
+				cDate : cDate, 		//updating current Date
+				cYear : cYear		//updating current year
 			}) )
 		}, 1000)
 	}
@@ -53,11 +60,18 @@ class DateAndTime extends Component {
 		let h = currentTime.getHours();
 		let m = currentTime.getMinutes();
 		let s = currentTime.getSeconds();
+		let tt = "";
+
+		if(h<12){
+			tt = "am";
+		}else{
+			tt = "pm";
+		}
 
 		if(h == 24){
 			h = 0;
 		} else if (h>12){
-			h = h - 0;
+			h = h - 12;
 		}
 
 		if( h<10 ){
@@ -73,14 +87,16 @@ class DateAndTime extends Component {
 		}
 		
 		//storing date, time and month in seperate variables to return
-		let myClock = "" + dayarray[day] + " " + daym + " " + montharray[month] + " " + year + " | " + h + ":" + m + ":" + s;
+		let myClock = "" + dayarray[day] + " " + daym + " " + montharray[month] + " " + year + " | " + h + ":" + m + ":" + s + " " + tt;
 		let currentDay = dayarray[day];
-		let time = h + ":" + m + ":" + s;
+		let time = h + ":" + m + " " + tt ;
 		let cMonth = montharray[month];
+		let cDate = daym;
+		let cYear = year;
 
-		//return the above variables by adding it to a array. So those variables will be easy to address in other functions 
+		//return the above variables by adding it to a array. So it will be easy to access those variables in other functions 
 		return(
-			[myClock, currentDay, time, cMonth]
+			[myClock, currentDay, time, cMonth, cDate, cYear]
 		);
 	}
 
@@ -88,10 +104,24 @@ class DateAndTime extends Component {
 	render() {
 
 		//destructuring
-		const{currentdate , cDay} = this.state
+		const{currentdate , cDay, cTime, cMonth, cDate, cYear} = this.state
 		return(
-			<div> 
-				{currentdate}
+			<div>
+
+				<div className="topHeader1 br3 shadow-2 grow bg-transparent " > 
+					<div className="time tc"> 
+						
+						{cTime} 
+
+					</div>
+				</div>
+
+				<div className="maindiv shadow-2 bg-transparent br3 grow pa1 tc" >
+					<div className="day">
+						{cMonth} {cDate} - {cDay}
+					</div>
+				</div>
+
 			</div>
 		);
 	}

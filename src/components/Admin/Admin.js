@@ -108,7 +108,7 @@ class Admin extends Component {
       padding:"5px",
       marginLeft:"15px",
       width:"200px",
-      borderColor:"rgba(0,0,0,.2)",
+      height:"32px",
       borderRadius:"5px",
     };
 
@@ -121,9 +121,9 @@ class Admin extends Component {
           <div className="adminNawodayatext1 logo" style={{height:"64px"}}> {/*className="logo"*/}
             <span className="adminNawodayatext"> Admin Nawodaya</span>
           </div>
-          <div id="clockDisplay" className="topHeader" >
-            <DateAndTime/>
-          </div>
+          
+          <DateAndTime/>
+          
           <nav className="navbar navbar-static-top logoutnav" style={{width:"100%"}} > {/*} 
             
             {/*<div className="navbar-custom-menu">*/}
@@ -134,7 +134,7 @@ class Admin extends Component {
             {/*</div>*/}
             
             <div className='logoutdiv tc' style={{marginLeft:"auto", marginRight:"250px"}} >
-              <Button className="logoutbutton" color='danger' onClick={this.onLogoutClick} >Logout</Button>
+              <Button className="logoutbutton grow shadow-5" color='danger' onClick={this.onLogoutClick} >Logout</Button>
             </div>
           </nav>
         </header>
@@ -173,14 +173,15 @@ class Admin extends Component {
               <li className="treeview">
                 <a href="#" onClick={() => this.setState({ openPatient: !openPatient })}
                   aria-controls="example-collapse-text"
-                  aria-expanded={openPatient}>
+                  aria-expanded={openPatient}
+                  >
                   <i className="fa fa-files-o"></i>
                   <span>Patients</span>
                 </a>
                 <ReactBootstrap.Collapse in={this.state.openPatient}>
-                  <div id="example-collapse-text">
+                  <div id="example-collapse-text bg-dark-gray">
                     <li>
-                      <button style={buttonstyle} onClick={this.updateView}>Patients List</button>
+                      <button className="grow shadow-3 ba b--white-05" style={buttonstyle} onClick={this.updateView}>Patients List</button>
                     </li>
                   </div>
                 </ReactBootstrap.Collapse>
@@ -198,9 +199,9 @@ class Admin extends Component {
                 <ReactBootstrap.Collapse in={this.state.openDoctor}>
                   <div id="example-collapse-text">
                     <li>
-                      <button style={buttonstyle} onClick={this.updateRegDoc}><i className="fa" ></i>Doctor Registration</button>
+                      <button className="grow shadow-3 ba b--white-05" style={buttonstyle} onClick={this.updateRegDoc}><i className="fa" ></i>Doctor Registration</button>
                     </li>
-                    <li><button style={buttonstyle} onClick={this.updateViewDoc}><i className="fa"></i> Doctors List</button></li>
+                    <li><button className="grow shadow-3 ba b--white-05" style={buttonstyle} onClick={this.updateViewDoc}><i className="fa"></i> Doctors List</button></li>
 
                   </div>
                 </ReactBootstrap.Collapse>
@@ -209,21 +210,22 @@ class Admin extends Component {
 
               <li className="treeview">
                 <a href="#" onClick={() => this.setState({ openRecep: !openRecep })} aria-controls="example-collapse-text"
-                  aria-expanded={openRecep}>
+                  aria-expanded={openRecep}
+                  >
                   <i className="fa fa-pie-chart"></i>
                   <span>Receptionists</span>
                 </a>
                 <ReactBootstrap.Collapse in={this.state.openRecep}>
                   <div id="example-collapse-text">
-                    <li><button style={buttonstyle} onClick={this.updateRegRecep}> Receptionist Registration </button></li>
-                    <li><button style={buttonstyle} onClick={this.updateViewRecep}><i ></i> Receptionists List </button></li>
+                    <li><button className='grow shadow-3 ba b--white-05' style={buttonstyle} onClick={this.updateRegRecep}> Receptionist Registration </button></li>
+                    <li><button className='grow shadow-3 ba b--white-05' style={buttonstyle} onClick={this.updateViewRecep}><i ></i> Receptionists List </button></li>
                   </div>
                 </ReactBootstrap.Collapse>
               </li>
               
 
               <li>
-                <a href="">
+                <a  href="">
                   <i className="fa fa-calendar"></i> Laboratorian<span></span>
                 </a>
               </li>
