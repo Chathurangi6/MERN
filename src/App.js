@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
-import AddAppoint from "../src/components/Receptionist/ViewAppoint"
+import ReportUpload from "../src/components/Lab/Report/ReportUpload"
 import Login from "./components/auth/Login";
 import Admin from './components/Admin/Admin.js';
 import PrivateRoute from "./components/private-route/privateRoute";
@@ -44,10 +44,10 @@ class App extends Component {
     return (
       <Provider store={store}>  
       <Router>
-        <div className="App">
+        <div >
          
           <Route exact path="/admin" component={Admin} />
-          <Route exact path="/appoint" component={AddAppoint} />
+          <Route exact path="/report" component={ReportUpload} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
