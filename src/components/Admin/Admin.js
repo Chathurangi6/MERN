@@ -109,8 +109,8 @@ class Admin extends Component {
     };
 
     return (
-      <div className="App">
-
+     
+      <div>
         {/* header */}
 
         <header className="main-header">
@@ -240,8 +240,8 @@ class Admin extends Component {
 
        
 
-      </div>
-
+     
+        </div>
     );
   }
 }

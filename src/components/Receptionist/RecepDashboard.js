@@ -66,7 +66,7 @@ class RecepDashboard extends Component {
     const { user } = this.props.auth;
   // console.log(user);
     return (
-      <div className="App">
+      <div >
       <header className="main-header">
           <a href="" className="logo">
             <span className="logo-lg"><b>Receptionist</b>Nawodaya</span>
@@ -77,7 +77,7 @@ class RecepDashboard extends Component {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" >
-            News
+            
           </Typography>
           <Button color="inherit" className="top-right" onClick={this.onLogoutClick}>Logout</Button>
         </Toolbar>
