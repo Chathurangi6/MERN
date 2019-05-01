@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 
+
 class ViewDoctors extends Component {
   constructor() {
     super();
@@ -11,6 +12,7 @@ class ViewDoctors extends Component {
     // this.fetchData=this.fetchData.bind(this);
     // this. handleInputChange=this. handleInputChange.bind(this);
   }
+
 
   fetchData(){
     axios.get('http://localhost:4000/api/doctor/view')
@@ -22,9 +24,11 @@ class ViewDoctors extends Component {
     })
   };
 
+
   componentDidMount() {
     this.fetchData();
    }
+
 
    handleInputChange = event => {
     const query = event.target.value;
@@ -41,6 +45,7 @@ class ViewDoctors extends Component {
     });
   };
 
+
   getData = () => {
     fetch(`http://localhost:4000/api/doctor/view`)
       .then(response => response.json())
@@ -56,6 +61,7 @@ class ViewDoctors extends Component {
         });
       });
   };
+
 
   componentWillMount() {
     this.getData();
@@ -85,9 +91,10 @@ class ViewDoctors extends Component {
       .catch(err => console.log(err))
   }
 
+
   render() {
     return (
-      <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px" }}>
+      <div className="bg-transparent" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px", marginLeft: "auto", marginRight: "7%"}}>
         <h3 align="center">Doctor List</h3>
       
         <input type="text" className="input" onChange={this.handleInputChange}  value={this.state.query} placeholder="Search..." />
@@ -106,9 +113,7 @@ class ViewDoctors extends Component {
 
           </thead>
           <tbody>
-          <button onClick={this.delete}>kk</button> 
-          {this.state.doctor.map(function (item, key) {
-                   
+          {this.state.doctor.map(function (item, key) {       
               return (
                 <tr key={key}>
                   <td>{item.fname}</td>
@@ -130,7 +135,6 @@ class ViewDoctors extends Component {
           </tbody>
         </table>
       </div>
-      
     );
   }
 }
