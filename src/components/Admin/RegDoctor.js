@@ -79,39 +79,41 @@ class RegDoctor extends Component {
             </div>
             <form noValidate id="myForm" onSubmit={this.onSubmit}>
               
-              <div className="input-field col s12">
-                <input
-                  name="name"
-                  onChange={this.onChange}
-                  value={this.state.fname}
-                  error={errors.fname}
-                  id="fname"
-                  type="text"
-                  className={classnames("", {
-                    invalid: errors.fname
-                  })}
-                />
-                <label htmlFor="fname">First Name</label>
-                <span className="red-text">{errors.fname}</span>
-              </div>
-    
 
-              <div className="input-field col s12">
-                <input
-                  name="name"
-                  onChange={this.onChange}
-                  value={this.state.lname}
-                  error={errors.lname}
-                  id="lname"
-                  type="text"
-                  className={classnames("", {
-                    invalid: errors.lname
-                  })}
-                />
-                <label htmlFor="lname">Last Name</label>
-                <span className="red-text">{errors.lname}</span>
-              </div>
+              <div>
+                <div className="input-field col s6">
+                  <input
+                    name="name"
+                    onChange={this.onChange}
+                    value={this.state.fname}
+                    error={errors.fname}
+                    id="fname"
+                    type="text"
+                    className={classnames("", {
+                      invalid: errors.fname
+                    })}
+                  />
+                  <label htmlFor="fname">First Name</label>
+                  <span className="red-text">{errors.fname}</span>
+                </div>
+      
 
+                <div className="input-field col s6">
+                  <input
+                    name="name"
+                    onChange={this.onChange}
+                    value={this.state.lname}
+                    error={errors.lname}
+                    id="lname"
+                    type="text"
+                    className={classnames("", {
+                      invalid: errors.lname
+                    })}
+                  />
+                  <label htmlFor="lname">Last Name</label>
+                  <span className="red-text">{errors.lname}</span>
+                </div>
+              </div>
 
               <div className="input-field col s12">
                 <input
@@ -130,12 +132,13 @@ class RegDoctor extends Component {
               </div>
               
 
-              <div className="input-field col s12">
+              <div className="input-field col s8" style={{borderRadius:"6px"}}>
                 <select onClick={this.handleSelectChange}
                   className="form-control"
                   // value={this.state.specialist}
                   error={errors.specialist}
                   // id="specialist"
+                  style={{backgroundColor:"rgba(0,0,0,0)", borderRadius:"8px"}}
                 >
                   <option>Choose a Speciality</option>
                   <option value="ALLERGY AND IMMUNOLOGY">ALLERGY AND IMMUNOLOGY</option>
@@ -268,38 +271,38 @@ class RegDoctor extends Component {
                 <span className="red-text">{errors.phn_number}</span>
               </div>
 
+              <div>
+                <div className="input-field col s6">
+                  <input
+                    onChange={this.onChange}
+                    value={this.state.password}
+                    error={errors.password}
+                    id="password"
+                    type="password"
+                    className={classnames("", {
+                      invalid: errors.password
+                    })}
+                  />
+                  <label htmlFor="password">Password</label>
+                  <span className="red-text">{errors.password}</span>
+                </div>
+                
 
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password"
-                  className={classnames("", {
-                    invalid: errors.password
-                  })}
-                />
-                <label htmlFor="password">Password</label>
-                <span className="red-text">{errors.password}</span>
-              </div>
-              
-
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.password2}
-                  error={errors.password2}
-                  id="password2"
-                  type="password"
-                  className={classnames("", {
-                    invalid: errors.password2
-                  })}
-                />
-                <label htmlFor="password2">Confirm Password</label>
-                <span className="red-text">{errors.password2}</span>
-              </div>
-              
+                <div className="input-field col s6">
+                  <input
+                    onChange={this.onChange}
+                    value={this.state.password2}
+                    error={errors.password2}
+                    id="password2"
+                    type="password"
+                    className={classnames("", {
+                      invalid: errors.password2
+                    })}
+                  />
+                  <label htmlFor="password2">Confirm Password</label>
+                  <span className="red-text">{errors.password2}</span>
+                </div>
+              </div>              
               
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button

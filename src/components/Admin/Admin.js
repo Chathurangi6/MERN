@@ -28,7 +28,6 @@ class Admin extends Component {
       regReceptionist: false,
       recepView: false,
       main:true
-
     };
   }
 
@@ -116,34 +115,27 @@ class Admin extends Component {
       <div className="App">
 
         {/* header */}
+        <div style={{ position:"sticky", top:"0", zIndex:"2", backgroundColor:"rgb(255,255,255)"}}>
+          <header className="" style={{height:"auto"}} > {/*className="main-header*/}          
+            <div className="adminNawodayaDiv" style={{width:"100%", height:"52px", boxShadow:"0", border:"0"}} >
+              <DateAndTime/>
+            </div>        
 
-        <header className="main-header"> {/*className="main-header*/}
-          <div className="adminNawodayatext1 logo" style={{height:"64px"}}> {/*className="logo"*/}
+            
+            <nav className="logoutnav" style={{ border:"0", boxShadow:"0",width:"100%", backgroundColor:"rgba(255,255,255,0)",backgroundImage: "linear-gradient(rgba(0,0,0,0), rgba(128,128,128,0.9))"}} >  {/*navbar navbar-static-top*/}          
+              <div className='logoutdiv' style={{marginLeft:"auto", width:"100px"}} >
+                <Button className="logoutbutton grow shadow-5" color='danger' onClick={this.onLogoutClick} >Logout</Button>
+              </div>
+            </nav>
+          </header>
+        </div>
+
+        <aside className="main-sidebar" style={{paddingTop:"0", position:"fixed", zIndex:"3"}} >
+          <div className="adminNawodayaDiv logo tc v-mid" style={{height:"52px", lineHeight:"52px"}}> {/*className="logo"*/}
             <span className="adminNawodayatext"> Admin Nawodaya</span>
           </div>
-          
-          <DateAndTime/>
-          
-          <nav className="navbar navbar-static-top logoutnav" style={{width:"100%"}} > {/*} 
-            
-            {/*<div className="navbar-custom-menu">*/}
-              {/*<ul className="nav navbar-nav">
-                              <li className="nav-item">*/}
-                {/*</li>
-                              </ul>*/}
-            {/*</div>*/}
-            
-            <div className='logoutdiv tc' style={{marginLeft:"auto", marginRight:"250px"}} >
-              <Button className="logoutbutton grow shadow-5" color='danger' onClick={this.onLogoutClick} >Logout</Button>
-            </div>
-          </nav>
-        </header>
-
-        <aside className="main-sidebar">
           <section className="sidebar" >
-            
             <div>
-
               <div className="image1">
                 <img src="images/admin.jpg" className="circular--square" alt="User Image" />
               </div>
@@ -229,23 +221,21 @@ class Admin extends Component {
                   <i className="fa fa-calendar"></i> Laboratorian<span></span>
                 </a>
               </li>
-
-
-
             </ul>
+
+
           </section>
-
-
         </aside>
-        {this.state.main && (<Content/>)}
-        {this.state.patientView && (<ViewPatient /> )}
-        {this.state.regDoctor && (<RegDoctor />)}
-        {this.state.doctorView && (<ViewDoctors />)}
-        {this.state.regReceptionist && (<RegReceptionist />)}
-        {this.state.recepView && (<ViewRecep />)}
 
-       
 
+        <div style={{zIndex:"1", marginTop:"10px"}}>
+          {this.state.main && (<Content/>)}
+          {this.state.patientView && (<ViewPatient /> )}
+          {this.state.regDoctor && (<RegDoctor />)}
+          {this.state.doctorView && (<ViewDoctors />)}
+          {this.state.regReceptionist && (<RegReceptionist />)}
+          {this.state.recepView && (<ViewRecep />)}
+        </div>
       </div>
 
     );

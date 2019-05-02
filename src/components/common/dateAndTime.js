@@ -108,17 +108,17 @@ class DateAndTime extends Component {
 		return(
 			<div>
 
-				<div className="topHeader1 br3 shadow-2 grow bg-transparent " > 
+
+				<div className="daydiv shadow-2 bg-transparent br3 grow pa1 tc v-mid" >
+					<div className="day">
+						{cMonth} {cDate} - {cDay}
+					</div>
+				</div>
+				<div className="timediv br3 shadow-2 grow bg-transparent v-mid" > 
 					<div className="time tc"> 
 						
 						{cTime} 
 
-					</div>
-				</div>
-
-				<div className="maindiv shadow-2 bg-transparent br3 grow pa1 tc" >
-					<div className="day">
-						{cMonth} {cDate} - {cDay}
 					</div>
 				</div>
 

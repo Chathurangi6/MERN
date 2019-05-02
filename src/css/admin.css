@@ -6,6 +6,8 @@
 
 .logoutnav{
 	margin-left: 0;
+	/*background-image: linear-gradient(rgba(128,128,128,0.9), rgba(0,0,0,0));*/
+	/*backgroundColor:"#007acc";*/
 /*	padding-right: 25px;
 */
 }
@@ -44,7 +46,15 @@
 
 .adminNawodayatext{
 	font-family: Acme;
-	color:white;
+	color:rgb(217, 217, 217);
+	font-size: 25px;
+	font-family: 'Crete Round';
 }
 
-.adminNawodayatext1{}
+.adminNawodayaDiv{
+	background-image: linear-gradient(rgba(128,128,128,0.9), rgba(0,0,0,0));
+}
+/*
+.dateAndTimeDiv{
+	background-image: linear-gradient(rgba(128,128,128,0.9), rgba(0,0,0,0));
+}*/

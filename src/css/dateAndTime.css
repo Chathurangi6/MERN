@@ -1,43 +1,43 @@
 .day{
 	font-family:Acme;
-	font-size: 20px;
-	color:grey;
-	line-height: 50px;
+	font-size: 15px;
+	color:dark-grey;
+	line-height: 30px;
 }
 
 
 .time{
-	color:gray;
+	color:dark-gray;
 	width: 250px;
 	height: 35px;
-	font-size: 37px;
+	font-size: 28px;
 	margin-left:auto; 
 	margin-right:auto;
-	line-height:55px
+	line-height:40px
 }
 
 
-.maindiv{
+.daydiv{
 	display: inline-block;
-	position:absolute;
+	position:relative;
+	float: right;
 	width: 200px;
-	height: 55px;
-	margin-left: 66%;
+	height: 40px;
+	margin-left: 10px;
+	margin-top: 5px;
 }
 
 
-.topHeader1{
-	/*background-image: radial-gradient(#FFF, rgba(0,0,0,.2));*/
-	/*background: linear-gradient(89deg, #F10E11 0%, #2b89fa 100%)@;*/
-	display: inline;
+.timediv{
+	display: inline-block;
+	position: relative;
+	float:right;
 	font-family: Acme;
 	width: 250px;
-	height: 55px;
-	line-height: 55px;
+	height: 40px;
+	line-height: 40px;
 	vertical-align: middle;
-	margin-left: 46%;
-	margin-right: 10px;
-	position: absolute;
+	margin-top: 5px;
 }
 
 .newdiv{
