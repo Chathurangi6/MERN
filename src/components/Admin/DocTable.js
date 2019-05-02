@@ -131,6 +131,7 @@ const customStyles = {
                 </td>
                 <td>
                   <button onClick={this.openModal} className="btn btn-primary">Edit</button>
+                  {/* this modal for update doctor details */}
                   <Modal
                               isOpen={this.state.modalIsOpen}
                               onAfterOpen={this.afterOpenModal}
