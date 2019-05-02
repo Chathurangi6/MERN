@@ -42,7 +42,7 @@ export default class Content extends Component {
     render(){
         const { open } = this.state;
         return (
-            <div className="content-wrapper" style={{paddingTop:"20px"}} >
+            <div className="content-wrapper center" style={{paddingTop:"20px"}} >
                 <section className="content-header">
                     <div className="row">
                         <div className="col-md-12">

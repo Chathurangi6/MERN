@@ -228,7 +228,7 @@ class Admin extends Component {
         </aside>
 
 
-        <div style={{zIndex:"1", marginTop:"10px"}}>
+        <div style={{zIndex:"1", marginTop:"10px", marginLeft:"230px"}}>
           {this.state.main && (<Content/>)}
           {this.state.patientView && (<ViewPatient /> )}
           {this.state.regDoctor && (<RegDoctor />)}

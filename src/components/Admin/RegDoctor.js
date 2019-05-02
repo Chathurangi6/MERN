@@ -72,7 +72,7 @@ class RegDoctor extends Component {
     const { errors } = this.state;
     return (
       <div className="container container1">
-        <div className="row">
+        <div className="">
           <div className="col s8 offset-s2">
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4 className='doctorregist tc'> Doctor Registration </h4>
@@ -81,7 +81,7 @@ class RegDoctor extends Component {
               
 
               <div>
-                <div className="input-field col s6">
+                <div className="input-field col s6" style={{width:"49%", display:"inline-block"}} >
                   <input
                     name="name"
                     onChange={this.onChange}
@@ -98,7 +98,7 @@ class RegDoctor extends Component {
                 </div>
       
 
-                <div className="input-field col s6">
+                <div className="input-field col s6" style={{width:"49%", display:"inline-block"}}>
                   <input
                     name="name"
                     onChange={this.onChange}
@@ -132,7 +132,7 @@ class RegDoctor extends Component {
               </div>
               
 
-              <div className="input-field col s8" style={{borderRadius:"6px"}}>
+              <div className="input-field col s8" style={{borderRadius:"6px", width:"66%", marginTop:"35px", marginBottom:"25px"}}>
                 <select onClick={this.handleSelectChange}
                   className="form-control"
                   // value={this.state.specialist}
@@ -248,9 +248,9 @@ class RegDoctor extends Component {
                   <option value="UROLOGIST">UROLOGIST</option>
                   <option value="VASCULAR AND TRANSPLANT SURGEON">VASCULAR AND TRANSPLANT SURGEON</option>
                   <option value="VASCULAR SURGEON">VASCULAR SURGEON</option>
-              </select>
-              <label htmlFor="specialist"></label>
-              <span className="red-text">{errors.specialist}</span>
+                </select>
+                <label htmlFor="specialist"></label>
+                <span className="red-text">{errors.specialist}</span>
               </div>
               
 
@@ -272,7 +272,7 @@ class RegDoctor extends Component {
               </div>
 
               <div>
-                <div className="input-field col s6">
+                <div className="input-field col s6" style={{width:"49%", display:"inline-block"}}>
                   <input
                     onChange={this.onChange}
                     value={this.state.password}
@@ -288,7 +288,7 @@ class RegDoctor extends Component {
                 </div>
                 
 
-                <div className="input-field col s6">
+                <div className="input-field col s6" style={{width:"49%", display:"inline-block"}}>
                   <input
                     onChange={this.onChange}
                     value={this.state.password2}

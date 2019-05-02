@@ -34,7 +34,7 @@ export default class ViewPatient extends Component {
 
     render() {
       return (       
-        <div className="container2" >
+        <div className="container2 center" >
           <h3 className="patientList tc" >Patient List</h3>
           {/* */}
           <Table className="viewPatientTable">
