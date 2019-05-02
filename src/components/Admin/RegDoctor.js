@@ -71,7 +71,7 @@ class RegDoctor extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="container container1">
+      <div className="container container1 br5 shadow-2 ba b--black-10">
         <div className="">
           <div className="col s8 offset-s2">
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
@@ -81,7 +81,7 @@ class RegDoctor extends Component {
               
 
               <div>
-                <div className="input-field col s6" style={{width:"49%", display:"inline-block"}} >
+                <div className="input-field col s6" style={{width:"50%", display:"inline-block"}} >
                   <input
                     name="name"
                     onChange={this.onChange}
@@ -98,7 +98,7 @@ class RegDoctor extends Component {
                 </div>
       
 
-                <div className="input-field col s6" style={{width:"49%", display:"inline-block"}}>
+                <div className="input-field col s6" style={{width:"50%", display:"inline-block"}}>
                   <input
                     name="name"
                     onChange={this.onChange}
@@ -254,7 +254,7 @@ class RegDoctor extends Component {
               </div>
               
 
-              <div className="input-field col s12">
+              <div className="input-field col s12" style={{width:"50%"}} >
                 <input
                   icon='phone'
                   name='phone'
@@ -272,7 +272,7 @@ class RegDoctor extends Component {
               </div>
 
               <div>
-                <div className="input-field col s6" style={{width:"49%", display:"inline-block"}}>
+                <div className="input-field col s6" style={{width:"50%", display:"inline-block"}}>
                   <input
                     onChange={this.onChange}
                     value={this.state.password}
@@ -288,7 +288,7 @@ class RegDoctor extends Component {
                 </div>
                 
 
-                <div className="input-field col s6" style={{width:"49%", display:"inline-block"}}>
+                <div className="input-field col s6" style={{width:"50%", display:"inline-block"}}>
                   <input
                     onChange={this.onChange}
                     value={this.state.password2}

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import "../../css/viewDoctors.css";
 
 
 class ViewDoctors extends Component {
@@ -94,7 +95,7 @@ class ViewDoctors extends Component {
 
   render() {
     return (
-      <div className="bg-transparent" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px", marginLeft: "auto", marginRight: "7%"}}>
+      <div className="bg-transparent center" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px"}}>
         <h3 align="center">Doctor List</h3>
       
         <input type="text" className="input" onChange={this.handleInputChange}  value={this.state.query} placeholder="Search..." />
