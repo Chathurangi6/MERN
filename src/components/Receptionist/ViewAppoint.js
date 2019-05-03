@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import Swal from 'sweetalert2'
 
 const customStyles = {
     content: {
@@ -32,7 +33,8 @@ export default class ViewAppoint extends Component {
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.onSubmit = this.onSubmit.bind(this)
+        this.onSubmit = this.onSubmit.bind(this);
+        this.cancelAppoint=this.cancelAppoint.bind(this);
     }
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -68,6 +70,30 @@ export default class ViewAppoint extends Component {
         })
     }
 
+    cancelAppoint=e=>{
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel it!'
+          }).then((result) => {
+            if (result.value) {
+              axios.get('http://localhost:4000/api/appointment/delete/' + e)
+              this.fetchData();
+              Swal.fire(
+                'Canceled!',
+                'Appointment has been canceled.',
+                'success'
+              ) 
+            }
+          })
+            .catch(err => console.log(err))
+        }
+    
 
     componentDidMount() {
         axios.get('http://localhost:4000/api/doctor/name')
@@ -118,6 +144,7 @@ export default class ViewAppoint extends Component {
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Phone Number</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -128,10 +155,10 @@ export default class ViewAppoint extends Component {
                                         <td>{item.p_fname}</td>
                                         <td>{item.p_lname}</td>
                                         <td>{item.phn_number}</td>
-
+                                        <td><button onClick={this.cancelAppoint} className="btn btn-danger">Cancel</button></td>
                                     </tr>
                                 )
-                            })}
+                            },this)}
 
                         </tbody>
                     </table>

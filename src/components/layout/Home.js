@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './home.css'
 import { Carousel } from 'react-responsive-carousel';
-class Slide extends Component {
+class Home extends Component {
     render() {
-
-      const { index, direction } = this.state;
   
       return (
         <Carousel>
@@ -50,4 +48,4 @@ class Slide extends Component {
     }
 }
 
-export default Slide; 
+export default Home; 

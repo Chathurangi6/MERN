@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DocTable from './DocTable'
+import SearchField from "react-search-field";
 
 class ViewDoctors extends Component {
   constructor() {
     super();
-    this.state = { doctor: [],filtered: [],query:"" };//doctor:all doctors list
-     
+    this.state = { doctor: [], filtered: [], query: "" };//doctor:all doctors list
+
     // this.fetchData=this.fetchData.bind(this);
     // this. handleInputChange=this. handleInputChange.bind(this);
   }
 
-  fetchData(){
+  fetchData() {
     axios.get('http://localhost:4000/api/doctor/view')
-    .then(response => {
-      this.setState({ doctor: response.data });
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
+      .then(response => {
+        this.setState({ doctor: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   };
 
   componentDidMount() {
     this.fetchData();
-   }
+  }
 
-   handleInputChange = event => {
+  handleInputChange = event => {
     const query = event.target.value;
 
     this.setState(prevState => {
@@ -60,23 +61,30 @@ class ViewDoctors extends Component {
     this.getData();
   }
 
-  tabRow(){
-    return this.state.doctor.map(function(object, i){
-        return <DocTable obj={object} key={i}  />;
+  tabRow() {
+    return this.state.doctor.map(function (object, i) {
+      return <DocTable obj={object} key={i} />;
     });
   }
- 
+
 
   render() {
     return (
       <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px" }}>
         <h3 align="center">Doctor List</h3>
-      
-        <input type="text" className="input" onChange={this.handleInputChange}  value={this.state.query} placeholder="Search..." />
+
+        <SearchField
+          placeholder="Search..."
+          onChange={onChange}
+          searchText="This is initial search text"
+          classNames="test-class"
+          value={this.state.query}
+        />
+        {/* <input type="text" className="input" onChange={this.handleInputChange}  value={this.state.query} placeholder="Search..." /> */}
         <div>{this.state.filtered.map(i => <p>{i.email}</p>)}</div>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
-          
+
             <tr>
               <th>First Name</th>
               <th>Last Name</th>
@@ -88,11 +96,11 @@ class ViewDoctors extends Component {
 
           </thead>
           <tbody>
-          { this.tabRow() }
+            {this.tabRow()}
           </tbody>
         </table>
       </div>
-      
+
     );
   }
 }

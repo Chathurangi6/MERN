@@ -52,9 +52,12 @@ class App extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/doctordashboard" component={DocDashboard} />
             <Route exact path="/receptionistdashboard" component={RecepDashboard} />
+
             <Route exact path="/" component={Landing} />
 
             
+
+
             <Route exact path="/login" component={Login} />
             
             <Route exact path="/forgotpassword" component={ForgotPassword} />
