@@ -7,9 +7,14 @@ class Landing extends Component{
     render(){
         return(
             <div>
-                <LandingNavBar />
-                <DemoCarousel />
+                <div className="h-5" style={{overflow:'hidden'}}>
+                    <LandingNavBar />
+                </div>
+                <div className="h-80">
+                    <DemoCarousel />
+                </div>
             </div>
+            
         );
     }
 }

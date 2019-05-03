@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import CustomButton from '../Buttons/CustomButton';
 import { Link } from "react-router-dom";
+import ReactRevealText from '../revealText';
 
 class LandingNavBar extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = { show: false };
+      }
+    
+      componentDidMount() {
+        setTimeout(() => {
+          this.setState({ show: true });
+        }, 500);
+      }
+    
+    
     render() {
         return(
             <Navbar bg="dark" variant="dark">
@@ -17,8 +31,14 @@ class LandingNavBar extends Component {
                             width='50' 
                             className="d-inline-block align-top" />
                     </div>
-                    <div className='d-inline-block' style={{marginLeft: '20px', fontSize: '35px', marginTop: '5px'}}>
-                        <b>{'Navodaya Hospital'}</b>
+                    <div className='d-inline-block' style={{marginLeft: '20px'}}>
+                        <div>
+                            <ReactRevealText
+                                show={this.state.show}
+                                style={{fontSize: "30px", marginTop: "5px"}}>
+                                Navodaya Hospital
+                            </ReactRevealText>
+                        </div>
                     </div>
                 </Navbar.Brand>
                 <div style={{marginLeft: '850px', paddingTop: '2px'}}>
