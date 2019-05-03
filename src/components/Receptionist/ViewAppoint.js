@@ -40,6 +40,7 @@ export default class ViewAppoint extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
 
+    //search relevant appointments to a doctor
     search(e) {
         e.preventDefault();
         const obj = {
@@ -70,8 +71,7 @@ export default class ViewAppoint extends Component {
         })
     }
 
-    cancelAppoint=e=>{
-        e.preventDefault();
+    cancelAppoint=id=>{
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -82,8 +82,8 @@ export default class ViewAppoint extends Component {
             confirmButtonText: 'Yes, cancel it!'
           }).then((result) => {
             if (result.value) {
-              axios.get('http://localhost:4000/api/appointment/delete/' + e)
-              this.fetchData();
+              axios.get('http://localhost:4000/api/appointment/delete/' + id)
+              this.search();
               Swal.fire(
                 'Canceled!',
                 'Appointment has been canceled.',
@@ -116,6 +116,7 @@ export default class ViewAppoint extends Component {
 
     closeModal() {
         this.setState({ modalIsOpen: false });
+        
     }
 
     render() {
@@ -155,7 +156,7 @@ export default class ViewAppoint extends Component {
                                         <td>{item.p_fname}</td>
                                         <td>{item.p_lname}</td>
                                         <td>{item.phn_number}</td>
-                                        <td><button onClick={this.cancelAppoint} className="btn btn-danger">Cancel</button></td>
+                                        <td><button onClick={()=>this.cancelAppoint(item._id)} className="btn btn-danger">Cancel</button></td>
                                     </tr>
                                 )
                             },this)}

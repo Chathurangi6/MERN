@@ -123,7 +123,7 @@ router.route('/name').get(function (req, res) {
   else {
     
     res.json(name);
-    console.log(name);
+    
   }
 })
 }) 
@@ -149,7 +149,7 @@ router.route('/update/:id').post(function (req, res) {
       Doctor.phn_number=req.body.phn_number;
       Doctor.password=req.body.password;
 
-      Doctor.save().then(data => {
+      Doctor.findOneAndUpdate().then(data => {
           res.json('Update complete');
       })
       .catch(err => {
