@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import CustomButton from '../Buttons/CustomButton';
 import { Link } from "react-router-dom";
 import ReactRevealText from '../revealText';
+import Button from 'react-bootstrap/Button';
 
 class LandingNavBar extends Component {
 
@@ -24,28 +25,30 @@ class LandingNavBar extends Component {
             <Navbar bg="dark" variant="dark">
                 {/* <img src={require('./images/logo1.png')} /> */}
                 <Navbar.Brand href="#home" style={{fontSize: '30px'}}>
-                    <div className='d-inline-block' style={{marginLeft: '10px', marginTop: '17px'}}>
+                    <div className='d-inline-block' style={{marginLeft: '10px', }}>
                         <img 
                             src={require('./images/a.png')} 
                             height='50'
                             width='50' 
-                            className="d-inline-block align-top" />
+                            className="d-inline-block" />
                     </div>
                     <div className='d-inline-block' style={{marginLeft: '20px'}}>
                         <div>
                             <ReactRevealText
                                 show={this.state.show}
-                                style={{fontSize: "30px", marginTop: "5px"}}>
+                                style={{fontSize: "30px", marginBottom: "15px"}}>
                                 Navodaya Hospital
                             </ReactRevealText>
                         </div>
                     </div>
                 </Navbar.Brand>
-                <div style={{marginLeft: '850px', paddingTop: '2px'}}>
+                <Nav className="mr-auto">
                     <Link to="/login">
-                        <CustomButton type="success" text="Sign In" link="/login" />
+                        <Button
+                            style={{marginLeft: '900px'}}
+                            variant="outline-success">Sign In</Button>
                     </Link>
-                </div> 
+                </Nav>
             </Navbar>
         );
     }
