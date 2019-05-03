@@ -18,6 +18,8 @@ import AdminDashboard from "./components/Admin/Admin"
 import ForgotPassword from "./components/auth/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword";
 import Home from '../src/components/layout/Home';
+import Landing from './components/LandingPage/Landing';
+
 
 
 
@@ -50,6 +52,12 @@ class App extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/doctordashboard" component={DocDashboard} />
             <Route exact path="/receptionistdashboard" component={RecepDashboard} />
+
+            <Route exact path="/" component={Landing} />
+
+            
+
+
             <Route exact path="/login" component={Login} />
             
             <Route exact path="/forgotpassword" component={ForgotPassword} />
