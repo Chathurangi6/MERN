@@ -70,7 +70,7 @@ export default class ViewAppoint extends Component {
         })
     }
 
-    cancelAppoint=(e)=>{
+    cancelAppoint=e=>{
         e.preventDefault();
         Swal.fire({
             title: 'Are you sure?',
@@ -82,7 +82,7 @@ export default class ViewAppoint extends Component {
             confirmButtonText: 'Yes, cancel it!'
           }).then((result) => {
             if (result.value) {
-              axios.get('http://localhost:4000/api/appointment/delete/' + this.item._id)
+              axios.get('http://localhost:4000/api/appointment/delete/' + e)
               this.fetchData();
               Swal.fire(
                 'Canceled!',
