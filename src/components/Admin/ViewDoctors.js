@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DocTable from './DocTable'
 import Swal from 'sweetalert2'
 import Modal from 'react-modal';
 
@@ -46,7 +45,7 @@ this.closeModal = this.closeModal.bind(this);
         
     };
     axios.post('http://localhost:4000/api/doctor/update/'+id, obj)
-        .then(res => console.log(res.data));
+        .then( this.fetchData());
         this.setState({
           fname: '',
           lname: '',
@@ -106,6 +105,7 @@ this.closeModal = this.closeModal.bind(this);
   
   closeModal() {
       this.setState({ modalIsOpen: false });
+      this.fetchData();
   }
 
   fetchData() {
@@ -163,7 +163,6 @@ this.closeModal = this.closeModal.bind(this);
 
           </thead>
           <tbody>
-          {/* {this.tabRow()} */}
            {this.state.doctors.map(doctor=>
             <tr key={doctor._id}>
                 <td>

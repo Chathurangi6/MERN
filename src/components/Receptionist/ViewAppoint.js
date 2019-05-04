@@ -42,7 +42,7 @@ export default class ViewAppoint extends Component {
 
     //search relevant appointments to a doctor
     search(e) {
-        e.preventDefault();
+       e.preventDefault();
         const obj = {
             doctor: this.state.docName
         };
@@ -69,6 +69,7 @@ export default class ViewAppoint extends Component {
             p_lname: "",
             phn_number: "",
         })
+        
     }
 
     cancelAppoint=id=>{
@@ -116,6 +117,7 @@ export default class ViewAppoint extends Component {
 
     closeModal() {
         this.setState({ modalIsOpen: false });
+      //  this.search();
         
     }
 

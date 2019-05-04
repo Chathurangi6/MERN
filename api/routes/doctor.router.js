@@ -138,18 +138,18 @@ router.route('/edit/:id').get(function (req, res) {
 
 //  Defined update route
 router.route('/update/:id').post(function (req, res) {
-  Doctor.findById(req.params.id, function(err, recep) {
-    if (!recep)
+  Doctor.findById(req.params.id, function(err, doctor) {
+    if (!doctor)
       res.status(404).send("data is not found");
     else {
-      Doctor.fname = req.body.fname;
-      Doctor.lname = req.body.lname;
-      Doctor.email = req.body.email;
-      Doctor.specialist= req.body.specialist;
-      Doctor.phn_number=req.body.phn_number;
-      Doctor.password=req.body.password;
+      doctor.fname = req.body.fname;
+      doctor.lname = req.body.lname;
+      doctor.email = req.body.email;
+      doctor.specialist= req.body.specialist;
+      doctor.phn_number=req.body.phn_number;
+     // Doctor.password=req.body.password;
 
-      Doctor.findOneAndUpdate().then(data => {
+      doctor.save().then(data => {
           res.json('Update complete');
       })
       .catch(err => {
