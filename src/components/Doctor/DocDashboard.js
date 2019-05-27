@@ -6,29 +6,33 @@ import { logoutUser } from "../../actions/authActions"
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-
-import AppBar from '../Receptionist/AppBar';
+import DateAndTime from '../common/dateAndTime';
 import '../../css/docDashboard.css';
-
+import { Button } from 'reactstrap';
 import Profile from '../Doctor/Profile'
 
 
 class DocDashboard extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       profile: true,
-      
+      userEmail: ""
     };
   }
-
 
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
 
+  componentDidMount(){
+    const { user } = this.props.auth;
+    this.setState({
+      userEmail:user.email
+    })
+  }
 
   updateProfile = () => {
 
@@ -36,7 +40,6 @@ class DocDashboard extends Component {
       profile: true,
       patientadd: false,
       appointment: false,
-
     })
   }
 
@@ -62,13 +65,21 @@ class DocDashboard extends Component {
 
   render() {   
     return (
-      <div className="App">
-  <AppBar/>
-        <aside className="main-sidebar" style={{ position: "absolute" }}>
-          <section className="sidebar">
-            
+      <div>
+    <header className="main-header"> {/*className="main-header*/}
+          <div className="adminNawodayatext1 logo" style={{height:"64px"}}> {/*className="logo"*/}
+            <span className="adminNawodayatext"> Admin Nawodaya</span>
+          </div>         
+            <DateAndTime/>        
+          <nav className="navbar navbar-static-top logoutnav" style={{width:"100%"}} >       
+            <div className='logoutdiv tc' style={{marginLeft:"auto", marginRight:"250px"}} >
+            <Button className="logoutbutton grow shadow-5" color='danger' onClick={this.onLogoutClick} >Logout</Button>
+            </div>
+          </nav>
+        </header>
 
-           
+        <aside className="main-sidebar" style={{ position: "absolute" }}>
+          <section className="sidebar">  
               <div>
                   <p className='docHeader tc'> <b> Doctor DashBoard </b></p>
               </div>
@@ -80,39 +91,14 @@ class DocDashboard extends Component {
                 <p className="username"> Alexander Pierce </p>
 
   </div>
-            
-
-            {/*
-            <form action="#" method="get" className="sidebar-form">
-              <div className="input-group">
-                <input type="text" name="q" className="form-control" placeholder="Search..." />
-                <span className="input-group-btn">
-                  <button type="submit" name="search" id="search-btn" className="btn btn-flat"><i className="fa fa-search"></i>
-                  </button>
-                </span>
-              </div>
-            </form>
-            */}
-            
-
             <ul className="sidebar-menu">
 
             <li className="header tc">MAIN NAVIGATION</li>
               <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
-
               <ListItem button onClick={this.updateProfile}>
                   <ListItemText primary="Profile" />
-
                 </ListItem>
               </List>
-              
-              
-              <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
-                <ListItem button onClick={this.updateView}>
-                  <ListItemText primary="View Patient" />
-                </ListItem>
-              </List>
-              
 
               <List component="nav" style={{backgroundColor:"#2F4F4F"}}>
                 <ListItem button onClick={this.updateAppoint}>
@@ -127,8 +113,6 @@ class DocDashboard extends Component {
          
         {this.state.profile && (<Profile/>)}
         </div>
-        
-
       </div>
 
     );

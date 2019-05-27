@@ -129,26 +129,15 @@ class Admin extends Component {
     };
 
     return (
-     
       <div>
         {/* header */}
 
         <header className="main-header"> {/*className="main-header*/}
           <div className="adminNawodayatext1 logo" style={{height:"64px"}}> {/*className="logo"*/}
             <span className="adminNawodayatext"> Admin Nawodaya</span>
-          </div>
-          
-            <DateAndTime/>
-          
-          <nav className="navbar navbar-static-top logoutnav" style={{width:"100%"}} > {/*} 
-            
-            {/*<div className="navbar-custom-menu">*/}
-              {/*<ul className="nav navbar-nav">
-                              <li className="nav-item">*/}
-                {/*</li>
-                              </ul>*/}
-            {/*</div>*/}
-            
+          </div>         
+            <DateAndTime/>        
+          <nav className="navbar navbar-static-top logoutnav" style={{width:"100%"}} >       
             <div className='logoutdiv tc' style={{marginLeft:"auto", marginRight:"250px"}} >
             <Button className="logoutbutton grow shadow-5" color='danger' onClick={this.onLogoutClick} >Logout</Button>
             </div>
@@ -157,10 +146,8 @@ class Admin extends Component {
 
 
         <aside className="main-sidebar">
-          <section className="sidebar" >
-            
+          <section className="sidebar" >    
             <div>
-
               <div className="image1">
                 <img src="images/admin.jpg" className="circular--square" alt="User Image" />
               </div>
@@ -169,8 +156,6 @@ class Admin extends Component {
                 <p className="welcomeclass"> Welcome </p>
                 <p className="username">Alexander Pierce</p>
                 {/*<a href=""><i className="fa fa-circle text-success"></i> Online</a>*/}
-
-       
               </div>
             </div>
             

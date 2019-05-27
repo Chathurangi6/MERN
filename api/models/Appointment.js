@@ -10,6 +10,10 @@ const Appointment = new Schema({
     type: String,
     
   },
+  docEmail:{
+    type:String
+  },
+
   p_fname: {
     type: String,
     

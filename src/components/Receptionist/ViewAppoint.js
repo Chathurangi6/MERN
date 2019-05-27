@@ -21,6 +21,7 @@ export default class ViewAppoint extends Component {
         this.state = {
             doctor: [],
             docName: "",
+            docEmail: " ",
             matching:[],
             p_fname: "",
             p_lname: "",
@@ -37,8 +38,19 @@ export default class ViewAppoint extends Component {
         this.cancelAppoint=this.cancelAppoint.bind(this);
     }
     onChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
+        let docdetail = e.target.value.split("-")
+        let docname = docdetail[0]
+        let docemail = docdetail[1]
+        this.setState({ 
+            docName: docname,
+            docEmail:docemail
+        });
+        console.log(this.state.docEmail);
     };
+
+    onChangeForm = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    }
 
     //search relevant appointments to a doctor
     search(e) {
@@ -55,6 +67,7 @@ export default class ViewAppoint extends Component {
         e.preventDefault();
         const obj = {
             doctor: this.state.docName,
+            docEmail : this.state.docEmail,
             p_fname: this.state.p_fname,
             p_lname: this.state.p_lname,
             phn_number: this.state.phn_number
@@ -100,7 +113,7 @@ export default class ViewAppoint extends Component {
         axios.get('http://localhost:4000/api/doctor/name')
             .then(response => {
                 this.setState({ doctor: response.data });
-
+                console.log(this.state.doctor);
             })
             .catch(function (error) {
                 console.log(error);
@@ -130,7 +143,7 @@ export default class ViewAppoint extends Component {
                         <select id="docName" onClick={this.onChange} className="form-control">
                             <option>search your doctor</option>
                             {this.state.doctor.map((obj) =>
-                                <option key={obj.fullname}>{obj.fullname}</option>
+                                <option key={obj.fullname}>{obj.fullname}-{obj.email}</option>
                             )}
                         </select>
                     </div>
@@ -184,7 +197,7 @@ export default class ViewAppoint extends Component {
                             </div>
                             <div className="input-field col s12">
                                 <input
-                                    onChange={this.onChange}
+                                    onChange={this.onChangeForm}
                                     value={this.state.p_fname}
                                     type="text"
                                     id="p_fname"
@@ -193,7 +206,7 @@ export default class ViewAppoint extends Component {
                             </div>
                             <div className="input-field col s12">
                                 <input
-                                    onChange={this.onChange}
+                                    onChange={this.onChangeForm}
                                     value={this.state.p_lname}
                                     type="text"
                                     id="p_lname"
@@ -202,7 +215,7 @@ export default class ViewAppoint extends Component {
                             </div>
                             <div className="input-field col s12">
                                 <input
-                                    onChange={this.onChange}
+                                    onChange={this.onChangeForm}
                                     value={this.state.phn_number}
                                     type="text"
                                     id="phn_number"
