@@ -10,6 +10,7 @@ import DateAndTime from '../common/dateAndTime';
 import '../../css/docDashboard.css';
 import { Button } from 'reactstrap';
 import axios from 'axios';
+import Uploader from './Uploader'
 
 
 class DocDashboard extends Component {
@@ -41,7 +42,6 @@ class DocDashboard extends Component {
     const obj = {
       userEmail: email
     };
-    console.log(obj.userEmail)
     axios.post('http://localhost:4000/api/appointment/appointToDoctor', obj)
       .then(res => {
         this.setState({ appointDetail: res.data })
@@ -91,7 +91,6 @@ class DocDashboard extends Component {
             </div>
             <div className="info tc">
               <p className="username"> {this.state.userEmail} </p>
-
             </div>
             <ul className="sidebar-menu">
 
@@ -112,7 +111,7 @@ class DocDashboard extends Component {
         </aside>
         <div>
 
-          {/* {this.state.profile && (<Profile/>)} */}
+          {this.state.profile && (<Uploader/>)}
 
           <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px" }}>
             <h3 align="center">Receptionist List</h3>
@@ -125,16 +124,16 @@ class DocDashboard extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.appointDetail.map(recep =>
-                  <tr key={recep._id}>
+                {this.state.appointDetail.map(user =>
+                  <tr key={user._id}>
                     <td>
-                      {recep.p_fname}
+                      {user.p_fname}
                     </td>
                     <td>
-                      {recep.p_lname}
+                      {user.p_lname}
                     </td>
                     <td>
-                      {recep.phn_number}
+                      {user.phn_number}
                     </td>
                   </tr>
                 )}
@@ -143,7 +142,6 @@ class DocDashboard extends Component {
           </div>
         </div>
       </div>
-
     );
   }
 }
