@@ -5,13 +5,12 @@ const bcrypt = require("bcryptjs");
 const mongoose = require('mongoose');
 
 // Load input validation
-const validateRegisterInput = require("../validation/register");
+const validateRegisterInput = require("../validation/doctor.validation");
 
 // Load doctor model
 
 const Doctor = mongoose.model('doctors');
 const User = mongoose.model('users');
-
 
 
 router.post("/register", (req, res) => {
@@ -30,6 +29,8 @@ const { errors, isValid } = validateRegisterInput(req.body);
     else{
 
       const newUser = new User({
+        fname:req.body.fname,
+        lname:req.body.lname,
         email: req.body.email,
         password: req.body.password,
         userRoll:"D"

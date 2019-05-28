@@ -28,7 +28,7 @@ module.exports = function validateRegisterInput(data) {
     errors.email = "Email is invalid";
   }
 
-  // specialist checks
+  // DOB checks
   if (Validator.isEmpty(data.dob)) {
     errors.dob = "DOB field is required";
   }
