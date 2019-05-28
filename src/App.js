@@ -8,7 +8,6 @@ import PrivateRoute from "./components/private-route/privateRoute";
 import RecepDashboard from "./components/Receptionist/RecepDashboard";
 import { Provider } from "react-redux";
 import store from "./store";
-import Profile from "./components/Doctor/Profile";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
@@ -54,9 +53,6 @@ class App extends Component {
             <Route exact path="/receptionistdashboard" component={RecepDashboard} />
 
             <Route exact path="/" component={Landing} />
-
-            
-
 
             <Route exact path="/login" component={Login} />
             

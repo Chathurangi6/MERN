@@ -82,7 +82,7 @@ class DocDashboard extends Component {
 
         <aside className="main-sidebar" style={{ position: "absolute" }}>
           <section className="sidebar">
-            <div>
+            {/* {/* <div>
               <p className='docHeader tc'> <b> Doctor DashBoard </b></p>
             </div>
 
@@ -93,25 +93,25 @@ class DocDashboard extends Component {
               <p className="username"> {this.state.userEmail} </p>
             </div>
             <ul className="sidebar-menu">
-
               <li className="header tc">MAIN NAVIGATION</li>
               <List component="nav" style={{ backgroundColor: "#2F4F4F" }}>
                 <ListItem button onClick={this.updateProfile}>
                   <ListItemText primary="Profile" />
                 </ListItem>
               </List>
-
               <List component="nav" style={{ backgroundColor: "#2F4F4F" }}>
                 <ListItem button onClick={this.updateAppoint}>
                   <ListItemText primary="Appointments" />
                 </ListItem>
               </List>
-            </ul>
+            </ul> */}
+
+<Uploader/>
           </section>
         </aside>
-        <div>
+        <div> 
 
-          {this.state.profile && (<Uploader/>)}
+          
 
           <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px" }}>
             <h3 align="center">Receptionist List</h3>
