@@ -26,6 +26,12 @@ const Doctor = new Schema({
     type: String,
     
   },
+  imageName:{
+    type:String,
+  },
+  imageData:{
+    type:String
+  },
   
   date: {
     type: Date,

@@ -1,100 +1,66 @@
 import React from 'react';
-import ImageCard from './ImageCard';
+import axios from 'axios'
+import DefaultImg from '../layout/images/docImg.jpg'
+
+// base api url being used
+const API_URL = "http://localhost:4000";
 
 class Uploader extends React.Component {
   constructor() {
     super();
 
     this.state ={
-      file: {name: null},
-      images: []
+      multerImage: DefaultImg
     };
 
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+   
   }
 
-  componentWillMount() {
-    this.getImageData();
+  uploadImage(e){
+    
+    let imageFormObj = new FormData();
+
+      imageFormObj.append("imageName", "multer-image-" + Date.now());
+      imageFormObj.append("imageData", e.target.files[0]);
+      // stores a readable instance of 
+      // the image being uploaded using multer
+      this.setState({
+        multerImage: URL.createObjectURL(e.target.files[0])
+      });
+
+      axios.post(`${API_URL}/image/uploadmulter`, imageFormObj)
+        .then((data) => {
+          if (data.data.success) {
+            alert("Image has been successfully uploaded using multer");
+            
+          }
+        })
+        .catch((err) => {
+          alert("Error while uploading image using multer");
+          this.setState({
+            multerImage: DefaultImg
+          })
+        });
   }
 
-  onFormSubmit(e) {
-    e.preventDefault();
-    this.fileUpload(this.state.file);
-  }
 
-  onChange(e) {
-    this.setState({file:e.target.files[0]})
-  }
-
-  getImageData() {
-    const url = 'http://localhost:4000/api/doctor/photo/:id';
-
-    fetch(url)
-    .then(response => {
-      if(response.ok) return response.json();
-      // throw new Error('Request failed.');
-      return [];
-    })
-    .then(data => { this.setState({images: data}); });
-  }
-
-
-  fileUpload(file){
-    const url = 'http://localhost:4000/api/doctor/uploadphoto';
-    const formData = new FormData();
-    formData.append('file',file)
-
-    fetch(url, {
-        mode: 'no-cors',
-        method: "POST",
-        body: formData
-      })
-    .then(res => { this.getImageData(); });
-  }
 
   render() {
-    let images;
-    if(this.state.images.length > 0) {
-      images = this.state.images.map( i => {
-        return (
-          <ImageCard key={i._id} alt={i.metadata.originalname} src={'http://localhost:3002/file/'+i.filename} date={i.uploadDate} />
-        );
-      });
-    } else {
-      images = <h2 className="subtitle">No images :(</h2>;
-    }
-
+    
     return (
-      <section className="section">
-        <div className="container  is-fluid">
-          <h1 className="title">Doctor Name</h1>
-          <div className="file is-info has-name is-fullwidth">
-            <label className="file-label">
-              <input className="file-input" type="file" name="resume" onChange={this.onChange} />
-              <span className="file-cta">
-                <span className="file-icon">
-                  <i className="fas fa-upload"></i>
-                </span>
-                <span className="file-label">
-                  Choose a file…
-                </span>
-              </span>
-              <span className="file-name">
-                {this.state.file.name}
-              </span>
-            </label>
+      <div className="main-container">
+        <h3 className="main-heading">Image Upload App</h3>
+
+        <div className="image-container">
+          <div className="process">
+            <h4 className="process__heading">Doctor</h4>
+            <p className="process__details">Upload image</p>
+
+            <input type="file" className="process__upload-btn" onChange={(e) => this.uploadImage(e)} />
+            <img src={this.state.multerImage} alt="upload-image" className="process__image" />
           </div>
-          <br/>
-          <button className="button is-primary" onClick={this.onFormSubmit} type="submit">Upload</button>
-        </div>
-        <hr/>
-        <div className="container is-fluid">
-          <div className="columns is-multiline">
-            {images}
           </div>
-        </div>
-      </section>
+          </div>
     );
   }
  }

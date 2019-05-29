@@ -4,6 +4,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const mongoose = require('mongoose');
 const multer = require('multer');
+var app=express();
 
 // Load input validation
 const validateRegisterInput = require("../validation/doctor.validation");
@@ -97,23 +98,6 @@ router.route('/view').get(function (req, res) {
 });
 });
 
-//get only doctor name
-// router.route('/name').post(function (req, res) {
-//   var userName = req.body.search; //userName = 'Juan David Nicholls';
-//   var searchString = new RegExp(userName, 'ig');
-//   Doctor.aggregate()
-//     .project({fullname: { $concat: ['$fname', ' ', '$lname'] }
-// })
-// .match({ fullname: searchString })
-// .exec(function (err, users) {
-//     if (err) throw err;
-    
-//     res.json({
-//         users: users
-//     });
-// });
-
-// });
 
 //get all doctors 
 router.route('/name').get(function (req, res) {
@@ -178,52 +162,52 @@ router.route('/count').get(function(req,res){
   })
 })
 
-
-// SET STORAGE
-var storage = multer.diskStorage({
-  destination: './public/images/',
+//image uploading
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, './public/images');
+  },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
+      cb(null, Date.now() + file.originalname);
   }
-})
- 
-var upload = multer({ storage: storage });
+});
 
-//upload photo
-router.post('/uploadphoto', upload.single('picture'), (req, res) => {
-  var img = fs.readFileSync(req.file.path);
-var encode_image = img.toString('base64');
-// Define a JSONobject for the image attributes for saving to database
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      cb(null, true);
+  } else {
+      // rejects storing a file
+      cb(null, false);
+  }
+}
 
-var finalImg = {
-    contentType: req.file.mimetype,
-    image:  new Buffer(encode_image, 'base64')
- };
-Doctor.insertOne(finalImg, (err, result) => {
-  console.log(result)
+const upload = multer({
+  storage: storage,
+  limits: {
+      fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
 
-  if (err) return console.log(err)
+router.route("/uploadmulter")
+    .post(upload.single('imageData'), (req, res, next) => {
+        console.log(req.body);
+        const newImage = new Doctor({
+            imageName: req.body.imageName,
+            imageData: req.file.path
+        });
 
-  console.log('saved to database')
-  res.redirect('/')
- 
-   
-})
-})
+        newImage.save()
+            .then((result) => {
+                console.log(result);
+                res.status(200).json({
+                    success: true,
+                    document: result
+                });
+            })
+            .catch((err) => next(err));
+    });
 
-//get photo
-router.get('/photo/:id', (req, res) => {
-  var filename = req.params.id;
-   
-  Doctor.findOne({'_id': ObjectId(filename) }, (err, result) => {
-   
-      if (err) return console.log(err)
-   
-     res.contentType('image/jpeg');
-     res.send(result.image.buffer)
-     
-      
-    })
-  })
+
 
 module.exports = router;
