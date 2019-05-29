@@ -28,7 +28,7 @@ class Uploader extends React.Component {
   }
 
   getImageData() {
-    const url = 'http://localhost:3002/file';
+    const url = 'http://localhost:4000/api/doctor/photo/:id';
 
     fetch(url)
     .then(response => {
@@ -41,7 +41,7 @@ class Uploader extends React.Component {
 
 
   fileUpload(file){
-    const url = 'http://localhost:3002/upload';
+    const url = 'http://localhost:4000/api/doctor/uploadphoto';
     const formData = new FormData();
     formData.append('file',file)
 
@@ -68,7 +68,7 @@ class Uploader extends React.Component {
     return (
       <section className="section">
         <div className="container  is-fluid">
-          <h1 className="title">Photo Gallery</h1>
+          <h1 className="title">Doctor Name</h1>
           <div className="file is-info has-name is-fullwidth">
             <label className="file-label">
               <input className="file-input" type="file" name="resume" onChange={this.onChange} />

@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const mongoose = require('mongoose');
+const multer = require('multer');
 
 // Load input validation
 const validateRegisterInput = require("../validation/doctor.validation");
@@ -178,5 +179,51 @@ router.route('/count').get(function(req,res){
 })
 
 
+// SET STORAGE
+var storage = multer.diskStorage({
+  destination: './public/images/',
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+ 
+var upload = multer({ storage: storage });
+
+//upload photo
+router.post('/uploadphoto', upload.single('picture'), (req, res) => {
+  var img = fs.readFileSync(req.file.path);
+var encode_image = img.toString('base64');
+// Define a JSONobject for the image attributes for saving to database
+
+var finalImg = {
+    contentType: req.file.mimetype,
+    image:  new Buffer(encode_image, 'base64')
+ };
+Doctor.insertOne(finalImg, (err, result) => {
+  console.log(result)
+
+  if (err) return console.log(err)
+
+  console.log('saved to database')
+  res.redirect('/')
+ 
+   
+})
+})
+
+//get photo
+router.get('/photo/:id', (req, res) => {
+  var filename = req.params.id;
+   
+  Doctor.findOne({'_id': ObjectId(filename) }, (err, result) => {
+   
+      if (err) return console.log(err)
+   
+     res.contentType('image/jpeg');
+     res.send(result.image.buffer)
+     
+      
+    })
+  })
 
 module.exports = router;
