@@ -82,29 +82,6 @@ class DocDashboard extends Component {
 
         <aside className="main-sidebar" style={{ position: "absolute" }}>
           <section className="sidebar">
-            {/* {/* <div>
-              <p className='docHeader tc'> <b> Doctor DashBoard </b></p>
-            </div>
-
-            <div className="image1">
-              <img src="images/admin.jpg" className="circular--square" alt="User Image" />
-            </div>
-            <div className="info tc">
-              <p className="username"> {this.state.userEmail} </p>
-            </div>
-            <ul className="sidebar-menu">
-              <li className="header tc">MAIN NAVIGATION</li>
-              <List component="nav" style={{ backgroundColor: "#2F4F4F" }}>
-                <ListItem button onClick={this.updateProfile}>
-                  <ListItemText primary="Profile" />
-                </ListItem>
-              </List>
-              <List component="nav" style={{ backgroundColor: "#2F4F4F" }}>
-                <ListItem button onClick={this.updateAppoint}>
-                  <ListItemText primary="Appointments" />
-                </ListItem>
-              </List>
-            </ul> */}
 
 <Uploader/>
           </section>

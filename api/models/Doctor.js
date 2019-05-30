@@ -22,6 +22,9 @@ const Doctor = new Schema({
     type:String,
     
   },
+  time_slots:{
+    type:Array
+  },
   password: {
     type: String,
     

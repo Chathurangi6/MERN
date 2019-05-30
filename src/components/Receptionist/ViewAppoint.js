@@ -196,6 +196,15 @@ export default class ViewAppoint extends Component {
                                 <label>Doctor Name: {this.state.docName}  </label>
                             </div>
                             <div className="input-field col s12">
+                            <select id="time" onClick={this.onChange} className="form-control">
+                            <option>Time</option>
+                            {this.state.matching.map((obj) =>
+                                <option key={obj.time}>{obj.time}</option>
+                            )}
+                        </select>
+                                <label>Time</label>
+                            </div>
+                            <div className="input-field col s12">
                                 <input
                                     onChange={this.onChangeForm}
                                     value={this.state.p_fname}

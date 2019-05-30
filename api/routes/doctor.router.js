@@ -102,7 +102,7 @@ router.route('/view').get(function (req, res) {
 //get all doctors 
 router.route('/name').get(function (req, res) {
   Doctor.aggregate()
-    .project({fullname: { $concat: ['$fname', ' ', '$lname'] },email:'$email'
+    .project({fullname: { $concat: ['$fname', ' ', '$lname'] },email:'$email',time: '$time_slots'
 }).exec(function(err,name){
   if(err){
     console.log(err);

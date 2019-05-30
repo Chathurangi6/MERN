@@ -1,7 +1,6 @@
 
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
-import ReportUpload from "../src/components/Lab/Report/ReportUpload"
 import Login from "./components/auth/Login";
 import Admin from './components/Admin/Admin.js';
 import PrivateRoute from "./components/private-route/privateRoute";
@@ -18,7 +17,7 @@ import ForgotPassword from "./components/auth/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword";
 import Home from '../src/components/layout/Home';
 import Landing from './components/LandingPage/Landing';
-
+import LabView from "./components/Laboratory/labview"
 
 
 
@@ -57,7 +56,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             
             <Route exact path="/forgotpassword" component={ForgotPassword} />
-            <Route exact path="/h" component={Home} />
+            <Route exact path="/lab" component={LabView} />
             <Route exact path="/recep" component={RecepDashboard} />
             <Route path="/reset/:token" component={ResetPassword} />
            
