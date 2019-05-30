@@ -1,23 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require('mongoose');
-
 const Appoint = mongoose.model('appointments');
 
-// Appoint.find({ date: { $gte:ISODate("2013-11-19T14:00:00Z"), $lt: ISODate("2013-11-19T20:00:00Z") } })
-
-// router.route('/search').get(function (req, res) {
-//     Appoint.find({ $and: [{ date: req.body.appointDate }, { doctor: req.body.doctor }] },function(err, appoints){
-//         if(err){
-//           console.log(err);
-//         }
-//         else {
-//           res.json(appoints);
-//         }
-//     }
-//     )
-// }
-// )
 
 //search appointments by doctor name
 router.route('/search').post(function (req, res) {
@@ -25,8 +10,7 @@ router.route('/search').post(function (req, res) {
     Appoint.find({ doctor: docName }, function (err, users) {
       if (err) throw err;
       res.json( users);
-  });
-  
+  }); 
   });
 
 //search appointments by doctor email
@@ -36,7 +20,6 @@ router.route('/appointToDoctor').post(function (req, res) {
     if (err) throw err;
     res.json( users);
 });
-
 });
   
   

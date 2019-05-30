@@ -26,6 +26,7 @@ export default class ViewAppoint extends Component {
             p_fname: "",
             p_lname: "",
             phn_number: "",
+            timeslots:[],
             modalIsOpen: false
 
         }
@@ -58,9 +59,16 @@ export default class ViewAppoint extends Component {
         const obj = {
             doctor: this.state.docName
         };
+        const obj2={
+            email:this.state.docEmail
+        }
         axios.post('http://localhost:4000/api/appointment/search', obj)
             .then(res => {
                 this.setState({ matching: res.data })})
+        axios.post('http://localhost:4000/api/doctor/viewTime',obj2)
+            .then(res=>{
+                this.setState({timeslots:res.data.time_slots})
+            })
     }
 
     onSubmit(e) {
@@ -198,7 +206,7 @@ export default class ViewAppoint extends Component {
                             <div className="input-field col s12">
                             <select id="time" onClick={this.onChange} className="form-control">
                             <option>Time</option>
-                            {this.state.matching.map((obj) =>
+                            {this.state.timeslots.map((obj) =>
                                 <option key={obj.time}>{obj.time}</option>
                             )}
                         </select>

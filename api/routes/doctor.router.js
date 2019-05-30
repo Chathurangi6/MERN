@@ -162,6 +162,15 @@ router.route('/count').get(function(req,res){
   })
 })
 
+//get available time slots 
+router.route('/viewTime').get(function(req,res){
+  Doctor.findOne({email:req.body.email}), function (err, users) {
+    if (err) throw err;
+    res.json( users);
+  }
+});
+
+
 //image uploading
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
