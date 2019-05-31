@@ -35,6 +35,14 @@ class RecepDashboard extends Component {
     this.props.logoutUser();
   };
 
+  docAvailable=()=>{
+    this.setState({
+      patientView: false,
+      patientadd: false,
+      appointment: false,
+      Welcome:true
+    })
+  };
   updateView = () => {
     this.setState({
       patientView: true,
@@ -106,6 +114,11 @@ class RecepDashboard extends Component {
             </form>
             <ul className="sidebar-menu">
               <li className="header">MAIN NAVIGATION</li>
+              <List component="nav" style={{backgroundColor:"#212f39"}}>
+              <ListItem button onClick={this.docAvailable}>
+              <span>Doctor Availability</span>
+                </ListItem>
+                </List>
               <List component="nav" style={{backgroundColor:"#212f39"}}>
               <ListItem button onClick={this.updatePatientAdd}>
               <span>New Patient</span>

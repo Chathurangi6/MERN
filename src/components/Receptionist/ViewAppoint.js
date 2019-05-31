@@ -27,6 +27,7 @@ export default class ViewAppoint extends Component {
             p_lname: "",
             phn_number: "",
             timeslots:[],
+            time:"",
             modalIsOpen: false
 
         }
@@ -44,7 +45,8 @@ export default class ViewAppoint extends Component {
         let docemail = docdetail[1]
         this.setState({ 
             docName: docname,
-            docEmail:docemail
+            docEmail:docemail,
+            date:e.target.value
         });
         console.log(this.state.docEmail);
     };
@@ -67,7 +69,7 @@ export default class ViewAppoint extends Component {
                 this.setState({ matching: res.data })})
         axios.post('http://localhost:4000/api/doctor/viewTime',obj2)
             .then(res=>{
-                this.setState({timeslots:res.data.time_slots})
+                this.setState({timeslots:res.data})
             })
     }
 
@@ -78,7 +80,8 @@ export default class ViewAppoint extends Component {
             docEmail : this.state.docEmail,
             p_fname: this.state.p_fname,
             p_lname: this.state.p_lname,
-            phn_number: this.state.phn_number
+            phn_number: this.state.phn_number,
+            
 
         };
         axios.post('http://localhost:4000/api/appointment/add', obj)
@@ -155,6 +158,14 @@ export default class ViewAppoint extends Component {
                             )}
                         </select>
                     </div>
+                    <div className="form-group">
+                      <label>Date: </label>
+                      <input type="date" 
+                        className="form-control"
+                        value={this.state.date}
+                        onChange={this.onChange}
+                        />
+                  </div>
 
                     <div className="form-group">
                         <button onClick={this.search} className="btn btn-primary right " >Search Appointment</button>
@@ -207,10 +218,10 @@ export default class ViewAppoint extends Component {
                             <select id="time" onClick={this.onChange} className="form-control">
                             <option>Time</option>
                             {this.state.timeslots.map((obj) =>
-                                <option key={obj.time}>{obj.time}</option>
+                                <option key={obj.time_slots}>{obj.time_slots}</option>
                             )}
                         </select>
-                                <label>Time</label>
+                                
                             </div>
                             <div className="input-field col s12">
                                 <input

@@ -26,7 +26,9 @@ const Appointment = new Schema({
     type:String,
     
   },
- 
+  time:{
+    type:String
+  },
   date: {
     type: Date,
     default: Date.now

@@ -57,16 +57,23 @@ const newUser = {
 render() {
     const { errors } = this.state;
 return (
-      <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
-        <div className="row">
-          <div className="col s8 offset-s2">
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-              <h4>
-                <b>Register</b> below
-              </h4>
+      <div className="container center br5 shadow-2 ba b--black-10" 
+      style={{
+        backgroundColor:"rgba(0,0,0,0)",
+        padding:'10px',
+        marginTop:'20px',
+        width:"69%",
+        marginBottom:"30px"
+        }}>
+        <div className="">
+            <div className="col s8 offset-s2" style={{paddingLeft:"20px", paddingRight:"20px"}} >
+              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                <h4 style={{fontFamily:"Acme"}}>
+                  Receptionist Registration
+                </h4>
             </div>
             <form noValidate id="myForm" onSubmit={this.onSubmit}>
-              <div className="input-field col s12">
+              <div className="input-field col s12" style={{width:"50%", display:"inline-block"}}>
                 <input
                   onChange={this.onChange}
                   value={this.state.fname}
@@ -80,7 +87,7 @@ return (
                 <label htmlFor="name">First Name</label>
                 <span className="red-text">{errors.fname}</span>
               </div>
-              <div className="input-field col s12">
+              <div className="input-field col s12" style={{width:"50%", display:"inline-block"}}>
                 <input
                   onChange={this.onChange}
                   value={this.state.lname}
@@ -109,8 +116,11 @@ return (
                 <span className="red-text">{errors.email}</span>
  
               </div>
-              <div className="input-field col s12">
+              <div className="input-field col s12" style={{marginTop:"20px", marginBottom:"15"}}>
+              <div style={{width:"240px"}} >
+                    <label htmlFor="specialist" style={{display:"inline-block", fontSize:"15px", float:"left", marginTop:"15px"}} >Date of Birth</label>
                 <input
+                 style={{display:"inline-block", width:"125px", left:""}}
                   onChange={this.onChange}
                   value={this.state.dob}
                   error={errors.dob}
@@ -120,9 +130,9 @@ return (
                     invalid: errors.dob
                   })}
                 />
-                <label htmlFor="specialist">Date of Birth</label>
+                
                 <span className="red-text">{errors.dob}</span>
- 
+ </div>
               </div>
               <div className="input-field col s12">
                 <input
@@ -140,7 +150,7 @@ return (
  
               </div>
 
-              <div className="input-field col s12">
+              <div className="input-field col s12" style={{width:"50%" , display:"inline-block"}} >
                 <input
                   onChange={this.onChange}
                   value={this.state.password}
@@ -154,7 +164,7 @@ return (
                 <label htmlFor="password">Password</label>
                 <span className="red-text">{errors.password}</span>
               </div>
-              <div className="input-field col s12">
+              <div className="input-field col s12" style={{width:"50%", display:"inline-block"}}>
                 <input
                   onChange={this.onChange}
                   value={this.state.password2}
@@ -168,16 +178,17 @@ return (
                 <label htmlFor="password2">Confirm Password</label>
                 <span className="red-text">{errors.password2}</span>
               </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <div className="col s12" style={{ paddingLeft: "11.250px", height:"100px"}}>
                 <button
                   style={{
                     width: "150px",
                     borderRadius: "3px",
                     letterSpacing: "1.5px",
-                    marginTop: "1rem"
+                    marginTop: "1rem",
+                    float:"left"
                   }}
                   type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                  className="btn btn-large waves-effect waves-light hoverable accent-3"
                 >
                   Register
                 </button>
