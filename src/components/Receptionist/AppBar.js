@@ -24,16 +24,16 @@ const styles = {
 function ButtonAppBar(props) {
   const { classes } = props;
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{backgroundImage: "linear-gradient(rgba(0,0,0,0), rgba(128,128,128,0.9))"}} >
       <AppBar position="static">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
+          {/*<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                      <MenuIcon />
+                    </IconButton>*/}
           <Typography variant="h6" color="inherit" className={classes.grow}>
             News
           </Typography>
-          <Button color="danger">Log Out</Button>
+          <Button className='grow' color="danger">Log Out</Button>
         </Toolbar>
       </AppBar>
     </div>
