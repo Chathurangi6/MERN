@@ -163,11 +163,14 @@ router.route('/count').get(function(req,res){
 })
 
 //get available time slots 
-router.route('/viewTime').get(function(req,res){
-  Doctor.findOne({email:req.body.email}), function (err, users) {
-    if (err) throw err;
+router.route('/viewTime').post(function(req,res){
+ var docEmail=req.body.email;
+  Doctor.find({email:docEmail}, function (err, users) {
+    // if (err) throw err;
+    if(err){console.log(err)}
     res.json( users);
-  }
+   
+  })
 });
 
 
