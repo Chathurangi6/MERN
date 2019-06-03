@@ -58,6 +58,7 @@ class DocAvailability extends Component {
             })
         
     };
+
     setTime(){
 
     }
