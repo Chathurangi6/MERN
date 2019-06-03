@@ -15,6 +15,7 @@ router.route('/search').post(function (req, res) {
 
 //search appointments by doctor email
 router.route('/appointToDoctor').post(function (req, res) {
+  
   var docEmail = req.body.userEmail; 
   Appoint.find({ docEmail: docEmail }, function (err, users) {
     if (err) throw err;
