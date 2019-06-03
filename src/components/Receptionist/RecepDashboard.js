@@ -12,10 +12,8 @@ import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu'
-
-
-// import Welcome from './Welcome'
+import MenuIcon from '@material-ui/icons/Menu';
+import DocAvailability from "./DocAvailability";
 
 
 class RecepDashboard extends Component {
@@ -23,7 +21,7 @@ class RecepDashboard extends Component {
     super(props, context);
 
     this.state = {
-      Welcome:true,
+      docAvail:true,
       patientView: false,
       patientadd: false,
       appointment: false,
@@ -35,12 +33,20 @@ class RecepDashboard extends Component {
     this.props.logoutUser();
   };
 
+  docAvailable=()=>{
+    this.setState({
+      patientView: false,
+      patientadd: false,
+      appointment: false,
+      docAvail:true
+    })
+  };
   updateView = () => {
     this.setState({
       patientView: true,
       patientadd: false,
       appointment: false,
-      Welcome:false
+      docAvail:false
 
     })
   }
@@ -49,7 +55,7 @@ class RecepDashboard extends Component {
       patientView: false,
       patientadd: true,
       appointment: false,
-      Welcome:false
+      docAvail:false
     })
   }
   updateAppoint = () => {
@@ -57,7 +63,7 @@ class RecepDashboard extends Component {
       patientView: false,
       patientadd: false,
       appointment: true,
-      Welcome:false
+      docAvail:false
     })
   }
 
@@ -107,6 +113,11 @@ class RecepDashboard extends Component {
             <ul className="sidebar-menu">
               <li className="header">MAIN NAVIGATION</li>
               <List component="nav" style={{backgroundColor:"#212f39"}}>
+              <ListItem button onClick={this.docAvailable}>
+              <span>Doctor Availability</span>
+                </ListItem>
+                </List>
+              <List component="nav" style={{backgroundColor:"#212f39"}}>
               <ListItem button onClick={this.updatePatientAdd}>
               <span>New Patient</span>
                 </ListItem>
@@ -128,7 +139,7 @@ class RecepDashboard extends Component {
 
 
         </aside>
-        {/* {this.state.Welcome && (<Welcome/>)} */}
+        {this.state.docAvail && (<DocAvailability/>)}
         {this.state.patientView && (<ViewPatient />)}
         {this.state.patientadd && (<AddPatient />)}
         {this.state.appointment && (<Appointment />)}

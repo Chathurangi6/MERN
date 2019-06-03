@@ -27,6 +27,7 @@ export default class ViewAppoint extends Component {
             p_lname: "",
             phn_number: "",
             timeslots:[],
+            time:"",
             modalIsOpen: false
 
         }
@@ -65,10 +66,6 @@ export default class ViewAppoint extends Component {
         axios.post('http://localhost:4000/api/appointment/search', obj)
             .then(res => {
                 this.setState({ matching: res.data })})
-        axios.post('http://localhost:4000/api/doctor/viewTime',obj2)
-            .then(res=>{
-                this.setState({timeslots:res.data.time_slots})
-            })
     }
 
     onSubmit(e) {
@@ -78,7 +75,8 @@ export default class ViewAppoint extends Component {
             docEmail : this.state.docEmail,
             p_fname: this.state.p_fname,
             p_lname: this.state.p_lname,
-            phn_number: this.state.phn_number
+            phn_number: this.state.phn_number,
+            
 
         };
         axios.post('http://localhost:4000/api/appointment/add', obj)
@@ -121,7 +119,6 @@ export default class ViewAppoint extends Component {
         axios.get('http://localhost:4000/api/doctor/name')
             .then(response => {
                 this.setState({ doctor: response.data });
-                console.log(this.state.doctor);
             })
             .catch(function (error) {
                 console.log(error);
@@ -203,15 +200,7 @@ export default class ViewAppoint extends Component {
                             <div className="form-group">
                                 <label>Doctor Name: {this.state.docName}  </label>
                             </div>
-                            <div className="input-field col s12">
-                            <select id="time" onClick={this.onChange} className="form-control">
-                            <option>Time</option>
-                            {this.state.timeslots.map((obj) =>
-                                <option key={obj.time}>{obj.time}</option>
-                            )}
-                        </select>
-                                <label>Time</label>
-                            </div>
+                            
                             <div className="input-field col s12">
                                 <input
                                     onChange={this.onChangeForm}
