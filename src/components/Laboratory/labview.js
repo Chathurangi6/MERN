@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios';
-import tests from './test'
+import tests from './test';
+import SearchInput, {createFilter} from 'react-search-input'
 
+const KEYS_TO_FILTERS =[]
 const labstyles={
     container:{
         padding:'0'
@@ -12,7 +14,8 @@ const labstyles={
         margin:'0'
     },
     content:{
-        backgroundColor:'white'
+        backgroundColor:'white',
+      //  backgroundImage:url('../../')
     },
     table:{
         backgroundColor:'beige',
@@ -34,17 +37,25 @@ class LabView extends React.Component {
        }
        this.resultsSubmit = this.resultsSubmit.bind(this)       
        this.changeNewReport = this.changeNewReport.bind(this)
+       this.searchUpdated = this.searchUpdated.bind(this)
+       this.fetchData = this.fetchData.bind(this)
     }
     componentDidMount(){
+        this.fetchData();
+      
+    }
+    componentDidUpdate = () => {
+        this.fetchData()
+      }
+    fetchData(){
         fetch('http://localhost:4000/api/report/get')
         .then(res=>res.json())
         .then(res=>{
-            console.log(res)
+            
             this.setState({
                 results:res
             })
         });
-      
     }
     setPane(pane){
         
@@ -206,6 +217,9 @@ class LabView extends React.Component {
         })
             
     }
+    searchUpdated (term) {
+        this.setState({searchTerm: term})
+      }
 
     changeNewReport(e){
         var key = e.target.name;
@@ -248,7 +262,7 @@ class LabView extends React.Component {
                 </div>
 
                 <div className="form-group" >
-                    <label>Ema4</label>
+                    <label>Email</label>
                     <input
                         type="text"
                         name="pemail"
@@ -312,9 +326,10 @@ class LabView extends React.Component {
             </form>
         </div>
 
-        const viewTest =<div>
+        const viewTest =
+        <div>
             <h4>Pending Reports</h4>
-            <p>Search Bar Goes here</p>
+            <SearchInput onChange={this.searchUpdated} />
 
             <div id="results">
             <ul>
@@ -346,7 +361,7 @@ class LabView extends React.Component {
                     </div>
 
                     {/* Contents */}
-                    <div style={labstyles.content} className="col-md-10 col-sm-10">
+                    <div style={labstyles.content} className="col-md-10 col-sm-10" >
                      {/* {this.state.pane} */}
                         {panes[this.state.pane]}
                     </div>

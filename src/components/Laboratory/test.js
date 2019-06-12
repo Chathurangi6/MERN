@@ -20,13 +20,38 @@ const tests={cbc:{
     fbs:{
         title:'Fasting Blood Sugar',
         comp:[
-         
+            {
+                name:'Glucose',
+                std:'65-99',
+                unit:'mg/dL'
+            }
 
         ]
     },
     lpd:{
         title:'Lipid Profile',
-        comp:[]
+        comp:[
+            {
+                name:'Total Cholesterol',
+                std:'200-239',
+                unit:'mg/dL'
+            },
+            {
+                name:'LDL Cholesterol',
+                std:'130-159',
+                unit:'mg/dL'
+            },
+            {
+                name:'HDL Cholesterol',
+                std:'60-40',
+                unit:'mg/dL'
+            },
+            {
+                name:'Triglycerides',
+                std:'150-199',
+                unit:'mg/dL'
+            }
+        ]
     },
     ucl:{
         title:'Urine Culture',

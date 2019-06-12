@@ -34,7 +34,8 @@ export default class ViewRecep extends Component {
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-     this.fetchData=this.fetchData.bind(this)
+     this.fetchData=this.fetchData.bind(this);
+     this.ViewRecep=this.ViewRecep.bind(this);
   }
 
   fetchData() {
@@ -126,6 +127,28 @@ export default class ViewRecep extends Component {
         this.fetchData();
     }
 
+     ViewRecep() {
+      // Declare variables 
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("recepView");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("recepTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        } 
+      }
+    }
+
   
 
   render() {
@@ -133,8 +156,8 @@ export default class ViewRecep extends Component {
 
       <div className="bg-transparent center" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
         <h3 align="center">Receptionist List</h3>
-
-        <table className="table table-striped" style={{ marginTop: 20 }}>
+      <input type="text" id="recepInput" onChange="this.viewRecep()" placeholder="Search here.."/>
+        <table className="table table-striped" style={{ marginTop: 20 }} id="recepTable">
           <thead>
             <tr>
               <th>First Name</th>

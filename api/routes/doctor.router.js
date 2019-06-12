@@ -75,7 +75,7 @@ const { errors, isValid } = validateRegisterInput(req.body);
           newDoc.password = hash;
           newDoc
             .save()
-            .then(user => res.json(user))
+           // .then(user => res.json(user))
             .catch(err => console.log(err));
           
         });
@@ -124,7 +124,7 @@ router.route('/edit/:id').get(function (req, res) {
 });
 
 //  Defined update route
-router.route('/update/:id').post(function (req, res) {
+router.route('/update/:id').put(function (req, res) {
   Doctor.findById(req.params.id, function(err, doctor) {
     if (!doctor)
       res.status(404).send("data is not found");

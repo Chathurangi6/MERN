@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import Modal from 'react-modal';
+import SearchInput, {createFilter} from 'react-search-input'
+import '../../image/s.jpg'
 
+const KEYS_TO_FILTERS = ['email', 'fname','lname']
 const customStyles = {
   content: {
       top: '50%',
@@ -24,18 +27,23 @@ class ViewDoctors extends Component {
     email:'',
     specialist:'',
     phn_number:'', 
+    searchTerm: '',
     modalIsOpen: false
    };
+   this.searchUpdated = this.searchUpdated.bind(this)
   this.onChange = this.onChange.bind(this);
 this.onSubmit = this.onSubmit.bind(this);
 this.delete = this.delete.bind(this);
 this.openModal = this.openModal.bind(this);
 this.afterOpenModal = this.afterOpenModal.bind(this);
 this.closeModal = this.closeModal.bind(this);
+this.fetchData=this.fetchData.bind(this);
   }
-
-  onSubmit(id) {
-    
+  searchUpdated (term) {
+    this.setState({searchTerm: term})
+  }
+  onSubmit(e,id) {
+    e.preventDefault();
     const obj = {
         fname: this.state.fname,
         lname: this.state.lname,
@@ -44,8 +52,12 @@ this.closeModal = this.closeModal.bind(this);
         phn_number:this.state.phn_number,
         
     };
-    axios.post('http://localhost:4000/api/doctor/update/'+id, obj)
-        .then( this.fetchData());
+    axios.put('http://localhost:4000/api/doctor/update/'+id, obj)
+        .then(res=>{
+          console.log(res)
+          this.closeModal();
+          this.fetchData();
+        });
         this.setState({
           fname: '',
           lname: '',
@@ -53,7 +65,6 @@ this.closeModal = this.closeModal.bind(this);
           specialist:'',
           phn_number:''
         })
-    
     
   }
   
@@ -68,8 +79,13 @@ this.closeModal = this.closeModal.bind(this);
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          axios.get('http://localhost:4000/api/doctor/delete/' + id)
-          this.fetchData();
+          axios.get('http://localhost:4000/api/doctor/delete/' + id).then(result=>
+            {
+              this.fetchData();
+            }
+          )
+         // axios.get('http://localhost:4000/api/users/delete/' + id)
+          
           Swal.fire(
             'Deleted!',
             'Your file has been deleted.',
@@ -108,10 +124,14 @@ this.closeModal = this.closeModal.bind(this);
       this.fetchData();
   }
 
+  componentDidUpdate = () => {
+    this.fetchData()
+  }
   fetchData() {
-    axios.get('http://localhost:4000/api/doctor/view')
+    axios.get('http://localhost:4000/api/doctor/view/')
       .then(response => {
         this.setState({ doctors: response.data });
+        console.log(this.state.doctors)
       })
       .catch(function (error) {
         console.log(error);
@@ -138,15 +158,13 @@ this.closeModal = this.closeModal.bind(this);
   render() {
     let { doctors } = this.state;
      const { search } = this.state;
+     const filteredEmails = this.state.doctors.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
+ 
     return (
       <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px" }}>
         <h3 align="center">Doctor List</h3>
 
-        <input type="search"
-          placeholder="Search..."
-          onChange={this.onChange}
-          id='search'
-        />
+        <SearchInput onChange={this.searchUpdated} />
         {/* <input type="text" className="input" onChange={this.handleInputChange}  value={this.state.query} placeholder="Search..." /> */}
         
         <table className="table table-striped" style={{ marginTop: 20 }}>
@@ -163,7 +181,7 @@ this.closeModal = this.closeModal.bind(this);
 
           </thead>
           <tbody>
-           {this.state.doctors.map(doctor=>
+           {filteredEmails.map(doctor=>
             <tr key={doctor._id}>
                 <td>
                   {doctor.fname}
@@ -183,7 +201,7 @@ this.closeModal = this.closeModal.bind(this);
                 <td>
                   <button onClick={()=>this.openModal(doctor._id)} className="btn btn-primary">Edit</button>
                   {/* this modal for update doctor details */}
-                  <Modal
+                  <Modal 
                               isOpen={this.state.modalIsOpen}
                               onAfterOpen={this.afterOpenModal}
                               onRequestClose={this.closeModal}
@@ -191,7 +209,7 @@ this.closeModal = this.closeModal.bind(this);
                               contentLabel="Example Modal"
                           >
                           <h2 ref={subtitle => this.subtitle = subtitle}>Update Doctor</h2>
-                              <form onSubmit={()=>this.onSubmit(doctor._id)}>
+                              <form onSubmit={(e)=>this.onSubmit(e,doctor._id)}>
                       <div className="form-group">
                           <label>First Name:  </label>
                           <input 
