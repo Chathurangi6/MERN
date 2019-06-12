@@ -270,4 +270,12 @@ router.route('/findUser').get(function (req, res,next) {
   })(req, res, next);
 });
 
+// Defined delete | remove | destroy route
+router.route('/delete/:id').get(function (req, res) {
+  User.findByIdAndRemove({_id: req.params.id}, function(err, business){
+      if(err) res.json(err);
+      else res.json('Successfully removed');
+  });
+});
+
 module.exports = router;

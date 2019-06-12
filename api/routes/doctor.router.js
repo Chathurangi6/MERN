@@ -66,6 +66,8 @@ const { errors, isValid } = validateRegisterInput(req.body);
         specialist: req.body.specialist,
         phn_number : req.body.phn_number,
         email: req.body.email,
+        ava_day:req.body.availableDate,
+        ava_time:req.body.availableTime,
         password: req.body.password
       });
 // Hash password before saving in database
@@ -75,7 +77,7 @@ const { errors, isValid } = validateRegisterInput(req.body);
           newDoc.password = hash;
           newDoc
             .save()
-            .then(user => res.json(user))
+           // .then(user => res.json(user))
             .catch(err => console.log(err));
           
         });
@@ -124,7 +126,7 @@ router.route('/edit/:id').get(function (req, res) {
 });
 
 //  Defined update route
-router.route('/update/:id').post(function (req, res) {
+router.route('/update/:id').put(function (req, res) {
   Doctor.findById(req.params.id, function(err, doctor) {
     if (!doctor)
       res.status(404).send("data is not found");
@@ -162,8 +164,8 @@ router.route('/count').get(function(req,res){
   })
 })
 
-//get available time slots 
-router.route('/viewTime').post(function(req,res){
+//get all details of a given doctor
+router.route('/viewDetails').post(function(req,res){
  var docEmail=req.body.email;
   Doctor.find({email:docEmail}, function (err, users) {
     // if (err) throw err;

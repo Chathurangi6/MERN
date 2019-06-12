@@ -17,6 +17,8 @@ class RegDoctor extends Component {
       email: "",
       specialist: "",
       phn_number: "",
+      availableDate:"",
+      availableTime:"",
       password: "",
       password2: "",
       errors: {}
@@ -45,6 +47,8 @@ class RegDoctor extends Component {
       specialist: this.state.specialist,
       email: this.state.email,
       phn_number: this.state.phn_number,
+      availableDate:this.state.availableDate,
+      availableTime:this.state.availableTime,
       password: this.state.password,
       password2: this.state.password2
     };
@@ -55,6 +59,8 @@ class RegDoctor extends Component {
       email: "",
       specialist: "",
       phn_number: "",
+      availableDate:"",
+      availableTime:"",
       password: "",
       password2: ""
     })
@@ -113,7 +119,7 @@ class RegDoctor extends Component {
               </div>
 
 
-              <div className="input-field col s12">
+              <div className="input-field col s12" style={{width:"50%"}}>
                 <input
                   icon='email' 
                   onChange={this.onChange}
@@ -127,6 +133,23 @@ class RegDoctor extends Component {
                 />
                 <label htmlFor="email">Email</label>
                 <span className="red-text">{errors.email}</span>
+              </div>
+
+              <div className="input-field col s12"  style={{width:"50%"}} >
+                <input
+                  icon='phone'
+                  name='phone'
+                  onChange={this.onChange}
+                  value={this.state.phn_number}
+                  error={errors.phn_number}
+                  id="phn_number"
+                  type="text"
+                  className={classnames("", {
+                    invalid: errors.phn_number
+                  })}
+                />
+                <label htmlFor="phn_number">Phone Number</label>
+                <span className="red-text">{errors.phn_number}</span>
               </div>
               
 
@@ -253,19 +276,36 @@ class RegDoctor extends Component {
 
               <div className="input-field col s12"  style={{width:"50%"}} >
                 <input
-                  icon='phone'
-                  name='phone'
+                  icon='adate'
+                  name='adate'
                   onChange={this.onChange}
-                  value={this.state.phn_number}
-                  error={errors.phn_number}
-                  id="phn_number"
+                  value={this.state.availableDate}
+                 // error={errors.phn_number}
+                  id="availableDate"
                   type="text"
-                  className={classnames("", {
-                    invalid: errors.phn_number
-                  })}
+                  // className={classnames("", {
+                  //   invalid: errors.phn_number
+                  // })}
                 />
-                <label htmlFor="phn_number">Phone Number</label>
-                <span className="red-text">{errors.phn_number}</span>
+                <label htmlFor="phn_number">Available Day</label>
+                {/* <span className="red-text">{errors.phn_number}</span> */}
+              </div>
+
+              <div className="input-field col s12"  style={{width:"50%"}} >
+                <input
+                  icon='atime'
+                  name='atime'
+                  onChange={this.onChange}
+                  value={this.state.availableTime}
+                 // error={errors.phn_number}
+                  id="availableTime"
+                  type="text"
+                  // className={classnames("", {
+                  //   invalid: errors.phn_number
+                  // })}
+                />
+                <label htmlFor="phn_number">Available Time</label>
+                {/* <span className="red-text">{errors.phn_number}</span> */}
               </div>
 
 

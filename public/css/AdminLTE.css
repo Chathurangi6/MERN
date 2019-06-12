@@ -186,9 +186,10 @@
   * ----------------------
   */
  .main-header {
-   /*position: relative;*/
 
-   max-height: 100px;
+   position: relative;
+   /*max-height: 100px;*/
+
    z-index: 1030;
  }
  .main-header .navbar {

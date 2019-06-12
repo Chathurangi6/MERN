@@ -15,7 +15,6 @@ import DocDashboard from "./components/Doctor/DocDashboard"
 import AdminDashboard from "./components/Admin/Admin"
 import ForgotPassword from "./components/auth/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword";
-import Home from '../src/components/layout/Home';
 import Landing from './components/LandingPage/Landing';
 import LabView from "./components/Laboratory/labview";
 import testbootstrap from "./components/Laboratory/newTest";
