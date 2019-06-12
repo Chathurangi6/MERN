@@ -187,7 +187,7 @@
   */
  .main-header {
    position: relative;
-   max-height: 100px;
+   /*max-height: 100px;*/
    z-index: 1030;
  }
  .main-header .navbar {
@@ -1531,11 +1531,11 @@
  .box {
    position: relative;
    border-radius: 3px;
-   background: #ffffff;
-   border-top: 3px solid #d2d6de;
-   margin-bottom: 20px;
+   /*background: #ffffff;*/
+   /*border-top: 3px solid #d2d6de;*/
+   /*margin-bottom: 20px;*/
    width: 100%;
-   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+   /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);*/
  }
  .box.box-primary {
    border-top-color: #3c8dbc;

@@ -47,7 +47,7 @@ export default class Content extends Component {
                             <div className="box ">
                             <div class="row">
                                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 grow tc">
-                                            <Card className="bg-transparent shadow-5 br3">
+                                            <Card className="bg shadow-5 br3">
                                                 <CardContent>
                                                     <h5 class="text-muted">Doctors</h5>
                                                     <div class="metric-value d-inline-block">
@@ -57,7 +57,7 @@ export default class Content extends Component {
                                             </Card>
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 grow tc">
-                                            <Card className="bg-transparent shadow-5 br3" >
+                                            <Card className="bg shadow-5 br3" >
                                                 <CardContent>
                                                     <h5 class="text-muted">Receptionists</h5>
                                                     <div class="metric-value d-inline-block">
@@ -67,7 +67,7 @@ export default class Content extends Component {
                                             </Card>
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 grow tc">
-                                            <Card className="bg-transparent shadow-5 br3">
+                                            <Card className="bg shadow-5 br3">
                                                 <CardContent>
                                                     <h5 class="text-muted">Patients</h5>
                                                     <div class="metric-value d-inline-block">
