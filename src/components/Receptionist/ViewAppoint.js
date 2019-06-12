@@ -47,7 +47,7 @@ export default class ViewAppoint extends Component {
             docName: docname,
             docEmail:docemail
         });
-        console.log(this.state.docEmail);
+        this.search();
     };
 
     onChangeForm = e => {
@@ -55,8 +55,8 @@ export default class ViewAppoint extends Component {
     }
 
     //search relevant appointments to a doctor
-    search(e) {
-       e.preventDefault();
+    search() {
+       
         const obj = {
             doctor: this.state.docName
         };
@@ -80,7 +80,7 @@ export default class ViewAppoint extends Component {
 
         };
         axios.post('http://localhost:4000/api/appointment/add', obj)
-            .then(res => console.log(res.data));
+            .then(res => this.search());
 
         this.setState({
             // doctor: "",
@@ -103,12 +103,11 @@ export default class ViewAppoint extends Component {
           }).then((result) => {
             if (result.value) {
               axios.get('http://localhost:4000/api/appointment/delete/' + id)
-              this.search();
               Swal.fire(
                 'Canceled!',
                 'Appointment has been canceled.',
                 'success'
-              ) 
+              )
             }
           })
             .catch(err => console.log(err))
@@ -135,7 +134,6 @@ export default class ViewAppoint extends Component {
 
     closeModal() {
         this.setState({ modalIsOpen: false });
-      //  this.search();
         
     }
 
@@ -154,8 +152,8 @@ export default class ViewAppoint extends Component {
                     </div>
 
                     <div className="form-group">
-                        <button onClick={this.search} className="btn btn-primary right " >Search Appointment</button>
-                    </div>
+                        <button onClick={this.search()} className="btn btn-primary right " ></button>
+                    </div> 
                 </form>
                 <div>
                     <table className="table table-striped" style={{ marginTop: 20 }}>
