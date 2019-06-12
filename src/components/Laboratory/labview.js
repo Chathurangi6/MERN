@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import axios from 'axios';
 import tests from './test';
 import SearchInput, {createFilter} from 'react-search-input'
@@ -162,24 +162,23 @@ class LabView extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                        {Object.keys(tests).map(
-                            test =>{
-                                if(report[test]!=null&&report[test]!="false" ){
-                                    return (
-                                        <>
-                                        <tr>
+                    {Object.keys(tests).map(
+                        test =>{
+                            if(report[test]!=null&&report[test]!="false" ){
+                                return (
+                                    <>
+                                    <tr>
                                         <td colSpan="4">
-                                         <h5><b>{tests[test].title}</b></h5>   
+                                        	<h5><b>{tests[test].title}</b></h5>   
                                         </td>
-                                        </tr>
+                                    </tr>
 
-                                        {this.testdata(test,key)}
-                                        </>
-                                        ) 
-                                }
+                                    {this.testdata(test,key)}
+                                    </>
+                                ) 
                             }
-                        )}
-                 
+                        }
+                    )}
                 </tbody>
             </table>
                     <button
@@ -198,24 +197,23 @@ class LabView extends React.Component {
     testdata(test,key){
         console.log(tests[test].title)
         return tests[test].comp.map((comp,key)=>{
-        return  <tr>
-
-                        <td >
-                            {comp.name}
-                        </td>
-                        <td>
-                            <input style={{height:'14px',marginTop:'10px'}}name={test+"["+key + "]"} type="text"/>
-                        </td>
-                        <td>
-                            {comp.std}
-                        </td>
-                        <td>
-                            {comp.unit}
-                        </td>
-                        </tr>
-
-        })
-            
+	        return  (
+	        	<tr>
+	                <td >
+	                    {comp.name}
+	                </td>
+	                <td>
+	                    <input style={{height:'14px',marginTop:'10px'}}name={test+"["+key + "]"} type="text"/>
+	                </td>
+	                <td>
+	                    {comp.std}
+	                </td>
+	                <td>
+	                    {comp.unit}
+	                </td>
+	            </tr>
+	        )
+        })       
     }
     searchUpdated (term) {
         this.setState({searchTerm: term})
@@ -234,8 +232,9 @@ class LabView extends React.Component {
 
     render(){
        
-        const newTest = <div>
-                <h4>New Medical Report</h4>
+        const newTest = 
+        <div>
+            <h4>New Medical Report</h4>
             <form onSubmit={this.submitNewReport.bind(this)}>
                 <h5>Patient Information</h5>
                 <div className="form-group">
@@ -274,6 +273,7 @@ class LabView extends React.Component {
                 <h5>Required Tests</h5>
             
         
+
   <div class="col-md-4">
   <div class="checkbox">
     <label >
@@ -326,18 +326,17 @@ class LabView extends React.Component {
             </form>
         </div>
 
+
         const viewTest =
         <div>
             <h4>Pending Reports</h4>
             <SearchInput onChange={this.searchUpdated} />
 
             <div id="results">
-            <ul>
-                {this.populateResults()}
-            </ul>
+	            <ul>
+	                {this.populateResults()}
+	            </ul>
             </div>
-
-
         </div>
         let panes =[newTest,viewTest]
         return(
@@ -346,18 +345,15 @@ class LabView extends React.Component {
                     {/* Sidebar */}
                     <div style={labstyles.side} className = "col-md-2 col-sm-2" >
                        Laboratory Options
-                       <ul>
-                           <li>
-                             <a href="#" onClick={(e)=>this.setPane(0)} >New Report</a>
-                           </li>
-                           <li>
-                           <a href="#" onClick={(e)=>this.setPane(1)} >Pending Reports</a>
-                           </li>
-
-                           <li>
-                               
-                           </li>
-                       </ul>
+                        <ul>
+                            <li>
+                            	<a href="#" onClick={(e)=>this.setPane(0)} >New Report</a>
+                            </li>
+                            <li>
+                            	<a href="#" onClick={(e)=>this.setPane(1)} >Pending Reports</a>
+                            </li>
+                           <li> </li>
+                        </ul>
                     </div>
 
                     {/* Contents */}
@@ -365,14 +361,7 @@ class LabView extends React.Component {
                      {/* {this.state.pane} */}
                         {panes[this.state.pane]}
                     </div>
-
                 </div>
-
-
-
-
-
-
             </div>
         )
     }
