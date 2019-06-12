@@ -131,7 +131,7 @@ export default class ViewRecep extends Component {
   render() {
     return (
 
-      <div className="bg-transparent center" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
+      <div className=" center" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
         <h3 align="center">Receptionist List</h3>
 
         <table className="table table-striped" style={{ marginTop: 20 }}>

@@ -40,14 +40,14 @@ export default class Content extends Component {
     render(){
         const { open } = this.state;
         return (
-            <div className="content-wrapper">
+            <div className="">
                 <section className="content-header">
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box ">
                             <div class="row">
-                                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 grow tc">
-                                            <Card className="bg-transparent shadow-5 br3">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 grow tc">
+                                            <Card className=" shadow-5 br3">
                                                 <CardContent>
                                                     <h5 class="text-muted">Doctors</h5>
                                                     <div class="metric-value d-inline-block">
@@ -56,8 +56,8 @@ export default class Content extends Component {
                                                 </CardContent>
                                             </Card>
                                         </div>
-                                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 grow tc">
-                                            <Card className="bg-transparent shadow-5 br3" >
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 grow tc">
+                                            <Card className=" shadow-5 br3" >
                                                 <CardContent>
                                                     <h5 class="text-muted">Receptionists</h5>
                                                     <div class="metric-value d-inline-block">
@@ -66,8 +66,8 @@ export default class Content extends Component {
                                                 </CardContent>
                                             </Card>
                                         </div>
-                                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 grow tc">
-                                            <Card className="bg-transparent shadow-5 br3">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 grow tc">
+                                            <Card className=" shadow-5 br3">
                                                 <CardContent>
                                                     <h5 class="text-muted">Patients</h5>
                                                     <div class="metric-value d-inline-block">

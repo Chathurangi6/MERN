@@ -61,9 +61,11 @@ return (
       style={{
         backgroundColor:"rgba(0,0,0,0)",
         padding:'10px',
+        backgroundColor:"rgba(255,255,255,0.540756285424326)",
         marginTop:'20px',
         width:"69%",
-        marginBottom:"30px"
+        marginBottom:"30px",
+        overflow:'hidden'
         }}>
         <div className="">
             <div className="col s8 offset-s2" style={{paddingLeft:"20px", paddingRight:"20px"}} >

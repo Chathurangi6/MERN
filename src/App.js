@@ -17,7 +17,9 @@ import ForgotPassword from "./components/auth/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword";
 import Home from '../src/components/layout/Home';
 import Landing from './components/LandingPage/Landing';
-import LabView from "./components/Laboratory/labview"
+import LabView from "./components/Laboratory/labview";
+import testbootstrap from "./components/Laboratory/newTest";
+
 
 
 
@@ -59,7 +61,7 @@ class App extends Component {
             <Route exact path="/lab" component={LabView} />
             <Route exact path="/recep" component={RecepDashboard} />
             <Route path="/reset/:token" component={ResetPassword} />
-           
+            <Route exact path="test" component={testbootstrap} />
          
             
       
