@@ -79,7 +79,7 @@ class RegDoctor extends Component {
     return (
       <div className="container container1 br5 shadow-2 ba b--black-10" >
         <div className="row">
-          <div className="col s8 offset-s2">
+          <div className="col s8 ">
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4 className='doctorregist tc'> Doctor Registration </h4>
             </div>
@@ -153,8 +153,8 @@ class RegDoctor extends Component {
               </div>
               
 
-              <div className="input-field col s12">
-                <select onClick={this.handleSelectChange}
+              <div className="input-field col s12" >
+                <select style={{backgroundColor:"rgba(255,255,255,0)"}} onClick={this.handleSelectChange}
                   className="form-control"
                   // value={this.state.specialist}
                   error={errors.specialist}
