@@ -66,6 +66,8 @@ const { errors, isValid } = validateRegisterInput(req.body);
         specialist: req.body.specialist,
         phn_number : req.body.phn_number,
         email: req.body.email,
+        ava_day:req.body.availableDate,
+        ava_time:req.body.availableTime,
         password: req.body.password
       });
 // Hash password before saving in database
@@ -162,8 +164,8 @@ router.route('/count').get(function(req,res){
   })
 })
 
-//get available time slots 
-router.route('/viewTime').post(function(req,res){
+//get all details of a given doctor
+router.route('/viewDetails').post(function(req,res){
  var docEmail=req.body.email;
   Doctor.find({email:docEmail}, function (err, users) {
     // if (err) throw err;
