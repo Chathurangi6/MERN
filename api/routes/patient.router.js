@@ -27,11 +27,23 @@ patientRoutes.route('/').get(function (req, res) {
 });
 });
 
-//count number of doctors
+//count number of patients
 patientRoutes.route('/count').get(function(req,res){
   Patient.countDocuments({},function(err,users){
     if(err) res.json(err);
     else res.json(users);
   })
 })
+
+//get all details of a given patient
+patientRoutes.route('/viewDetails').post(function(req,res){
+  var paEmail=req.body.email;
+  Patient.find({email:paEmail}, function (err, users) {
+     // if (err) throw err;
+     if(err){console.log(err)}
+     res.json( users);
+    
+   })
+ });
+ 
 module.exports = patientRoutes;

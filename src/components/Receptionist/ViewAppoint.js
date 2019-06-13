@@ -112,6 +112,27 @@ export default class ViewAppoint extends Component {
           })
             .catch(err => console.log(err))
         }
+
+        // checkDetails = pemail =>{
+        //     const obj={
+        //         email:pemail
+        //     };
+        //     console.log(obj);
+        //     axios.post('http://localhost:4000/patient/viewDetails',obj)
+        //         .then(res=>{
+                
+        //             if(res.data[0]!=undefined){
+                        
+        //                 console.log( Object.keys(res.data[0]))
+        //                 this.setState({
+        //                     p_fname:res.data[0].fname,
+        //                     p_lname:res.data[0].lname
+        //                 },function(){
+                       
+        //                 })
+        //             }
+        //         })       
+        // };
     
 
     componentDidMount() {

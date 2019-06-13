@@ -77,8 +77,7 @@ class DocAvailability extends Component {
                         console.log(this.state.timeslot)
                     })
                 }
-            })
-        
+            })       
     };
 
 
