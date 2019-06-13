@@ -1,5 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import tests from './test';
 import SearchInput, {createFilter} from 'react-search-input'
 
@@ -339,13 +346,17 @@ class LabView extends React.Component {
             </div>
         </div>
         let panes =[newTest,viewTest]
+
         return(
             <div style={labstyles.container} className="container-fluid">
                 <div className="row">
                     {/* Sidebar */}
                     <div style={labstyles.side} className = "col-md-2 col-sm-2" >
-                       Laboratory Options
-                        <ul>
+                     <aside className="main-sidebar" style={{paddingLeft:"20px"}}>
+                         <section className="sidebar" >
+                       
+                        <ul  className="sidebar-menu">
+                         <li className="header">Laboratory Options</li>
                             <li>
                             	<a href="#" onClick={(e)=>this.setPane(0)} >New Report</a>
                             </li>
@@ -354,11 +365,28 @@ class LabView extends React.Component {
                             </li>
                            <li> </li>
                         </ul>
+                        </section></aside>
                     </div>
 
                     {/* Contents */}
                     <div style={labstyles.content} className="col-md-10 col-sm-10" >
-                     {/* {this.state.pane} */}
+                         <header className="main-header">
+            
+              <nav className="navbar navbar-static-top">
+                <Toolbar>
+                  <IconButton  color="inherit" aria-label="Menu">
+                    <MenuIcon />
+                  </IconButton>
+                  <Typography variant="h6" color="inherit" >
+                  
+                  </Typography>
+                  <Button color="inherit" className="top-right" onClick={this.onLogoutClick}>Logout</Button>
+                </Toolbar>
+              </nav>
+            </header>
+                        <div className="container" style={{border:"2px",borderRadius:"5px",backgroundColor:"white",padding:'10px',marginTop:'20px', width:"900px"}}>
+
+                     {/* {this.state.pane} */}</div>
                         {panes[this.state.pane]}
                     </div>
                 </div>

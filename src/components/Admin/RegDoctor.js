@@ -77,7 +77,7 @@ class RegDoctor extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="container container1 br5 shadow-2 ba b--black-10" >
+      <div className="container container1 br5 shadow-2 ba b--black-10" style={{marginTop:"20px",height:"550px"}}>
         <div className="row">
           <div className="col s8 ">
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
