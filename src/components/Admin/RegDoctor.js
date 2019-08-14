@@ -274,7 +274,7 @@ class RegDoctor extends Component {
               </div>
               
 
-              <div className="input-field col s12"  style={{width:"50%"}} >
+              {/* <div className="input-field col s12"  style={{width:"50%"}} >
                 <input
                   icon='adate'
                   name='adate'
@@ -287,11 +287,11 @@ class RegDoctor extends Component {
                   //   invalid: errors.phn_number
                   // })}
                 />
-                <label htmlFor="phn_number">Available Day</label>
+                <label htmlFor="phn_number">Available Day</label> */}
                 {/* <span className="red-text">{errors.phn_number}</span> */}
-              </div>
+              {/* </div> */}
 
-              <div className="input-field col s12"  style={{width:"50%"}} >
+              {/* <div className="input-field col s12"  style={{width:"50%"}} >
                 <input
                   icon='atime'
                   name='atime'
@@ -304,9 +304,9 @@ class RegDoctor extends Component {
                   //   invalid: errors.phn_number
                   // })}
                 />
-                <label htmlFor="phn_number">Available Time</label>
+                <label htmlFor="phn_number">Available Time</label> */}
                 {/* <span className="red-text">{errors.phn_number}</span> */}
-              </div>
+              {/* </div> */}
 
 
               <div className="input-field col s6" style={{width:"50%", display:"inline-block"}}>
