@@ -6,8 +6,12 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import '../../css/docDashboard.css';
 import axios from 'axios';
+<<<<<<< HEAD
 import { Button } from 'reactstrap';
 
+=======
+import Uploader from './Uploader'
+>>>>>>> 7a0e509cd394a4c5ae3f0f522ed703fa17794939
 import UpdateAvailability from  './UpdateAvailability'
 
 
@@ -97,6 +101,7 @@ class DocDashboard extends Component {
             </aside></div>
             </div>
           </div>
+<<<<<<< HEAD
           <div className='col-md-10' style={{paddingLeft:"0px"}}>
             <header className="main-header"> {/*className="main-header*/}
                        
@@ -110,6 +115,11 @@ class DocDashboard extends Component {
           {this.state.availability && (<UpdateAvailability/>)}
 
         </div>
+=======
+          {this.state.availability && (<UpdateAvailability/>)}
+
+        
+>>>>>>> 7a0e509cd394a4c5ae3f0f522ed703fa17794939
           
         </div>
       </div>

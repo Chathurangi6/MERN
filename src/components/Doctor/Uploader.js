@@ -48,19 +48,11 @@ class Uploader extends React.Component {
   render() {
     
     return (
-      <div className="main-container">
-        <h3 className="main-heading">Image Upload App</h3>
-
-        <div className="image-container">
-          <div className="process">
-            <h4 className="process__heading">Doctor</h4>
-            <p className="process__details">Upload image</p>
-
+      <div className="" style={{color:'Black'}}>
+        <h3 className="tc">Doctor</h3>
             <input type="file" className="process__upload-btn" onChange={(e) => this.uploadImage(e)} />
-            <img src={this.state.multerImage} alt="upload-image" className="process__image" />
-          </div>
-          </div>
-          </div>
+            <img src={this.state.multerImage} alt="upload-image" className="process__image" style={{position:'relative'}} />
+      </div>
     );
   }
  }

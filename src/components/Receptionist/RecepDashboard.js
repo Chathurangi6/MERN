@@ -145,14 +145,17 @@ class RecepDashboard extends Component {
 </div>
       </div>
       </div>
-
     );
   }
 }
+
+
 RecepDashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
+
+
 const mapStateToProps = state => ({
   auth: state.auth
 });

@@ -128,7 +128,7 @@ class Admin extends Component {
     };
 
     return (
-      <div className='xontainer-fluid'>
+      <div className='container-fluid'>
         <div className='row'>
           {/* header */}
           <div className='col-md-2' style={{paddingRight:"0",position:"inherit"}}>
