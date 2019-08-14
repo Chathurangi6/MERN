@@ -72,23 +72,13 @@ class RecepDashboard extends Component {
     const { user } = this.props.auth;
   // console.log(user);
     return (
-      <div >
-      <header className="main-header">
-          <a href="" className="logo">
-            <span className="logo-lg"><b>Receptionist</b>Nawodaya</span>
-          </a>
-          <nav className="navbar navbar-static-top">
-          <Toolbar>
-          <IconButton  color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit" >
+      <div className  ='container-fluid'>
+        <div className='row'>  
+          <div className='col-md-2'>
+            <div className='row'>
+           
+            </div>
             
-          </Typography>
-          <Button color="inherit" className="top-right" onClick={this.onLogoutClick}>Logout</Button>
-        </Toolbar>
-          </nav>
-        </header>
         <aside className="main-sidebar" >
           <section className="sidebar" >
             <div className="user-panel">
@@ -136,15 +126,24 @@ class RecepDashboard extends Component {
             </ul>
           
           </section>
-
-
         </aside>
+        </div>
+        <div className='col-md-10' style={{paddingLeft:"0px"}}>
+            <header className="main-header"> {/*className="main-header*/}
+                       
+                {/*<DateAndTime/>*/}        
+              <nav className="navbar navbar-static-top logoutnav" style={{width:"100%"}} >       
+                <div className='logoutdiv tc' style={{marginLeft:"auto", marginRight:"0"}} >
+                <Button className="logoutbutton grow shadow-5" color='danger' onClick={this.onLogoutClick} >Logout</Button>
+                </div>
+              </nav>
+            </header>
         {this.state.docAvail && (<DocAvailability/>)}
         {this.state.patientView && (<ViewPatient />)}
         {this.state.patientadd && (<AddPatient />)}
         {this.state.appointment && (<Appointment />)}
-
-
+</div>
+      </div>
       </div>
 
     );

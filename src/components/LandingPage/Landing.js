@@ -21,13 +21,13 @@ class Landing extends Component{
                     <Link to="/login">Admin Login</Link>
                  </div>
                  <div className="login-button col-2">
-                    <Link to="/login">Admin Login</Link>
+                    <Link to="/login">Receptionist Login</Link>
                  </div>
                  <div className="login-button col-2">
-                    <Link to="/login">Admin Login</Link>
+                    <Link to="/login">Doctor Login</Link>
                  </div>
                  <div className="login-button col-2">
-                    <Link to="/login">Admin Login</Link>
+                    <Link to="/login">Laboratorist Login</Link>
                  </div>
 
                 </div> 

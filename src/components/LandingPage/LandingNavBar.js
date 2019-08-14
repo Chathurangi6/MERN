@@ -23,11 +23,11 @@ class LandingNavBar extends Component {
                 </Navbar.Brand>
                 <div style={{marginLeft: '550px', paddingTop: '2px'}}>
                     <ul>
-                    <li><Link to="/login">Login </Link></li>
-                    <li><Link to="/login">Login </Link></li>
-                    <li><Link to="/login">Login </Link></li>
-                    <li><Link to="/login">Login </Link></li>
-                    <li><Link to="/login">Login </Link></li>
+                    <li><Link to="/">Home </Link></li>
+                    <li><Link to="">About Us </Link></li>
+                    <li><Link to="">Contact Us </Link></li>
+                    <li><Link to="">Login </Link></li>
+                    <li><Link to="">Login </Link></li>
                     </ul>
                 </div> 
                 

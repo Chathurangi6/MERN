@@ -220,7 +220,7 @@ router.route("/uploadmulter")
             .catch((err) => next(err));
     });
 
-router.route("/createslot").post( (req, res) => {
+    router.route("/createslot").post( (req, res) => {
       let slot = new DoctorAvailability(req.body);
       slot.save()
         .then(res => {
@@ -232,13 +232,6 @@ router.route("/createslot").post( (req, res) => {
         });
     });
 
-router.route('/get-slots-by-date').get(function(req,res){
-  DoctorAvailability.find({$and: [{date: "2019-08-14"}, {docorId: 1}]},function(err,slots){
-    if(err) res.json(err);
-    else res.json(slots);
-  })
-})
-
 router.route('/get-available-slots/:id').get(function(req,res){
   DoctorAvailability.find({doctorId: req.params.id},function(err,slots){
     if(err) res.json(err);
@@ -249,6 +242,7 @@ router.route('/get-available-slots/:id').get(function(req,res){
     res.status(400).send("faild to find");
   });
 })
+
 
 
 module.exports = router;
