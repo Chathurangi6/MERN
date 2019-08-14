@@ -6,6 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import '../../css/docDashboard.css';
 import axios from 'axios';
+import { Button } from 'reactstrap';
 
 import UpdateAvailability from  './UpdateAvailability'
 
@@ -96,9 +97,19 @@ class DocDashboard extends Component {
             </aside></div>
             </div>
           </div>
+          <div className='col-md-10' style={{paddingLeft:"0px"}}>
+            <header className="main-header"> {/*className="main-header*/}
+                       
+                {/*<DateAndTime/>*/}        
+              <nav className="navbar navbar-static-top logoutnav" style={{width:"100%"}} >       
+                <div className='logoutdiv tc' style={{marginLeft:"auto", marginRight:"0"}} >
+                <Button className="logoutbutton grow shadow-5" color='danger' onClick={this.onLogoutClick} >Logout</Button>
+                </div>
+              </nav>
+            </header>
           {this.state.availability && (<UpdateAvailability/>)}
 
-        
+        </div>
           
         </div>
       </div>

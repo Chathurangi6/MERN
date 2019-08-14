@@ -56,12 +56,12 @@ class Login extends Component {
     const { errors } = this.state;
     
     return (
+      <div className="content">
       <div className="login-content">
-      <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "500px" }}>
         <div style={{ marginTop: "4rem" }} className="row">
-          <div className="col s8 offset-s2">
+          <div className="col s8 ">
 
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            <div className="topic col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Login</b> below
               </h4>
@@ -101,21 +101,16 @@ class Login extends Component {
                   {errors.passwordincorrect}
                 </span>
               </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <div className="col s12" style={{ paddingLeft: "142px", marginTop:"20px", marginBottom:"5px" }}>
                 <button
-                  style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem"
-                  }}
+                 
                   type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable accent-3"
+                  className="btn   waves-light hoverable accent-3"
                 >
                   Login
                 </button>
               </div>
-              <a href='/forgotpassword'>forgot your password?</a> 
+              <a href='/forgotpassword' style={{ paddingLeft: "102px" }}>forgot your password?</a> 
             </form>
           </div>
         </div>

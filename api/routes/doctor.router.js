@@ -1,4 +1,3 @@
-
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -13,6 +12,7 @@ const validateRegisterInput = require("../validation/doctor.validation");
 
 const Doctor = mongoose.model('doctors');
 const User = mongoose.model('users');
+const DoctorAvailability = mongoose.model('doctor_availabilities');
 
 
 router.post("/register", (req, res) => {
@@ -66,8 +66,6 @@ const { errors, isValid } = validateRegisterInput(req.body);
         specialist: req.body.specialist,
         phn_number : req.body.phn_number,
         email: req.body.email,
-        ava_day:req.body.availableDate,
-        ava_time:req.body.availableTime,
         password: req.body.password
       });
 // Hash password before saving in database
@@ -222,6 +220,35 @@ router.route("/uploadmulter")
             .catch((err) => next(err));
     });
 
+router.route("/createslot").post( (req, res) => {
+      let slot = new DoctorAvailability(req.body);
+      slot.save()
+        .then(res => {
+          console.log("res ", res);
+          res.status(200).json({ msg:'time slot is added successfully'});
+        })
+        .catch(err => {
+          res.status(400).send("unable to save to database");
+        });
+    });
+
+router.route('/get-slots-by-date').get(function(req,res){
+  DoctorAvailability.find({$and: [{date: "2019-08-14"}, {docorId: 1}]},function(err,slots){
+    if(err) res.json(err);
+    else res.json(slots);
+  })
+})
+
+router.route('/get-available-slots/:id').get(function(req,res){
+  DoctorAvailability.find({doctorId: req.params.id},function(err,slots){
+    if(err) res.json(err);
+    else res.json(slots);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(400).send("faild to find");
+  });
+})
 
 
 module.exports = router;

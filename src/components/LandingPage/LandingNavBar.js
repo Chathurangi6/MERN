@@ -21,11 +21,16 @@ class LandingNavBar extends Component {
                         <b>{'Navodaya Hospital'}</b>
                     </div>
                 </Navbar.Brand>
-                <div style={{marginLeft: '850px', paddingTop: '2px'}}>
-                    <Link to="/login">
-                        <CustomButton type="success" text="Sign In" link="/login" />
-                    </Link>
+                <div style={{marginLeft: '550px', paddingTop: '2px'}}>
+                    <ul>
+                    <li><Link to="/login">Login </Link></li>
+                    <li><Link to="/login">Login </Link></li>
+                    <li><Link to="/login">Login </Link></li>
+                    <li><Link to="/login">Login </Link></li>
+                    <li><Link to="/login">Login </Link></li>
+                    </ul>
                 </div> 
+                
             </Navbar>
         );
     }

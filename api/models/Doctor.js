@@ -22,15 +22,6 @@ const Doctor = new Schema({
     type:String,
     
   },
-  ava_day:{
-    type:String,
-  },
-  ava_time:{
-    type:String
-  },
-  time_slots:{
-    type:Array
-  },
   password: {
     type: String,
     
