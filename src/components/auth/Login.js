@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
-
+import '../../css/login.css';
 
 class Login extends Component {
   constructor() {
@@ -56,6 +56,7 @@ class Login extends Component {
     const { errors } = this.state;
     
     return (
+      <div className="login-content">
       <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "500px" }}>
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
@@ -118,6 +119,7 @@ class Login extends Component {
             </form>
           </div>
         </div>
+      </div>
       </div>
     );
   }

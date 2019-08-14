@@ -1,16 +1,13 @@
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions"
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import DateAndTime from '../common/dateAndTime';
 import '../../css/docDashboard.css';
-import { Button } from 'reactstrap';
 import axios from 'axios';
-import Uploader from './Uploader'
+
+import UpdateAvailability from  './UpdateAvailability'
 
 
 class DocDashboard extends Component {
@@ -21,8 +18,15 @@ class DocDashboard extends Component {
   state = {
     profile: true,
     userEmail: null,
-    appointDetail: []
+    appointDetail: [],
+    availability: false
   };
+
+  dashboard = () => {
+    this.setState({
+      patientView: false,
+    })
+  }
 
   onLogoutClick = e => {
     e.preventDefault();
@@ -56,10 +60,9 @@ class DocDashboard extends Component {
     })
   }
 
-  updateAppoint = () => {
+  viewAvailability = () => {
     this.setState({
-      profile: false,
-      appointment: true,
+      availability: true,
     })
   }
 
@@ -67,56 +70,36 @@ class DocDashboard extends Component {
 
   render() {
     return (
-      <div>
-        <header className="main-header"> {/*className="main-header*/}
-          <div className="adminNawodayatext1 logo" style={{ height: "64px" }}> {/*className="logo"*/}
-            <span className="adminNawodayatext"> Doctor Nawodaya</span>
-          </div>
-          <DateAndTime />
-          <nav className="navbar navbar-static-top logoutnav" style={{ width: "100%" }} >
-            <div className='logoutdiv tc' style={{ marginLeft: "auto", marginRight: "250px" }} >
-              <Button className="logoutbutton grow shadow-5" color='danger' onClick={this.onLogoutClick} >Logout</Button>
+      <div className  ='container-fluid'>
+        <div className='row'>  
+          <div className='col-md-2'>
+            <div className='row'>
+           
             </div>
-          </nav>
-        </header>
-
-        <aside className="main-sidebar" style={{ position: "absolute" }}>
-          <section className="sidebar">
-
-<Uploader/>
-          </section>
-        </aside>
-        <div> 
-
-          
-
-          <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px" }}>
-            <h3 align="center">Appointment List</h3>
-            <table className="table table-striped" style={{ marginTop: 20 }}>
-              <thead>
-                <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Phone Number</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.appointDetail.map(user =>
-                  <tr key={user._id}>
-                    <td>
-                      {user.p_fname}
-                    </td>
-                    <td>
-                      {user.p_lname}
-                    </td>
-                    <td>
-                      {user.phn_number}
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+            <div className='row'>
+               <div className='col-md-2'>
+              <aside className="main-sidebar" style={{ position: "absolute",minHeight:"100vh",marginTop:"-50px" }}>
+              <section className="sidebar">
+                <h3 className='username' style={{color:'white',marginLeft:"20px"}}> Doctor Nawodaya </h3>
+                <ul className="sidebar-menu">
+                    <li className="header tc"></li>
+                    <li className="treeview">
+                      <List component="nav"  style={{backgroundColor:"#212f39"}}>
+                        <ListItem button onClick={this.viewAvailability}  >
+                          <i className="fa fa-files-o"></i>
+                          <span>Availability</span>
+                        </ListItem>
+                      </List>
+                    </li>
+                  </ul>
+              </section>
+            </aside></div>
+            </div>
           </div>
+          {this.state.availability && (<UpdateAvailability/>)}
+
+        
+          
         </div>
       </div>
     );

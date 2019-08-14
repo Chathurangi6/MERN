@@ -47,8 +47,6 @@ class RegDoctor extends Component {
       specialist: this.state.specialist,
       email: this.state.email,
       phn_number: this.state.phn_number,
-      availableDate:this.state.availableDate,
-      availableTime:this.state.availableTime,
       password: this.state.password,
       password2: this.state.password2
     };
@@ -59,8 +57,6 @@ class RegDoctor extends Component {
       email: "",
       specialist: "",
       phn_number: "",
-      availableDate:"",
-      availableTime:"",
       password: "",
       password2: ""
     })
@@ -273,42 +269,6 @@ class RegDoctor extends Component {
               <span className="red-text">{errors.specialist}</span>
               </div>
               
-
-              <div className="input-field col s12"  style={{width:"50%"}} >
-                <input
-                  icon='adate'
-                  name='adate'
-                  onChange={this.onChange}
-                  value={this.state.availableDate}
-                 // error={errors.phn_number}
-                  id="availableDate"
-                  type="text"
-                  // className={classnames("", {
-                  //   invalid: errors.phn_number
-                  // })}
-                />
-                <label htmlFor="phn_number">Available Day</label>
-                {/* <span className="red-text">{errors.phn_number}</span> */}
-              </div>
-
-              <div className="input-field col s12"  style={{width:"50%"}} >
-                <input
-                  icon='atime'
-                  name='atime'
-                  onChange={this.onChange}
-                  value={this.state.availableTime}
-                 // error={errors.phn_number}
-                  id="availableTime"
-                  type="text"
-                  // className={classnames("", {
-                  //   invalid: errors.phn_number
-                  // })}
-                />
-                <label htmlFor="phn_number">Available Time</label>
-                {/* <span className="red-text">{errors.phn_number}</span> */}
-              </div>
-
-
               <div className="input-field col s6" style={{width:"50%", display:"inline-block"}}>
                 <input
                   onChange={this.onChange}
