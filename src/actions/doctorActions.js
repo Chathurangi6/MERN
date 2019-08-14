@@ -16,9 +16,4 @@ export const createSlot = (data, history) => dispatch => {
         payload: err.response.data
       })
     );
-<<<<<<< HEAD
 };
-=======
-};
-
->>>>>>> 7a0e509cd394a4c5ae3f0f522ed703fa17794939
