@@ -243,12 +243,4 @@ router.route('/get-available-slots/:id').get(function(req,res){
   });
 })
 
-
-router.route('/get-slots-by-date').get(function(req,res){
-  DoctorAvailability.find({$and: [{date: "2019-08-14"}, {docorId: 1}]},function(err,slots){
-    if(err) res.json(err);
-    else res.json(slots);
-  })
-})
-
 module.exports = router;

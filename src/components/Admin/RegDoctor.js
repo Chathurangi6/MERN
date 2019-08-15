@@ -269,6 +269,42 @@ class RegDoctor extends Component {
               <span className="red-text">{errors.specialist}</span>
               </div>
               
+
+              {/* <div className="input-field col s12"  style={{width:"50%"}} >
+                <input
+                  icon='adate'
+                  name='adate'
+                  onChange={this.onChange}
+                  value={this.state.availableDate}
+                 // error={errors.phn_number}
+                  id="availableDate"
+                  type="text"
+                  // className={classnames("", {
+                  //   invalid: errors.phn_number
+                  // })}
+                />
+                <label htmlFor="phn_number">Available Day</label> */}
+                {/* <span className="red-text">{errors.phn_number}</span> */}
+              {/* </div> */}
+
+              {/* <div className="input-field col s12"  style={{width:"50%"}} >
+                <input
+                  icon='atime'
+                  name='atime'
+                  onChange={this.onChange}
+                  value={this.state.availableTime}
+                 // error={errors.phn_number}
+                  id="availableTime"
+                  type="text"
+                  // className={classnames("", {
+                  //   invalid: errors.phn_number
+                  // })}
+                />
+                <label htmlFor="phn_number">Available Time</label> */}
+                {/* <span className="red-text">{errors.phn_number}</span> */}
+              {/* </div> */}
+
+
               <div className="input-field col s6" style={{width:"50%", display:"inline-block"}}>
                 <input
                   onChange={this.onChange}
