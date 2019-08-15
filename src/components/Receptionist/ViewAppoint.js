@@ -28,8 +28,9 @@ export default class ViewAppoint extends Component {
             phn_number: "",
             timeslots:[],
             time:"",
-            modalIsOpen: false
-
+            modalIsOpen: false,
+            selectDate:"",
+            selectTime:""
         }
         this.onChange = this.onChange.bind(this)
         this.search = this.search.bind(this)
@@ -38,6 +39,7 @@ export default class ViewAppoint extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.cancelAppoint=this.cancelAppoint.bind(this);
+        this.onChangeDoctor=this.onChangeDoctor.bind(this);
     }
     onChange = e => {
         let docdetail = e.target.value.split("-")
@@ -139,6 +141,7 @@ export default class ViewAppoint extends Component {
         axios.get('http://localhost:4000/api/doctor/name')
             .then(response => {
                 this.setState({ doctor: response.data });
+                console.log(response.data)
             })
             .catch(function (error) {
                 console.log(error);
@@ -158,23 +161,86 @@ export default class ViewAppoint extends Component {
         
     }
 
+    onChangePatientId(e){
+        e.preventDefault();
+        console.log(e.target.value)
+        const obj = {
+             id: e.target.value
+        };
+        // axios.post('http://localhost:4000/api/appointment/search', obj)
+        //     .then(res => {
+        //         this.setState({ matching: res.data })})
+    }
+
+    onChangeDoctor(e){
+        this.setState({ docName: e.target.value });
+    }
+
+    onChangeDate(e){
+        this.setState({ selectDate: e.target.value });
+    }
+
+    onChangeTime(e){
+        this.setState({ selectTime: e.target.value });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+         if (this.state.docName !== "" && prevState.docName !== this.state.docName){
+
+            const obj = {
+                doctor: this.state.docName
+            };
+             axios.post('http://localhost:4000/api/appointment/search', obj)
+             .then(res => {
+                 this.setState({ matching: res.data })})
+                 
+        }
+        
+            
+         if(this.state.selectDate !== "" && prevState.selectDate !== this.state.selectDate){
+            axios.get() // todo
+        }
+        else if(this.state.selectTime !== "" && prevState.selectTime !== this.state.selectTime){
+            axios.get() // todo
+        }
+        return null
+    }
+
     render() {
         return (
             <div className="container" style={{ border: "2px", borderRadius: "5px", backgroundColor: "white", padding: '10px', marginTop: '20px', width: "900px" }}>
                 <h3>Appointment Table</h3>
                 <form >
-                    <div className="input-field col s12">
-                        <select id="docName" onClick={this.onChange} className="form-control">
-                            <option>search your doctor</option>
-                            {this.state.doctor.map((obj) =>
-                                <option key={obj.fullname}>{obj.fullname}-{obj.email}</option>
-                            )}
-                        </select>
-                    </div>
+                    <div className="container">
+                        <div className="input-field col s6">
+                            <select id="docName" onClick={e => this.onChangeDoctor(e)} className="form-control">
+                                <option>select your doctor</option>
+                                {this.state.doctor.map((obj) =>
+                                    <option key={obj.fullname}>{obj.fullname}-{obj.email}</option>
+                                )}
+                            </select>
+                        </div>
+                        <div className="input-field col s3">
+                            <select onClick={e => this.onChangeDate(e)} id="appointDate" className="form-control">
+                                    <option>select date</option>
+                            </select>
+                        </div>
 
+                        <div className="input-field col s3">
+                            <select onClick={e => this.onChangeTime(e)} id="appointTime" className="form-control">
+                                    <option>select time</option>
+                            </select>
+                        </div>
+                    </div>
+{/* 
                     <div className="form-group">
+<<<<<<< HEAD
                         <button onClick={this.search()} className="btn btn-primary right " ></button>
                     </div> 
+=======
+                        <button onClick={this.search} className="btn btn-primary right " >Search Appointment</button>
+                    </div> */}
+>>>>>>> doctor_availability
                 </form>
                 <div>
                     <table className="table table-striped" style={{ marginTop: 20 }}>
@@ -219,7 +285,22 @@ export default class ViewAppoint extends Component {
                             <div className="form-group">
                                 <label>Doctor Name: {this.state.docName}  </label>
                             </div>
-                            
+
+                            <div className="form-group">
+                                <label>Appointment Number :   </label> 
+                                {/* to do get appoin num */}
+                            </div>
+
+                            <div className="input-field col s12">
+                                <input
+                                    onChange={this.onChangePatientId} 
+                                    // value={this.state.p_fname} todo
+                                    type="text"
+                                    id="p_id"
+                                />
+                                <label>Patient Id</label>
+                            </div>
+
                             <div className="input-field col s12">
                                 <input
                                     onChange={this.onChangeForm}

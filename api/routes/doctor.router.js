@@ -234,6 +234,7 @@ router.route("/uploadmulter")
 
 router.route('/get-available-slots/:id').get(function(req,res){
   DoctorAvailability.find({doctorId: req.params.id},function(err,slots){
+<<<<<<< HEAD
     if(err) res.json(err);
     else res.json(slots);
   })
@@ -246,9 +247,15 @@ router.route('/get-available-slots/:id').get(function(req,res){
 
 router.route('/get-slots-by-date').get(function(req,res){
   DoctorAvailability.find({$and: [{date: "2019-08-14"}, {docorId: 1}]},function(err,slots){
+=======
+>>>>>>> doctor_availability
     if(err) res.json(err);
     else res.json(slots);
   })
+  .catch(err => {
+    console.log(err);
+    res.status(400).send("faild to find");
+  });
 })
 
 module.exports = router;
