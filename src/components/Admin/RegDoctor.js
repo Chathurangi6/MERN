@@ -269,8 +269,6 @@ class RegDoctor extends Component {
               <span className="red-text">{errors.specialist}</span>
               </div>
               
-<<<<<<< HEAD
-=======
 
               {/* <div className="input-field col s12"  style={{width:"50%"}} >
                 <input
@@ -307,7 +305,6 @@ class RegDoctor extends Component {
               {/* </div> */}
 
 
->>>>>>> doctor_availability
               <div className="input-field col s6" style={{width:"50%", display:"inline-block"}}>
                 <input
                   onChange={this.onChange}
