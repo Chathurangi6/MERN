@@ -54,7 +54,7 @@ class UpdateAvilability extends Component {
     e.preventDefault();
     const newData = {
       //set doctor id from auth
-      doctorId: "5d52ebcb2f3b5574cc31ec4b",
+      doctorId: this.props.auth.id,
       date: new Date(this.state.time1).toLocaleDateString("en-US"),
       session1: {
         startTime: new Date(this.state.time1).toLocaleTimeString("en-US"),
@@ -66,6 +66,14 @@ class UpdateAvilability extends Component {
       },
     };
     this.props.createSlot(newData, this.props.history); 
+    this.setState({
+      doctorId: "",
+      date:"",
+      time1: "",
+      time2:"",
+      time3:"",
+      time4: "",
+    })
   };
   
 render() {

@@ -38,4 +38,31 @@ router.post('/results',function(req,res){
     })
 })
 
+router.post('/sendReport', (req, res) => {
+    if (req.body.email === '') {
+      res.status(400).send('email required');
+    }
+   // console.error(req.body.email);
+   const email = req.body.email;
+   const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: `pamudikavindya4@gmail.com`,
+        pass: `batti@123`,
+    },
+});
+
+const mailOptions = {
+    from: 'pamudikavindya4@gmail.com',
+    to: req.body.sendingData[0],
+    subject: 'Blood report',
+    text: req.body.sendingData[1]
+};
+
+console.log('sending mail');
+
+transporter.sendMail(mailOptions);
+  });
+
+
 module.exports = router;

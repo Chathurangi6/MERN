@@ -14,6 +14,7 @@ import '../../css/admin.css';
 import Dashboard from "../Admin/Dashboard"
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Laboratorist from './Laboratorist'
 
 
 
@@ -30,6 +31,7 @@ class Admin extends Component {
       doctorView: false,
       regReceptionist: false,
       recepView: false,
+      lab:false,
       main:true
     };
   }
@@ -47,7 +49,8 @@ class Admin extends Component {
       doctorView: false,
       recepView: false,
       regReceptionist: false,
-      main:true
+      main:true,
+      lab:false
     })
   }
 
@@ -58,7 +61,8 @@ class Admin extends Component {
       doctorView: false,
       recepView: false,
       regReceptionist: false,
-      main:false
+      main:false,
+      lab:false
     })
   }
 
@@ -70,7 +74,8 @@ class Admin extends Component {
       doctorView: false,
       regReceptionist: false,
       recepView: false,
-      main:false
+      main:false,
+      lab:false
     })
   }
 
@@ -82,7 +87,8 @@ class Admin extends Component {
       doctorView: true,
       regReceptionist: false,
       recepView: false,
-      main:false
+      main:false,
+      lab:false
     })
   }
 
@@ -94,7 +100,8 @@ class Admin extends Component {
       doctorView: false,
       regReceptionist: true,
       recepView: false,
-      main:false
+      main:false,
+      lab:false
     })
   }
 
@@ -106,7 +113,20 @@ class Admin extends Component {
       doctorView: false,
       regReceptionist: false,
       recepView: true,
-      main:false
+      main:false,
+      lab:false
+    })
+  }
+
+  updateLab = () => {
+    this.setState({
+      regDoctor: false,
+      patientView: false,
+      doctorView: false,
+      regReceptionist: false,
+      recepView: false,
+      main:false,
+      lab:true
     })
   }
 
@@ -253,6 +273,7 @@ class Admin extends Component {
             {this.state.doctorView && (<ViewDoctors />)}
             {this.state.regReceptionist && (<RegReceptionist />)}
             {this.state.recepView && (<ViewRecep />)}
+            {this.state.lab && (<Laboratorist/>)}
           </div>
         </div>  
       </div>

@@ -82,6 +82,7 @@ return (
                   error={errors.fname}
                   id="fname"
                   type="text"
+                  required
                   className={classnames("", {
                     invalid: errors.fname
                   })}
@@ -96,6 +97,7 @@ return (
                   error={errors.lname}
                   id="lname"
                   type="text"
+                  required
                   className={classnames("", {
                     invalid: errors.lname
                   })}
@@ -110,6 +112,7 @@ return (
                   error={errors.email}
                   id="email"
                   type="email"
+                  required
                   className={classnames("", {
                     invalid: errors.email
                   })}
@@ -128,6 +131,7 @@ return (
                   error={errors.dob}
                   id="dob"
                   type="Date"
+                  required
                   className={classnames("", {
                     invalid: errors.dob
                   })}
@@ -143,6 +147,7 @@ return (
                   error={errors.phn_number}
                   id="phn_number"
                   type="text"
+                  required
                   className={classnames("", {
                     invalid: errors.phn_number
                   })}
@@ -159,6 +164,7 @@ return (
                   error={errors.password}
                   id="password"
                   type="password"
+                  required
                   className={classnames("", {
                     invalid: errors.password
                   })}
@@ -173,6 +179,7 @@ return (
                   error={errors.password2}
                   id="password2"
                   type="password"
+                  required
                   className={classnames("", {
                     invalid: errors.password2
                   })}

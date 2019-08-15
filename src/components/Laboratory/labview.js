@@ -9,6 +9,11 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import tests from './test';
 import SearchInput, {createFilter} from 'react-search-input'
+import jsPDF from 'jspdf';
+import Swal from 'sweetalert2';
+import nodemailer from 'nodemailer';
+
+
 
 const KEYS_TO_FILTERS =[]
 const labstyles={
@@ -26,7 +31,7 @@ const labstyles={
     },
     table:{
         backgroundColor:'beige',
-        
+
         marginTop:'15px'
     }
 
@@ -40,16 +45,17 @@ class LabView extends React.Component {
            pname:'',
            paddr:'',
            pemail:'',
+           old:{},
            results:[{name:'Shehan Kulathilake'}]
        }
-       this.resultsSubmit = this.resultsSubmit.bind(this)       
+       this.resultsSubmit = this.resultsSubmit.bind(this)
        this.changeNewReport = this.changeNewReport.bind(this)
        this.searchUpdated = this.searchUpdated.bind(this)
        this.fetchData = this.fetchData.bind(this)
     }
     componentDidMount(){
         this.fetchData();
-      
+
     }
     componentDidUpdate = () => {
         this.fetchData()
@@ -58,14 +64,14 @@ class LabView extends React.Component {
         fetch('http://localhost:4000/api/report/get')
         .then(res=>res.json())
         .then(res=>{
-            
+
             this.setState({
                 results:res
             })
         });
     }
     setPane(pane){
-        
+
         this.setState({
             pane:pane
         })
@@ -77,19 +83,24 @@ class LabView extends React.Component {
             pname:this.state.pname,
             pemail:this.state.pemail,
             paddr:this.state.paddr,
-            cbc: this.state.cbc, 
-            lpd: this.state.lpd, 
-            ura: this.state.ura, 
+            cbc: this.state.cbc,
+            lpd: this.state.lpd,
+            ura: this.state.ura,
             fbs: this.state.fbs,
             ucl:this.state.ucl,
 
 
         }
-   
+
+        this.setState({
+            old1: payload
+        })
+
         axios.post('http://localhost:4000/api/report/add',payload)
         .then(res=>console.log(res.status))
         .then(()=>{
-           window.location.reload()
+           //window.location.reload()
+            Swal.fire('New report added successfully!!!')
         })
     }
 
@@ -101,12 +112,12 @@ class LabView extends React.Component {
         payload['_id'] = _id
         payload['state']="completed"
         const formData = new FormData(e.target);
-       
+
         for(var pair of formData.entries()) {
             console.log(pair[0]+ ', '+ pair[1]);
             if(pair[0].split('[')[0]===curTest){
-             
-                payload[curTest].push(pair[1]) 
+
+                payload[curTest].push(pair[1])
             }
             else{
                 curTest = pair[0].split('[')[0];
@@ -114,20 +125,39 @@ class LabView extends React.Component {
                 payload[curTest]= [pair[1]]
                 curIndex ++
             }
-            
+
             console.log(JSON.stringify(payload))
          }
-
-
-
+        console.log(payload)
+        this.getpdf(payload)
         axios.post('http://localhost:4000/api/report/results',payload)
+
         .then((res)=>{
-           
+
         })
         .then(
-            window.location.reload()
+            //window.location.reload()
+
         )
-        
+
+    }
+
+    //Save file to a pdf - npm install jspdf --save
+    getpdf(payload){
+        if(this.state.old1.cbc){
+            const pdf = new jsPDF()
+            let text="Complete Blood Report - Nawodaya\n_____________________________\n\n1. Patient Name          : "+this.state.old1.pname+"\n\n2. Patient E-mail         : "+this.state.old1.pemail+"\n\n3. Patient Address      : "+this.state.old1.paddr+"\n\n4. WBC                       : "+payload.cbc[0]+" mm3\n\n5. RBC                        : "+payload.cbc[1]+" mil/mm3\n\n6. Hemoglobin            : "+payload.cbc[2]+" g/dl"
+            pdf.text(text,10,10)
+            pdf.save("report.pdf")
+
+            let receiver=this.state.old1.pemail
+            const sendingData={}
+            sendingData[0]=receiver
+            sendingData[1]=text
+            console.log(sendingData)
+            axios.post('http://localhost:4000/api/report/sendReport',sendingData)         
+
+        }
     }
 
     populateResults(query){
@@ -136,16 +166,16 @@ class LabView extends React.Component {
             return   <li>
             <b>{key+1}</b> - {report.pname} - {report.timestamp}
 
-            <button 
+            <button
             type="submit"
             style={{float:'right'}}
             class="waves-effect waves-light btn"
-            data-toggle="collapse" 
-            data-target={"#results"+key+1} 
-            aria-expanded="false" 
+            data-toggle="collapse"
+            data-target={"#results"+key+1}
+            aria-expanded="false"
             aria-controls={"results"+key+1}
             >
-        Test Results  
+        Test Results
         </button>
         <div id={"results"+key+1} className="collapse" style={labstyles.table}>
             <br></br>
@@ -176,33 +206,33 @@ class LabView extends React.Component {
                                     <>
                                     <tr>
                                         <td colSpan="4">
-                                        	<h5><b>{tests[test].title}</b></h5>   
+                                        	<h5><b>{tests[test].title}</b></h5>
                                         </td>
                                     </tr>
 
                                     {this.testdata(test,key)}
                                     </>
-                                ) 
+                                )
                             }
                         }
                     )}
                 </tbody>
             </table>
                     <button
-                    type="submit"
                     class="waves-effect waves-light btn"
+
                     >
                         Save and Send
                     </button>
                     </form>
         </div>
-        <hr></hr> 
+        <hr></hr>
     </li>
     })
     }
 
     testdata(test,key){
-        console.log(tests[test].title)
+        //console.log(tests[test].title)
         return tests[test].comp.map((comp,key)=>{
 	        return  (
 	        	<tr>
@@ -220,7 +250,7 @@ class LabView extends React.Component {
 	                </td>
 	            </tr>
 	        )
-        })       
+        })
     }
     searchUpdated (term) {
         this.setState({searchTerm: term})
@@ -231,31 +261,34 @@ class LabView extends React.Component {
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
         this.setState({
             [key]: value,
-            
-        },function(){console.log(this.state)})
+
+        },function(){
+            console.log(this.state)
+            console.log(this.state.old)
+        })
     }
 
-  
+
 
     render(){
-       
-        const newTest = 
+
+        const newTest =
         <div>
             <h4>New Medical Report</h4>
             <form onSubmit={this.submitNewReport.bind(this)}>
                 <h5>Patient Information</h5>
                 <div className="form-group">
                       <label>Patient Name:  </label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         id="pname"
                         name="pname"
-                        className="form-control" 
-                        value={this.state.pname} 
+                        className="form-control"
+                        value={this.state.pname}
                         onChange={this.changeNewReport}
                         />
                   </div>
-                
+
                 <div className="form-group">
                 <label>Patient Address:</label>
                 <textarea
@@ -278,8 +311,8 @@ class LabView extends React.Component {
                 </div>
 
                 <h5>Required Tests</h5>
-            
-        
+
+
 
   <div class="col-md-4">
   <div class="checkbox">
@@ -294,7 +327,7 @@ class LabView extends React.Component {
     <label for="checkboxes-1">
       <input type="checkbox" name="fbs" id="checkboxes-1" value="2"
       onChange={this.changeNewReport}
-      
+
       />
       <span>Fasting Blood Sugar</span>
     </label>
@@ -324,11 +357,11 @@ class LabView extends React.Component {
     </label>
 	</div>
   </div>
-        <button 
+        <button
         type="submit"
         style={{float:'right'}}
         class="waves-effect waves-light btn" >
-          Add to Queue  
+          Add to Queue
         </button>
             </form>
         </div>
@@ -354,7 +387,7 @@ class LabView extends React.Component {
                     <div style={labstyles.side} className = "col-md-2 col-sm-2" >
                      <aside className="main-sidebar" style={{paddingLeft:"20px"}}>
                          <section className="sidebar" >
-                       
+
                         <ul  className="sidebar-menu">
                          <li className="header">Laboratory Options</li>
                             <li>
@@ -371,14 +404,14 @@ class LabView extends React.Component {
                     {/* Contents */}
                     <div style={labstyles.content} className="col-md-10 col-sm-10" >
                          <header className="main-header">
-            
+
               <nav className="navbar navbar-static-top">
                 <Toolbar>
                   <IconButton  color="inherit" aria-label="Menu">
                     <MenuIcon />
                   </IconButton>
                   <Typography variant="h6" color="inherit" >
-                  
+
                   </Typography>
                   <Button color="inherit" className="top-right" onClick={this.onLogoutClick}>Logout</Button>
                 </Toolbar>

@@ -33,6 +33,7 @@ class RecepDashboard extends Component {
     this.props.logoutUser();
   };
 
+
   docAvailable=()=>{
     this.setState({
       patientView: false,
@@ -70,8 +71,9 @@ class RecepDashboard extends Component {
   render() {
 
     const { user } = this.props.auth;
-  // console.log(user);
+   console.log(user);
     return (
+      
       <div className  ='container-fluid'>
         <div className='row'>  
           <div className='col-md-2'>
@@ -129,15 +131,14 @@ class RecepDashboard extends Component {
         </aside>
         </div>
         <div className='col-md-10' style={{paddingLeft:"0px"}}>
-            <header className="main-header"> {/*className="main-header*/}
-                       
+        <header className="main-header"> {/*className="main-header*/}
                 {/*<DateAndTime/>*/}        
-              <nav className="navbar navbar-static-top logoutnav" style={{width:"100%"}} >       
-                <div className='logoutdiv tc' style={{marginLeft:"auto", marginRight:"0"}} >
-                <Button className="logoutbutton grow shadow-5" color='danger' onClick={this.onLogoutClick} >Logout</Button>
-                </div>
-              </nav>
-            </header>
+                <nav className="navbar navbar-static-top logoutnav" style={{width:"100%"}} >       
+                    <div className='logoutdiv tc' style={{marginLeft:"auto", marginRight:"0"}} >
+                    <Button className="logoutbutton grow shadow-5" color='danger' onClick={this.onLogoutClick} >Logout</Button>
+                 </div>
+                </nav>
+        </header>
         {this.state.docAvail && (<DocAvailability/>)}
         {this.state.patientView && (<ViewPatient />)}
         {this.state.patientadd && (<AddPatient />)}
